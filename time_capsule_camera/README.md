@@ -16,6 +16,26 @@ This directory contains a SwiftUI skeleton for the **Time Capsule Camera** app. 
 - `Models/` – `Capsule` and `Clip` models for Firestore documents.
 - `Views/` – SwiftUI views for authentication, capsule list/detail, countdown timer and video picker.
 
+## Setup Instructions
+
+### 1. Firebase Configuration
+- Go to [Firebase Console](https://console.firebase.google.com/)
+- Create a new project or select an existing one
+- Add an iOS app to your project
+- Download the `GoogleService-Info.plist` file
+- Replace `GoogleService-Info-template.plist` with your actual `GoogleService-Info.plist`
+
+### 2. Enable Firebase Services
+In your Firebase project, enable:
+- **Authentication** (Email/Password provider)
+- **Firestore Database** (in production mode)
+- **Storage** (for video file uploads)
+
+### 3. Build and Run
+- Open the project in Xcode
+- Set your bundle identifier in the project settings
+- Build and run on iOS Simulator or device (iOS 16.0+)
+
 ## Next Steps
 
 - Implement **Cloud Functions** to automatically unseal capsules when their `sealDate` passes.
