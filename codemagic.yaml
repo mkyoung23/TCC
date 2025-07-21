@@ -1,0 +1,25 @@
+workflows:
+  ios-build:
+    
+    environment:
+      vars:
+        XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
+        XCODE_SCHEME: "TimeCapsuleCamera"
+      ios_signing:
+        provisioning_profiles:
+          - YOUR_PROFILE_NAME.mobileprovision
+        certificate_url: Encrypted(APPLE_CERTIFICATE_URL)
+        certificate_password: Encrypted(APPLE_CERTIFICATE_PASSWORD)
+        apple_id: Encrypted(APPLE_ID)
+        apple_id_password: Encrypted(APPLE_ID_PASSWORD)
+    scripts:
+      - name: Install dependencies
+        script: |
+          cd time_capsule_camera
+          pod install || true
+      - name: Build app
+        script: |
+          cd time_capsule_camera
+          xcodebuild -project $XCODE_PROJECT -scheme $XCODE_SCHEME -sdk iphoneos -configuration Release clean build CODE_SIGN_IDENTITY="iPhone Distribution"
+    artifacts:
+      - time_capsule_camera/build/Release-iphoneos/*.ipa
