@@ -10,8 +10,7 @@ workflows:
           - YOUR_PROFILE_NAME.mobileprovision
         certificate_url: Encrypted(APPLE_CERTIFICATE_URL)
         certificate_password: Encrypted(APPLE_CERTIFICATE_PASSWORD)
-        apple_id: Encrypted(APPLE_ID)
-        apple_id_password: Encrypted(APPLE_ID_PASSWORD)
+  a
     scripts:
       - name: Install dependencies
         script: |
