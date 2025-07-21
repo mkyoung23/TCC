@@ -7,8 +7,7 @@ workflows:
     ios_signing:
       provisioning_profiles:
         - YOUR_PROFILE_NAME.mobileprovision
-      certificate_url: Encrypted(APPLE_CERTIFICATE_URL)
-      certificate_password: Encrypted(APPLE_CERTIFICATE_PASSWORD)
+    
     scripts:
       - name: Install dependencies
         script: |
