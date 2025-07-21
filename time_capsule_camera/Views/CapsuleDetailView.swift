@@ -9,6 +9,7 @@ struct CapsuleDetailView: View {
     @State private var currentClipIndex: Int = 0
     @State private var player: AVQueuePlayer? = nil
     @State private var showPicker: Bool = false
+    @State private var showInvite: Bool = false
 
     var body: some View {
         VStack {
@@ -37,15 +38,30 @@ struct CapsuleDetailView: View {
             }
         }
         .navigationTitle(capsule.name)
-        .navigationBarItems(trailing: capsule.isUnsealed ? nil : Button("Add Clip") {
-            showPicker = true
-        })
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                // Only show Add Clip button when capsule is sealed
+                if !capsule.isUnsealed {
+                    Button("Add Clip") {
+                        showPicker = true
+                    }
+                }
+            }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button("Invite") {
+                    showInvite = true
+                }
+            }
+        }
         .sheet(isPresented: $showPicker) {
             VideoPicker { url in
                 if let url = url {
                     uploadVideo(url: url)
                 }
             }
+        }
+        .sheet(isPresented: $showInvite) {
+            InviteMembersView(capsule: capsule)
         }
         .onAppear(perform: loadClips)
     }
