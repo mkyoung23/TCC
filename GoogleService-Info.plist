@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CLIENT_ID</key>
+    <string>413717745824-c3d21670dfdf9f602e08a45.apps.googleusercontent.com</string>
+    <key>REVERSED_CLIENT_ID</key>
+    <string>com.googleusercontent.apps.413717745824-c3d21670dfdf9f602e08a45</string>
+    <key>API_KEY</key>
+    <string>AIzaSyBxxBdF3JTCu7JeDu51GPvQh4P0w45Rv1g</string>
+    <key>GCM_SENDER_ID</key>
+    <string>413717745824</string>
+    <key>PLIST_VERSION</key>
+    <string>1</string>
+    <key>BUNDLE_ID</key>
+    <string>com.mycompany.lifelapse</string>
+    <key>PROJECT_ID</key>
+    <string>lifelapse-27e17</string>
+    <key>STORAGE_BUCKET</key>
+    <string>lifelapse-27e17.appspot.com</string>
+    <key>IS_ADS_ENABLED</key>
+    <false/>
+    <key>IS_ANALYTICS_ENABLED</key>
+    <false/>
+    <key>IS_APPINVITE_ENABLED</key>
+    <false/>
+    <key>IS_GCM_ENABLED</key>
+    <false/>
+    <key>GOOGLE_APP_ID</key>
+    <string>1:413717745824:ios:c3d21670dfdf9f602e08a45</string>
+    <key>DATABASE_URL</key>
+    <string>https://lifelapse-27e17-default-rtdb.firebaseio.com</string>
+    <key>IS_SIGNIN_ENABLED</key>
+    <true/>
+</dict>
+</plist>
