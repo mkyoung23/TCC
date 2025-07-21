@@ -3,9 +3,8 @@ import Firebase
 
 @main
 struct TimeCapsuleCameraApp: App {
-    init() {
-        FirebaseApp.configure()
-    }
+    // Register AppDelegate to handle Firebase setup and push notifications
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @StateObject private var authViewModel = AuthViewModel()
 
