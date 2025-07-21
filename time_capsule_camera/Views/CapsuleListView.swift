@@ -13,6 +13,8 @@ struct CapsuleListView: View {
                     VStack(alignment: .leading) {
                         Text(capsule.name)
                             .font(.headline)
+                        Text("\(capsule.memberIds.count) members")
+                            .font(.subheadline)
                         Text("Unseals on \(capsule.sealDate.formatted(date: .long, time: .shortened))")
                             .font(.subheadline)
                     }
