@@ -10,9 +10,24 @@ struct CapsuleDetailView: View {
     @State private var player: AVQueuePlayer? = nil
     @State private var showPicker: Bool = false
     @State private var showInvite: Bool = false
+    @State private var uploadProgress: Double = 0.0
+    @State private var isUploading: Bool = false
+    @State private var uploadError: String? = nil
+    @State private var showUploadError: Bool = false
 
     var body: some View {
         VStack {
+            // Show upload progress when a video is uploading
+            if isUploading {
+                VStack {
+                    ProgressView(value: uploadProgress)
+                        .progressViewStyle(LinearProgressViewStyle())
+                        .padding()
+                    Text("Uploading clip…")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+            }
             if capsule.isUnsealed {
                 if let player = player {
                     VideoPlayer(player: player)
@@ -20,9 +35,7 @@ struct CapsuleDetailView: View {
                             overlayView
                         }
                         .onDisappear { player.pause() }
-                        .onAppear {
-                            player.play()
-                        }
+                        .onAppear { player.play() }
                 } else {
                     ProgressView("Loading video…")
                 }
@@ -64,6 +77,13 @@ struct CapsuleDetailView: View {
             InviteMembersView(capsule: capsule)
         }
         .onAppear(perform: loadClips)
+        .alert(isPresented: $showUploadError) {
+            Alert(
+                title: Text("Upload Error"),
+                message: Text(uploadError ?? "Unknown error"),
+                dismissButton: .default(Text("OK"))
+            )
+        }
     }
 
     @ViewBuilder
@@ -99,13 +119,13 @@ struct CapsuleDetailView: View {
     private func preparePlayer() {
         let group = DispatchGroup()
         var items: [AVPlayerItem] = []
-        for (index, clip) in clips.enumerated() {
+        for clip in clips {
             group.enter()
             let storageRef = FirebaseManager.shared.storage.reference(withPath: clip.storagePath)
             storageRef.downloadURL { url, error in
                 if let url = url {
-                    var clip = clip
-                    clip.url = url
+                    var updatedClip = clip
+                    updatedClip.url = url
                     let item = AVPlayerItem(url: url)
                     NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: item, queue: .main) { _ in
                         currentClipIndex = min(currentClipIndex + 1, clips.count - 1)
@@ -116,7 +136,7 @@ struct CapsuleDetailView: View {
             }
         }
         group.notify(queue: .main) {
-            self.player = AVQueuePlayer(items: items.sorted { ($0.asset.duration.seconds) < ($1.asset.duration.seconds) })
+            self.player = AVQueuePlayer(items: items)
         }
     }
 
@@ -124,19 +144,48 @@ struct CapsuleDetailView: View {
         guard let user = FirebaseManager.shared.auth.currentUser else { return }
         let videoId = UUID().uuidString
         let videoRef = FirebaseManager.shared.storage.reference().child("videos/\(capsule.id)/\(videoId).mp4")
-        let uploadTask = videoRef.putFile(from: url, metadata: nil) { metadata, error in
-            if let _ = metadata {
-                // On successful upload, write metadata to Firestore
-                let data: [String: Any] = [
-                    "videoId": videoId,
-                    "uploaderId": user.uid,
-                    "uploaderName": user.displayName ?? "",
-                    "storagePath": videoRef.fullPath,
-                    "createdAt": Timestamp(date: Date())
-                ]
-                FirebaseManager.shared.db.collection("capsules").document(capsule.id).collection("videos").document(videoId).setData(data)
+
+        // Reset upload state
+        isUploading = true
+        uploadProgress = 0.0
+        uploadError = nil
+        showUploadError = false
+
+        let uploadTask = videoRef.putFile(from: url, metadata: nil)
+
+        // Observe progress
+        uploadTask.observe(.progress) { snapshot in
+            if let fraction = snapshot.progress?.fractionCompleted {
+                DispatchQueue.main.async {
+                    self.uploadProgress = fraction
+                }
             }
         }
-        // Optionally observe progress or errors on uploadTask
+
+        // Observe success
+        uploadTask.observe(.success) { snapshot in
+            DispatchQueue.main.async {
+                self.isUploading = false
+                self.uploadProgress = 0.0
+            }
+            // Write metadata to Firestore
+            let data: [String: Any] = [
+                "videoId": videoId,
+                "uploaderId": user.uid,
+                "uploaderName": user.displayName ?? "",
+                "storagePath": videoRef.fullPath,
+                "createdAt": Timestamp(date: Date())
+            ]
+            FirebaseManager.shared.db.collection("capsules").document(capsule.id).collection("videos").document(videoId).setData(data)
+        }
+
+        // Observe failure
+        uploadTask.observe(.failure) { snapshot in
+            DispatchQueue.main.async {
+                self.isUploading = false
+                self.uploadError = snapshot.error?.localizedDescription ?? "Failed to upload video."
+                self.showUploadError = true
+            }
+        }
     }
 }
