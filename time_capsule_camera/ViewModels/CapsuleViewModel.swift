@@ -50,6 +50,13 @@ class CapsuleViewModel: ObservableObject {
     
     func addCapsule(_ capsule: Capsule) {
         capsules.append(capsule)
+        
+        // Schedule notifications for this capsule
+        NotificationManager.shared.scheduleUnsealNotification(for: capsule)
+        
+        // Schedule reminder notifications (7 days and 1 day before)
+        NotificationManager.shared.scheduleReminderNotification(for: capsule, daysBeforeUnseal: 7)
+        NotificationManager.shared.scheduleReminderNotification(for: capsule, daysBeforeUnseal: 1)
     }
     
     func stopListening() {

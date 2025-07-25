@@ -34,9 +34,7 @@ let package = Package(
             ],
             resources: [
                 .process("Assets.xcassets"),
-                .process("LaunchScreen.storyboard"),
-                .process("Info.plist"),
-                .process("GoogleService-Info.plist")
+                .process("LaunchScreen.storyboard")
             ]
         ),
         .testTarget(

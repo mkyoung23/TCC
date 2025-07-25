@@ -12,23 +12,89 @@ struct NewCapsuleView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                Section(header: Text("Capsule Name")) {
-                    TextField("Enter a name", text: $name)
-                }
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Header
+                    VStack(spacing: 8) {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.system(size: 60))
+                            .foregroundColor(.blue)
+                        
+                        Text("Create New Capsule")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        
+                        Text("Set a future date to unlock your memories")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding()
+                    
+                    // Form content
+                    VStack(spacing: 20) {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Capsule Name")
+                                .font(.headline)
+                            TextField("Enter a memorable name", text: $name)
+                                .textFieldStyle(.roundedBorder)
+                        }
 
-                Section(header: Text("Unseal Date")) {
-                    DatePicker("Select Date", selection: $sealDate, displayedComponents: [.date, .hourAndMinute])
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Unseal Date")
+                                .font(.headline)
+                            
+                            DatePicker("Select Date", selection: $sealDate, in: Date()..., displayedComponents: [.date, .hourAndMinute])
+                                .datePickerStyle(.compact)
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 12)
+                                .background(Color(.systemGray6))
+                                .cornerRadius(8)
+                        }
+                        
+                        // Preview section
+                        if !name.isEmpty {
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text("Preview")
+                                    .font(.headline)
+                                
+                                HStack {
+                                    Circle()
+                                        .fill(Color.orange)
+                                        .frame(width: 12, height: 12)
+                                    
+                                    Text(name)
+                                        .font(.headline)
+                                    
+                                    Spacer()
+                                    
+                                    Image(systemName: "lock.fill")
+                                        .foregroundColor(.orange)
+                                }
+                                .padding()
+                                .background(Color(.systemGray6))
+                                .cornerRadius(12)
+                            }
+                        }
+                    }
+                    .padding()
                 }
             }
             .navigationTitle("New Capsule")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Create") { createCapsule() }
-                        .disabled(name.isEmpty || sealDate <= Date())
+                    Button("Create") { 
+                        createCapsule()
+                        // Add haptic feedback
+                        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+                        impactFeedback.impactOccurred()
+                    }
+                    .disabled(name.isEmpty || sealDate <= Date())
+                    .fontWeight(.semibold)
                 }
             }
         }
