@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>CFBundleDisplayName</key>
-    <string>Time Capsule Camera</string>
+    <string>Vintage Capsule</string>
     <key>CFBundleExecutable</key>
     <string>$(EXECUTABLE_NAME)</string>
     <key>CFBundleIdentifier</key>
@@ -31,21 +31,23 @@
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>UISupportedInterfaceOrientations~ipad</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
         <string>UIInterfaceOrientationPortraitUpsideDown</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>NSCameraUsageDescription</key>
-    <string>This app needs camera access to record videos for time capsules.</string>
+    <string>Vintage Capsule needs camera access to record nostalgic videos for your memory capsules.</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>This app needs photo library access to select videos for time capsules.</string>
+    <string>Vintage Capsule needs photo library access to select videos from your collection for memory capsules.</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>This app needs microphone access to record audio with videos.</string>
+    <string>Vintage Capsule needs microphone access to record audio with your vintage videos.</string>
+    <key>UIUserInterfaceStyle</key>
+    <string>Light</string>
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleLightContent</string>
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
 </dict>
 </plist>
