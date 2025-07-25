@@ -4,7 +4,7 @@ import FirebaseStorage
 import AVKit
 
 struct CapsuleDetailView: View {
-    let capsule: Capsule
+    @State var capsule: Capsule
     @State private var clips: [Clip] = []
     @State private var currentClipIndex: Int = 0
     @State private var player: AVQueuePlayer? = nil
@@ -107,7 +107,14 @@ struct CapsuleDetailView: View {
 
     private func loadClips() {
         let videosRef = FirebaseManager.shared.db.collection("capsules").document(capsule.id).collection("videos")
-        videosRef.order(by: "createdAt").addSnapshotListener { snapshot, error in
+        videosRef.order(by: "createdAt").addSnapshotListener { [weak self] snapshot, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("Error loading clips: \(error.localizedDescription)")
+                return
+            }
+            
             guard let documents = snapshot?.documents else { return }
             self.clips = documents.map { Clip(id: $0.documentID, data: $0.data()) }
             if capsule.isUnsealed {
@@ -117,26 +124,40 @@ struct CapsuleDetailView: View {
     }
 
     private func preparePlayer() {
+        guard !clips.isEmpty else { return }
+        
         let group = DispatchGroup()
         var items: [AVPlayerItem] = []
-        for clip in clips {
+        
+        for (index, clip) in clips.enumerated() {
             group.enter()
             let storageRef = FirebaseManager.shared.storage.reference(withPath: clip.storagePath)
-            storageRef.downloadURL { url, error in
-                if let url = url {
-                    var updatedClip = clip
-                    updatedClip.url = url
-                    let item = AVPlayerItem(url: url)
-                    NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: item, queue: .main) { _ in
-                        currentClipIndex = min(currentClipIndex + 1, clips.count - 1)
-                    }
-                    items.append(item)
+            storageRef.downloadURL { [weak self] url, error in
+                defer { group.leave() }
+                
+                if let error = error {
+                    print("Error downloading video URL: \(error.localizedDescription)")
+                    return
                 }
-                group.leave()
+                
+                guard let url = url else { return }
+                
+                let item = AVPlayerItem(url: url)
+                NotificationCenter.default.addObserver(
+                    forName: .AVPlayerItemDidPlayToEndTime,
+                    object: item,
+                    queue: .main
+                ) { _ in
+                    self?.currentClipIndex = min((self?.currentClipIndex ?? 0) + 1, (self?.clips.count ?? 1) - 1)
+                }
+                items.append((index, item))
             }
         }
+        
         group.notify(queue: .main) {
-            self.player = AVQueuePlayer(items: items)
+            // Sort items by original index to maintain order
+            let sortedItems = items.sorted { $0.0 < $1.0 }.map { $0.1 }
+            self.player = AVQueuePlayer(items: sortedItems)
         }
     }
 

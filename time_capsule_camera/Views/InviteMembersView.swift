@@ -8,7 +8,7 @@ struct InviteMembersView: View {
     @State private var errorMessage: String?
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("Invite by email")) {
                     TextField("Emails separated by commas", text: $emailInput)

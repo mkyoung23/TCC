@@ -19,6 +19,8 @@ struct Capsule: Identifiable {
         } else {
             self.sealDate = Date()
         }
-        self.isUnsealed = data["isUnsealed"] as? Bool ?? false
+        // Check if capsule should be unsealed based on current time
+        let storedIsUnsealed = data["isUnsealed"] as? Bool ?? false
+        self.isUnsealed = storedIsUnsealed || self.sealDate <= Date()
     }
 }

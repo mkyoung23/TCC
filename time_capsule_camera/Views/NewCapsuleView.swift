@@ -11,7 +11,7 @@ struct NewCapsuleView: View {
     var onCreate: ((Capsule) -> Void)? = nil
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             Form {
                 Section(header: Text("Capsule Name")) {
                     TextField("Enter a name", text: $name)

@@ -22,16 +22,32 @@ struct AuthenticationView: View {
                 TextField("Display Name", text: $displayName)
                     .textFieldStyle(.roundedBorder)
             }
-            Button(isRegistering ? "Create Account" : "Sign In") {
-                if isRegistering {
-                    authViewModel.signUp(email: email, password: password, displayName: displayName)
-                } else {
-                    authViewModel.signIn(email: email, password: password)
-                }
+            
+            if let errorMessage = authViewModel.errorMessage {
+                Text(errorMessage)
+                    .foregroundColor(.red)
+                    .font(.caption)
+                    .padding(.horizontal)
             }
-            .buttonStyle(.borderedProminent)
+            
+            if authViewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle())
+            } else {
+                Button(isRegistering ? "Create Account" : "Sign In") {
+                    if isRegistering {
+                        authViewModel.signUp(email: email, password: password, displayName: displayName)
+                    } else {
+                        authViewModel.signIn(email: email, password: password)
+                    }
+                }
+                .buttonStyle(.borderedProminent)
+                .disabled(email.isEmpty || password.isEmpty || (isRegistering && displayName.isEmpty))
+            }
+            
             Button(isRegistering ? "Have an account? Sign In" : "No account? Sign Up") {
                 isRegistering.toggle()
+                authViewModel.errorMessage = nil
             }
             .font(.footnote)
         }
