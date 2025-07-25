@@ -21,11 +21,18 @@ struct CapsuleListView: View {
                 }
             }
             .navigationTitle("My Capsules")
-            .navigationBarItems(leading: Button("Sign Out") {
-                authViewModel.signOut()
-            }, trailing: Button(action: { showNewCapsule.toggle() }) {
-                Image(systemName: "plus")
-            })
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Sign Out") {
+                        authViewModel.signOut()
+                    }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showNewCapsule.toggle() }) {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
             .sheet(isPresented: $showNewCapsule) {
                 NewCapsuleView { capsule in
                     capsules.append(capsule)

@@ -8,7 +8,7 @@ struct NewCapsuleView: View {
     @State private var name: String = ""
     @State private var sealDate: Date = Calendar.current.date(byAdding: .year, value: 1, to: Date()) ?? Date()
 
-    var onCreate: ((Capsule) -> Void)? = nil
+    var onCreate: (Capsule) -> Void
 
     var body: some View {
         NavigationView {
@@ -51,7 +51,7 @@ struct NewCapsuleView: View {
                     "capsuleIds": FieldValue.arrayUnion([ref.documentID])
                 ])
                 let capsule = Capsule(id: ref.documentID, data: data)
-                onCreate?(capsule)
+                onCreate(capsule)
                 dismiss()
             }
         }
