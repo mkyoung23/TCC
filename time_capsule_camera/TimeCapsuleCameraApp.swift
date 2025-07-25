@@ -7,10 +7,13 @@ struct TimeCapsuleCameraApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     @StateObject private var authViewModel = AuthViewModel()
+    @State private var showOnboarding = !UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
 
     var body: some Scene {
         WindowGroup {
-            if authViewModel.isSignedIn {
+            if showOnboarding && authViewModel.isSignedIn {
+                OnboardingView(showOnboarding: $showOnboarding)
+            } else if authViewModel.isSignedIn {
                 CapsuleListView()
                     .environmentObject(authViewModel)
             } else {

@@ -1,7 +1,8 @@
 import Foundation
 import Firebase
-import FirebaseCrashlytics
-import FirebaseAnalytics
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 
 class FirebaseManager {
     static let shared = FirebaseManager()
@@ -14,8 +15,10 @@ class FirebaseManager {
         auth = Auth.auth()
         db = Firestore.firestore()
         storage = Storage.storage()
-        // Initialize Crashlytics and Analytics
-        _ = Crashlytics.crashlytics()
-        Analytics.logEvent(AnalyticsEventAppOpen, parameters: nil)
+        
+        // Configure Firestore settings
+        let settings = FirestoreSettings()
+        settings.isPersistenceEnabled = true
+        db.settings = settings
     }
 }

@@ -1,6 +1,85 @@
 import SwiftUI
 import PhotosUI
 
+struct VideoSelectionView: View {
+    @Environment(\.dismiss) private var dismiss
+    var onVideoSelected: (URL?) -> Void
+    
+    @State private var showRecorder = false
+    @State private var showLibrary = false
+    
+    var body: some View {
+        NavigationStack {
+            VStack(spacing: 24) {
+                Image(systemName: "video.circle.fill")
+                    .font(.system(size: 80))
+                    .foregroundColor(.blue)
+                
+                Text("Add Video to Capsule")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                
+                Text("Record a new video or choose from your library")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                
+                VStack(spacing: 16) {
+                    Button(action: {
+                        showRecorder = true
+                    }) {
+                        HStack {
+                            Image(systemName: "video.fill")
+                            Text("Record Video")
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(12)
+                    }
+                    
+                    Button(action: {
+                        showLibrary = true
+                    }) {
+                        HStack {
+                            Image(systemName: "photo.on.rectangle")
+                            Text("Choose from Library")
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.gray.opacity(0.2))
+                        .foregroundColor(.primary)
+                        .cornerRadius(12)
+                    }
+                }
+            }
+            .padding()
+            .navigationTitle("Add Video")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+        .fullScreenCover(isPresented: $showRecorder) {
+            VideoRecorderView(isPresented: $showRecorder) { url in
+                onVideoSelected(url)
+                dismiss()
+            }
+        }
+        .sheet(isPresented: $showLibrary) {
+            VideoPicker { url in
+                onVideoSelected(url)
+                dismiss()
+            }
+        }
+    }
+}
+
 struct VideoPicker: UIViewControllerRepresentable {
     var onPick: (URL?) -> Void
 
