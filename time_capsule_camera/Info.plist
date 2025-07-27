@@ -28,11 +28,11 @@
     <array>
         <string>armv7</string>
     </array>
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleDefault</string>
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
-        <string>UIInterfaceOrientationLandscapeLeft</string>
-        <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>UISupportedInterfaceOrientations~ipad</key>
     <array>
@@ -47,5 +47,9 @@
     <string>This app needs photo library access to select videos for time capsules.</string>
     <key>NSMicrophoneUsageDescription</key>
     <string>This app needs microphone access to record audio with videos.</string>
+    <key>UIApplicationSupportsIndirectInputEvents</key>
+    <true/>
+    <key>UISceneStoryboardFile</key>
+    <string>LaunchScreen</string>
 </dict>
 </plist>

@@ -9,13 +9,9 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
         Messaging.messaging().delegate = self
 
         UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            if granted {
-                DispatchQueue.main.async {
-                    application.registerForRemoteNotifications()
-                }
-            }
-        }
+        
+        // Request notification permission on app launch
+        NotificationManager.shared.requestPermission()
 
         return true
     }
@@ -30,6 +26,30 @@ class AppDelegate: NSObject, UIApplicationDelegate, MessagingDelegate, UNUserNot
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound])
+        // Show notification even when app is in foreground
+        completionHandler([.banner, .sound, .badge])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let identifier = response.actionIdentifier
+        
+        switch identifier {
+        case "VIEW_CAPSULE":
+            // Handle view capsule action
+            // You could post a notification to navigate to the specific capsule
+            NotificationCenter.default.post(
+                name: NSNotification.Name("OpenCapsule"),
+                object: nil,
+                userInfo: ["notificationId": response.notification.request.identifier]
+            )
+        case "VIEW_LATER":
+            // User chose to view later, maybe schedule a reminder
+            break
+        default:
+            // Default tap action
+            break
+        }
+        
+        completionHandler()
     }
 }

@@ -12,7 +12,7 @@ let package = Package(
             targets: ["TimeCapsuleCamera"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "10.0.0"),
+        .package(url: "https://github.com/firebase/firebase-ios-sdk.git", from: "10.18.0"),
     ],
     targets: [
         .target(
@@ -28,11 +28,20 @@ let package = Package(
             path: ".",
             sources: [
                 "TimeCapsuleCameraApp.swift",
+                "AppDelegate.swift",
                 "Models/",
                 "Views/",
                 "ViewModels/",
                 "Services/"
+            ],
+            resources: [
+                .process("Assets.xcassets"),
+                .process("LaunchScreen.storyboard")
             ]
+        ),
+        .testTarget(
+            name: "TimeCapsuleCameraTests",
+            dependencies: ["TimeCapsuleCamera"]
         ),
     ]
 )
