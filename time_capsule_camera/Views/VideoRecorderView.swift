@@ -16,8 +16,16 @@ struct VideoRecorderView: UIViewControllerRepresentable {
         picker.sourceType = .camera
         picker.mediaTypes = ["public.movie"]
         picker.videoQuality = .typeHigh
-        picker.videoMaximumDuration = 60 // 1 minute max
+        picker.videoMaximumDuration = 300 // 5 minutes max for better memories
         picker.allowsEditing = true
+        picker.cameraCaptureMode = .video
+        
+        // Set better video quality if available
+        if picker.sourceType == .camera {
+            picker.cameraDevice = .rear // Default to rear camera for better quality
+            picker.cameraFlashMode = .auto // Enable flash when needed
+        }
+        
         return picker
     }
     
@@ -31,11 +39,31 @@ struct VideoRecorderView: UIViewControllerRepresentable {
         }
         
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let videoURL = info[.mediaURL] as? URL {
-                parent.onVideoRecorded(videoURL)
+            // Get the video URL - prefer edited version if available
+            var videoURL: URL?
+            
+            if let editedURL = info[.editedMediaURL] as? URL {
+                videoURL = editedURL
+            } else if let originalURL = info[.mediaURL] as? URL {
+                videoURL = originalURL
+            }
+            
+            if let videoURL = videoURL {
+                // Validate video before passing it along
+                let asset = AVAsset(url: videoURL)
+                let duration = asset.duration.seconds
+                
+                // Check if video is valid (not empty, reasonable duration)
+                if duration > 0.1 && duration < 301 { // Between 0.1 seconds and 5 minutes
+                    parent.onVideoRecorded(videoURL)
+                } else {
+                    print("Video validation failed: duration = \(duration)")
+                    parent.onVideoRecorded(nil)
+                }
             } else {
                 parent.onVideoRecorded(nil)
             }
+            
             parent.isPresented = false
         }
         

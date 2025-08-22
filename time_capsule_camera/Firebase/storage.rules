@@ -1,0 +1,27 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // Videos storage - only authenticated users can upload to their capsules
+    match /videos/{capsuleId}/{videoId} {
+      // Allow read for capsule members only
+      allow read: if request.auth != null &&
+        request.auth.uid in firestore.get(/databases/(default)/documents/capsules/$(capsuleId)).data.memberIds;
+      
+      // Allow upload only for capsule members
+      allow write: if request.auth != null &&
+        request.auth.uid in firestore.get(/databases/(default)/documents/capsules/$(capsuleId)).data.memberIds &&
+        // Limit file size to 100MB
+        request.resource.size < 100 * 1024 * 1024 &&
+        // Only allow video files
+        request.resource.contentType.matches('video/.*');
+      
+      // No deletion allowed (preserve memories)
+      allow delete: if false;
+    }
+    
+    // Deny all other storage access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

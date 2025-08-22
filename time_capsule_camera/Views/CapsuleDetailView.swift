@@ -18,6 +18,7 @@ struct CapsuleDetailView: View {
     @State private var uploadSuccessMessage: String = ""
     @State private var showCelebration: Bool = false
     @State private var hasShownCelebration: Bool = false
+    @State private var isLoadingClips: Bool = true
 
     var body: some View {
         VStack {
@@ -100,11 +101,37 @@ struct CapsuleDetailView: View {
                     }
                     .cornerRadius(16)
                     .padding(.horizontal)
-                } else {
+                } else if isLoadingClips {
                     VStack(spacing: 16) {
                         ProgressView()
                             .scaleEffect(1.5)
                         Text("Loading videos...")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
+                    .frame(height: 200)
+                } else if clips.isEmpty {
+                    VStack(spacing: 16) {
+                        Image(systemName: "video.slash")
+                            .font(.system(size: 60))
+                            .foregroundColor(.secondary)
+                        
+                        Text("No videos yet")
+                            .font(.title3)
+                            .fontWeight(.medium)
+                        
+                        Text("Videos added to this capsule will appear here when it unseals")
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                    }
+                    .frame(height: 200)
+                } else {
+                    VStack(spacing: 16) {
+                        ProgressView()
+                            .scaleEffect(1.5)
+                        Text("Preparing videos...")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                     }
@@ -158,9 +185,9 @@ struct CapsuleDetailView: View {
             }
         }
         .sheet(isPresented: $showPicker) {
-            VideoSelectionView { url in
+            VideoSelectionView { url, creationDate in
                 if let url = url {
-                    uploadVideo(url: url)
+                    uploadVideo(url: url, originalCreationDate: creationDate)
                 }
             }
         }
@@ -168,13 +195,7 @@ struct CapsuleDetailView: View {
             InviteMembersView(capsule: capsule)
         }
         .onAppear(perform: loadClips)
-        .alert(isPresented: $showUploadError) {
-            Alert(
-                title: Text("Upload Error"),
-                message: Text(uploadError ?? "Unknown error"),
-                dismissButton: .default(Text("OK"))
-            )
-        }
+        .withErrorHandling()
         .overlay {
             if showCelebration {
                 CelebrationView()
@@ -239,19 +260,29 @@ struct CapsuleDetailView: View {
     }
 
     private func loadClips() {
+        isLoadingClips = true
         let videosRef = FirebaseManager.shared.db.collection("capsules").document(capsule.id).collection("videos")
         videosRef.order(by: "createdAt").addSnapshotListener { [weak self] snapshot, error in
             guard let self = self else { return }
             
-            if let error = error {
-                print("Error loading clips: \(error.localizedDescription)")
-                return
-            }
-            
-            guard let documents = snapshot?.documents else { return }
-            self.clips = documents.map { Clip(id: $0.documentID, data: $0.data()) }
-            if capsule.isUnsealed {
-                preparePlayer()
+            DispatchQueue.main.async {
+                self.isLoadingClips = false
+                
+                if let error = error {
+                    ErrorHandlingService.shared.handleError(error, context: "Loading clips")
+                    return
+                }
+                
+                guard let documents = snapshot?.documents else { 
+                    self.clips = []
+                    return 
+                }
+                
+                self.clips = documents.map { Clip(id: $0.documentID, data: $0.data()) }
+                
+                if self.capsule.isUnsealed && !self.clips.isEmpty {
+                    self.preparePlayer()
+                }
             }
         }
     }
@@ -269,7 +300,7 @@ struct CapsuleDetailView: View {
                 defer { group.leave() }
                 
                 if let error = error {
-                    print("Error downloading video URL: \(error.localizedDescription)")
+                    ErrorHandlingService.shared.handleError(error, context: "Downloading video URL")
                     return
                 }
                 
@@ -294,8 +325,27 @@ struct CapsuleDetailView: View {
         }
     }
 
-    private func uploadVideo(url: URL) {
-        guard let user = FirebaseManager.shared.auth.currentUser else { return }
+    private func uploadVideo(url: URL, originalCreationDate: Date? = nil) {
+        guard let user = FirebaseManager.shared.auth.currentUser else { 
+            ErrorHandlingService.shared.handleError(AppError.authentication("You must be signed in to upload videos"))
+            return 
+        }
+        
+        // Validate video file
+        do {
+            let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+            let fileSize = attributes[.size] as? Int64 ?? 0
+            
+            // Check file size (100MB limit)
+            if fileSize > 100 * 1024 * 1024 {
+                ErrorHandlingService.shared.handleError(AppError.videoProcessing("Video file is too large. Maximum size is 100MB."))
+                return
+            }
+        } catch {
+            ErrorHandlingService.shared.handleError(AppError.videoProcessing("Could not access video file"))
+            return
+        }
+        
         let videoId = UUID().uuidString
         let videoRef = FirebaseManager.shared.storage.reference().child("videos/\(capsule.id)/\(videoId).mp4")
 
@@ -304,6 +354,9 @@ struct CapsuleDetailView: View {
         uploadProgress = 0.0
         uploadError = nil
         showUploadError = false
+
+        // Get original creation date
+        let creationDate = originalCreationDate ?? VideoMetadataService.shared.getVideoCreationDate(from: url)
 
         let uploadTask = videoRef.putFile(from: url, metadata: nil)
 
@@ -324,23 +377,36 @@ struct CapsuleDetailView: View {
                 self.uploadSuccessMessage = "Video uploaded successfully! 🎉"
                 self.showUploadSuccess = true
             }
-            // Write metadata to Firestore
+            
+            // Write metadata to Firestore with proper timestamps
             let data: [String: Any] = [
                 "videoId": videoId,
                 "uploaderId": user.uid,
                 "uploaderName": user.displayName ?? "Unknown",
                 "storagePath": videoRef.fullPath,
-                "createdAt": Timestamp(date: Date())
+                "createdAt": Timestamp(date: creationDate), // Original creation time
+                "uploadedAt": Timestamp(date: Date()) // Upload time
             ]
-            FirebaseManager.shared.db.collection("capsules").document(capsule.id).collection("videos").document(videoId).setData(data)
+            
+            FirebaseManager.shared.db.collection("capsules").document(self.capsule.id).collection("videos").document(videoId).setData(data) { error in
+                if let error = error {
+                    DispatchQueue.main.async {
+                        self.showUploadSuccess = false
+                        ErrorHandlingService.shared.handleError(error, context: "Saving video metadata")
+                    }
+                }
+            }
         }
 
         // Observe failure
         uploadTask.observe(.failure) { snapshot in
             DispatchQueue.main.async {
                 self.isUploading = false
-                self.uploadError = snapshot.error?.localizedDescription ?? "Failed to upload video."
-                self.showUploadError = true
+                if let error = snapshot.error {
+                    ErrorHandlingService.shared.handleError(error, context: "Video upload")
+                } else {
+                    ErrorHandlingService.shared.handleError(AppError.storage("Failed to upload video"))
+                }
             }
         }
     }

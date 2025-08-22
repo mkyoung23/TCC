@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseFirestore
+import FirebaseAuth
 
 struct InviteMembersView: View {
     @Environment(\.dismiss) private var dismiss
@@ -8,6 +9,7 @@ struct InviteMembersView: View {
     @State private var errorMessage: String?
     @State private var isInviting = false
     @State private var successMessage: String?
+    @State private var showShareSheet = false
 
     var body: some View {
         NavigationStack {
@@ -30,8 +32,8 @@ struct InviteMembersView: View {
                 .padding()
                 
                 // Input section
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Email Addresses")
+                VStack(alignment: .leading, spacing: 16) {
+                    Text("Invite via App")
                         .font(.headline)
                     
                     TextField("Enter emails separated by commas", text: $emailInput, axis: .vertical)
@@ -43,6 +45,29 @@ struct InviteMembersView: View {
                     Text("Friends must have the app installed to join")
                         .font(.caption)
                         .foregroundColor(.secondary)
+                    
+                    Divider()
+                    
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("Share Invitation Link")
+                            .font(.headline)
+                        
+                        Button(action: shareInviteLink) {
+                            HStack {
+                                Image(systemName: "square.and.arrow.up")
+                                Text("Share via Messages, Email, etc.")
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background(Color.green.opacity(0.1))
+                            .foregroundColor(.green)
+                            .cornerRadius(12)
+                        }
+                        
+                        Text("Share this capsule with anyone, even without the app")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
                 }
                 .padding(.horizontal)
                 
@@ -106,6 +131,15 @@ struct InviteMembersView: View {
                 }
             }
         }
+        .sheet(isPresented: $showShareSheet) {
+            if let user = Auth.auth().currentUser {
+                ShareSheet(activityItems: [SharingService.shared.generateShareMessage(for: capsule, from: user)])
+            }
+        }
+    }
+    
+    private func shareInviteLink() {
+        showShareSheet = true
     }
 
     private func inviteMembers() {
@@ -113,44 +147,43 @@ struct InviteMembersView: View {
         errorMessage = nil
         successMessage = nil
         
-        let emails = emailInput.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() }
-        var notFound: [String] = []
-        var invited: [String] = []
-        let group = DispatchGroup()
-
-        for email in emails {
-            group.enter()
-            FirebaseManager.shared.db.collection("users").whereField("email", isEqualTo: email).getDocuments { snapshot, _ in
-                defer { group.leave() }
-                if let doc = snapshot?.documents.first {
-                    let uid = doc.documentID
-                    FirebaseManager.shared.db.collection("capsules").document(capsule.id).updateData([
-                        "memberIds": FieldValue.arrayUnion([uid])
-                    ])
-                    FirebaseManager.shared.db.collection("users").document(uid).updateData([
-                        "capsuleIds": FieldValue.arrayUnion([capsule.id])
-                    ])
-                    invited.append(String(email))
-                } else {
-                    notFound.append(String(email))
-                }
-            }
-        }
-
-        group.notify(queue: .main) {
-            isInviting = false
+        let emails = emailInput.split(separator: ",").map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+        
+        SharingService.shared.inviteMembers(emails: Array(emails), to: capsule) { [weak self] result in
+            guard let self = self else { return }
             
-            if !invited.isEmpty {
-                successMessage = "Invited \(invited.count) friend\(invited.count == 1 ? "" : "s") successfully!"
+            DispatchQueue.main.async {
+                self.isInviting = false
                 
-                // Auto-dismiss after showing success
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    dismiss()
+                switch result {
+                case .success(let inviteResult):
+                    var messages: [String] = []
+                    
+                    if !inviteResult.invited.isEmpty {
+                        messages.append("✅ Invited \(inviteResult.invited.count) friend\(inviteResult.invited.count == 1 ? "" : "s")")
+                    }
+                    
+                    if !inviteResult.alreadyMembers.isEmpty {
+                        messages.append("ℹ️ \(inviteResult.alreadyMembers.count) already member\(inviteResult.alreadyMembers.count == 1 ? "" : "s")")
+                    }
+                    
+                    if !inviteResult.notFound.isEmpty {
+                        messages.append("⚠️ \(inviteResult.notFound.count) email\(inviteResult.notFound.count == 1 ? "" : "s") not found")
+                    }
+                    
+                    if !inviteResult.invited.isEmpty {
+                        self.successMessage = messages.joined(separator: "\n")
+                        // Auto-dismiss after showing success
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                            self.dismiss()
+                        }
+                    } else if !inviteResult.notFound.isEmpty {
+                        self.errorMessage = "No accounts found for: " + inviteResult.notFound.joined(separator: ", ")
+                    }
+                    
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
                 }
-            }
-            
-            if !notFound.isEmpty {
-                errorMessage = "No accounts found for: " + notFound.joined(separator: ", ")
             }
         }
     }
