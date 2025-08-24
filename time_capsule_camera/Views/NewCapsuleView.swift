@@ -10,7 +10,7 @@ struct NewCapsuleView: View {
     @State private var selectedPreset: DatePreset? = nil
     @State private var isCustomDate: Bool = false
 
-    var onCreate: ((Capsule) -> Void)? = nil
+    var onCreate: (Capsule) -> Void
 
     var body: some View {
         NavigationStack {
@@ -252,7 +252,7 @@ struct NewCapsuleView: View {
                     "capsuleIds": FieldValue.arrayUnion([ref.documentID])
                 ])
                 let capsule = Capsule(id: ref.documentID, data: data)
-                onCreate?(capsule)
+                onCreate(capsule)
                 dismiss()
             }
         }
