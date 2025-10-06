@@ -3,7 +3,7 @@ workflows:
     name: iOS workflow
     instance_type: mac_mini_m2
     max_build_duration: 120
-    
+
     environment:
       ios_signing:
         distribution_type: app_store
@@ -11,37 +11,35 @@ workflows:
       vars:
         XCODE_PROJECT: "TimeCapsuleCamera.xcodeproj"
         XCODE_SCHEME: "TimeCapsuleCamera"
-      
+      xcode: latest
+
     scripts:
       - name: Set up iOS code signing
         script: |
           echo "Setting up automatic iOS code signing..."
-          # Codemagic automatically handles certificate and profile fetching
-          
+
       - name: Build iOS app
         script: |
-          cd time_capsule_camera
-          xcode-project use-profiles
+          # Adjust folder path; no 'time_capsule_camera' subfolder
           xcodebuild \
             -project "$XCODE_PROJECT" \
             -scheme "$XCODE_SCHEME" \
             -configuration Release \
             -sdk iphoneos \
-            -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
+            -archivePath "$CM_BUILD_DIR/$XCODE_SCHEME.xcarchive" \
             clean archive
-            
+
       - name: Export IPA
         script: |
-          cd time_capsule_camera
           xcodebuild \
             -exportArchive \
-            -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
+            -archivePath "$CM_BUILD_DIR/$XCODE_SCHEME.xcarchive" \
             -exportPath "$CM_BUILD_DIR/ipa" \
             -exportOptionsPlist /tmp/xcodebuild_export_options.plist
-            
+
     artifacts:
       - $CM_BUILD_DIR/ipa/*.ipa
-      
+
     publishing:
       email:
         recipients:
