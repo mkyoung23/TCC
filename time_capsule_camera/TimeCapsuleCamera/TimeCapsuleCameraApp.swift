@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import AVKit
 import AVFoundation
 import Photos
 import PhotosUI
