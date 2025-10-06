@@ -1,85 +1,51 @@
-  workflows:
-    ios-build:
-      environment:
-        vars:
-          XCODE_PROJECT: "TimeCapsuleCamera.xcodeproj"
-          XCODE_SCHEME: "TimeCapsuleCamera"
-          IOS_BUNDLE_ID: "com.mkyoung.timecapsulecamera"
-
-      scripts:
-        - name: Decode signing assets
-          script: |
-            set -euo pipefail
-            CERT_PATH="$HOME/cert.p12"
-            PROFILE_PATH="$HOME/profile.mobileprovision"
-
-            echo "$IOS_CERT_BASE64" | base64 --decode > "$CERT_PATH"
-            echo "$IOS_PROFILE_BASE64" | base64 --decode > "$PROFILE_PATH"
-
-            security create-keychain -p "" build.keychain
-            security import "$CERT_PATH" -k build.keychain -P "${IOS_CERT_PASSWORD:-}" -T /usr/bin/codesign -T /usr/bin/security
-            security set-keychain-settings -lut 3600 build.keychain
-            security unlock-keychain -p "" build.keychain
-            security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain >/dev/null
-            security list-keychains -s build.keychain $(security list-keychains | tr -d '"')
-
-            PROFILE_PLIST="$CM_BUILD_DIR/profile.plist"
-            security cms -D -i "$PROFILE_PATH" > "$PROFILE_PLIST"
-            PROFILE_UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" "$PROFILE_PLIST")
-            PROFILE_NAME=$(/usr/libexec/PlistBuddy -c "Print :Name" "$PROFILE_PLIST")
-
-            mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
-            cp "$PROFILE_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_UUID.mobileprovision"
-
-            echo "PROFILE_UUID=$PROFILE_UUID" >> "$CM_ENV"
-            echo "PROFILE_NAME=$PROFILE_NAME" >> "$CM_ENV"
-
-        - name: Build archive
-          script: |
-            set -euo pipefail
-            cd time_capsule_camera
-            ARCHIVE_PATH="$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive"
-
-            xcodebuild \
-              -project "$XCODE_PROJECT" \
-              -scheme "$XCODE_SCHEME" \
-              -configuration Release \
-              -sdk iphoneos \
-              -archivePath "$ARCHIVE_PATH" \
-              CODE_SIGN_STYLE=Manual \
-              CODE_SIGN_IDENTITY="Apple Distribution" \
-              DEVELOPMENT_TEAM=6XNH7D52V6 \
-              PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
-              clean archive
-
-        - name: Export IPA
-          script: |
-            set -euo pipefail
-            cd time_capsule_camera
-            EXPORT_PATH="$CM_BUILD_DIR/ipa"
-            mkdir -p "$EXPORT_PATH"
-
-            cat <<EOF > exportOptions.plist
-            <?xml version="1.0" encoding="UTF-8"?>
-            <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-            <plist version="1.0">
-            <dict>
-              <key>method</key><string>app-store</string>
-              <key>signingStyle</key><string>manual</string>
-              <key>teamID</key><string>6XNH7D52V6</string>
-              <key>provisioningProfiles</key>
-              <dict>
-                <key>$IOS_BUNDLE_ID</key><string>$PROFILE_UUID</string>
-              </dict>
-            </dict>
-            </plist>
-            EOF
-
-            xcodebuild \
-              -exportArchive \
-              -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
-              -exportPath "$EXPORT_PATH" \
-              -exportOptionsPlist exportOptions.plist
-
-      artifacts:
-        - $CM_BUILD_DIR/ipa/*.ipa
+workflows:
+  ios-build:
+    name: iOS workflow
+    instance_type: mac_mini_m2
+    max_build_duration: 120
+    
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.mkyoung.timecapsulecamera
+      vars:
+        XCODE_PROJECT: "TimeCapsuleCamera.xcodeproj"
+        XCODE_SCHEME: "TimeCapsuleCamera"
+      
+    scripts:
+      - name: Set up iOS code signing
+        script: |
+          echo "Setting up automatic iOS code signing..."
+          # Codemagic automatically handles certificate and profile fetching
+          
+      - name: Build iOS app
+        script: |
+          cd time_capsule_camera
+          xcode-project use-profiles
+          xcodebuild \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
+            clean archive
+            
+      - name: Export IPA
+        script: |
+          cd time_capsule_camera
+          xcodebuild \
+            -exportArchive \
+            -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
+            -exportPath "$CM_BUILD_DIR/ipa" \
+            -exportOptionsPlist /tmp/xcodebuild_export_options.plist
+            
+    artifacts:
+      - $CM_BUILD_DIR/ipa/*.ipa
+      
+    publishing:
+      email:
+        recipients:
+          - m.k.young240@gmail.com
+        notify:
+          success: true
+          failure: true
