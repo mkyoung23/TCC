@@ -45,8 +45,10 @@ workflows:
           success: true
           failure: true
       app_store_connect:
-        # Automatically uses environment variables already set in CodeMagic:
-        # APPSTORECONNECT_ISSUER_ID, APPSTORECONNECT_KEY_ID, APPSTORECONNECT_PRIVATE_KEY
+        # Uses environment variables already set in CodeMagic
+        api_key: $APPSTORECONNECT_PRIVATE_KEY
+        key_id: $APPSTORECONNECT_KEY_ID
+        issuer_id: $APPSTORECONNECT_ISSUER_ID
         submit_to_testflight: true
         # Note: TestFlight will distribute to all groups named "Beta Testers"
         # This includes both Internal and External testing groups
