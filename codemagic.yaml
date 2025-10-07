@@ -5,15 +5,15 @@ workflows:
       groups:
         - ios_signing
       vars:
-          BUNDLE_ID: "com.mkyoung.timecapsulecamera"
-          XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
-              XCODE_SCHEME: "TimeCapsuleCamera"
-        scripts:
-          - name: Build & archive
-            script: |
+        BUNDLE_ID: "com.mkyoung.timecapsulecamera"
+        XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
+        XCODE_SCHEME: "TimeCapsuleCamera"
+    scripts:
+      - name: Build & archive
+        script: |
           xcodebuild \
             -project "$XCODE_PROJECT" \
-            -scheme  "$XCODE_SCHEME" \
+            -scheme "$XCODE_SCHEME" \
             -configuration Release \
             -sdk iphoneos \
             -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
