@@ -1,32 +1,38 @@
 workflows:
-  ios-release:
-    name: ios Release
+  ios-tcc:
+    name: iOS – Time Capsule Camera
+    max_build_duration: 120
+    integrations:
+      app_store_connect: TCC_ASC_KEY   # Name of your ASC API key in Codemagic
     environment:
-      groups:
-        - ios_signing
-      vars:
-        BUNDLE_ID: "com.mkyoung.timecapsulecamera"
-        XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
-        XCODE_SCHEME: "TimeCapsuleCamera"
+      ios_signing:
+        distribution_type: app_store    # or development / ad_hoc while testing
+        bundle_identifier: com.yourco.tcc
     scripts:
-      - name: Build & archive
+      - name: Prepare signing & profiles
+        script: |
+          keychain initialize
+          app-store-connect fetch-signing-files "$CM_BUNDLE_IDENTIFIER" --type IOS_APP_STORE --create
+          keychain add-certificates
+          xcode-project use-profiles    # CRITICAL so Xcode uses the fetched profiles
+      - name: Resolve Swift packages
+        script: xcodebuild -resolvePackageDependencies -project time_capsule_camera/TimeCapsuleCamera.xcodeproj
+      - name: Build archive
         script: |
           xcodebuild \
-             -allowProvisioningUpdates \
-                 
-            -project "$XCODE_PROJECT" \
-            -scheme "$XCODE_SCHEME" \
+            -project time_capsule_camera/TimeCapsuleCamera.xcodeproj \
+            -scheme TimeCapsuleCamera \
             -configuration Release \
-            -sdk iphoneos \
-            -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
-            CODE_SIGN_STYLE=Automatic \
-            clean archive
+            -archivePath $CM_BUILD_DIR/tcc.xcarchive archive
+      - name: Export IPA
+        script: |
+          xcodebuild -exportArchive \
+            -archivePath $CM_BUILD_DIR/tcc.xcarchive \
+            -exportPath $CM_BUILD_DIR/ipa \
+            -exportOptionsPlist /Users/builder/export_options.plist
     artifacts:
-      - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
+      - $CM_BUILD_DIR/ipa/*.ipa
     publishing:
       app_store_connect:
-        api_key: $APPSTORECONNECT_PRIVATE_KEY
-        key_id: $APPSTORECONNECT_KEY_ID
-        issuer_id: $APPSTORECONNECT_ISSUER_ID
         submit_to_testflight: true
+        # set beta groups and release notes here if you like
