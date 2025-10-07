@@ -2,6 +2,7 @@ workflows:
   ios-tcc:
     name: iOS – Time Capsule Camera
     max_build_duration: 120
+    # Updated configuration - ready for TestFlight
     environment:
       groups:
         - ios_signing  # Import all variables from the ios_signing group
