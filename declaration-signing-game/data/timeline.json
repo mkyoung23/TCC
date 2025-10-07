@@ -1,0 +1,124 @@
+{
+  "timeline": [
+    {
+      "date": "1776-06-07",
+      "event": "Richard Henry Lee proposes independence resolution",
+      "location": "Philadelphia, Pennsylvania State House",
+      "significance": "Lee's resolution sets independence debate in motion",
+      "source_id": "lee_resolution_june7"
+    },
+    {
+      "date": "1776-06-11", 
+      "event": "Committee of Five appointed to draft declaration",
+      "location": "Philadelphia, Pennsylvania State House",
+      "participants": ["Thomas Jefferson", "John Adams", "Benjamin Franklin", "Roger Sherman", "Robert Livingston"],
+      "significance": "Committee tasked with drafting formal declaration",
+      "source_id": "committee_of_five_appointment"
+    },
+    {
+      "date": "1776-06-15",
+      "event": "Jefferson begins drafting in his lodgings",
+      "location": "Graff House, 700 Market Street, Philadelphia",
+      "details": "Jefferson writes first draft in his rented rooms",
+      "source_id": "jefferson_drafting_process"
+    },
+    {
+      "date": "1776-06-28",
+      "event": "Committee presents draft to Congress",
+      "location": "Philadelphia, Pennsylvania State House Assembly Room",
+      "details": "Jefferson's draft presented for Congressional review",
+      "significance": "This is what Trumbull's painting depicts, not the signing",
+      "source_id": "draft_presentation_june28"
+    },
+    {
+      "date": "1776-07-02",
+      "event": "Congress votes for independence",
+      "location": "Philadelphia, Pennsylvania State House Assembly Room", 
+      "details": "Lee's resolution for independence approved",
+      "significance": "Actual vote for independence (Adams thought this would be celebrated)",
+      "source_id": "independence_vote_july2"
+    },
+    {
+      "date": "1776-07-04",
+      "event": "Congress approves final text of Declaration",
+      "location": "Philadelphia, Pennsylvania State House Assembly Room",
+      "details": "Final wording approved after amendments and debate",
+      "significance": "Text finalized for printing and public announcement",
+      "source_id": "declaration_approval_july4"
+    },
+    {
+      "date": "1776-07-04",
+      "event": "Dunlap broadside printed overnight",
+      "location": "Philadelphia, John Dunlap's print shop",
+      "details": "First printing of Declaration for distribution",
+      "significance": "Initial copies for public distribution",
+      "source_id": "dunlap_broadside_printing"
+    },
+    {
+      "date": "1776-07-08",
+      "event": "First public reading by John Nixon",
+      "location": "State House Yard, Philadelphia",
+      "details": "Declaration read aloud to assembled citizens",
+      "significance": "First time public heard the Declaration",
+      "legend_note": "Liberty Bell ringing is legend, not documented",
+      "source_id": "first_public_reading_jul8"
+    },
+    {
+      "date": "1776-07-09",
+      "event": "Washington receives Declaration in New York",
+      "location": "New York",
+      "details": "General receives copy and prepares General Orders",
+      "source_id": "washington_receives_declaration"
+    },
+    {
+      "date": "1776-07-09",
+      "event": "Declaration read to Continental Army",
+      "location": "New York",
+      "participants": ["George Washington", "Continental Army officers and soldiers"],
+      "details": "Read per Washington's General Orders to all brigades",
+      "significance": "Declaration reaches the army fighting for independence",
+      "source_id": "washington_general_orders_jul9"
+    },
+    {
+      "date": "1776-07-09",
+      "event": "Bowling Green statue toppling",
+      "location": "Bowling Green, New York",
+      "details": "King George III statue pulled down after Declaration reading",
+      "significance": "Symbolic rejection of British rule",
+      "source_id": "bowling_green_statue_removal"
+    },
+    {
+      "date": "1776-08-02",
+      "event": "Formal signing of engrossed parchment",
+      "location": "Assembly Room, Pennsylvania State House, Philadelphia",
+      "details": "Delegates sign Timothy Matlack's engrossed copy on parchment",
+      "participants": ["John Hancock first", "majority of delegates"],
+      "significance": "The signing ceremony portrayed in the game",
+      "source_id": "formal_signing_august2"
+    },
+    {
+      "date": "1776-08-02",
+      "event": "John Hancock signs first as President", 
+      "location": "Assembly Room, Pennsylvania State House",
+      "details": "Hancock signs with large signature as Congress President",
+      "legend_note": "'King George will read that' is popular legend",
+      "source_id": "hancock_signs_first"
+    },
+    {
+      "date": "1776-11",
+      "event": "Late signers add names",
+      "location": "Philadelphia",
+      "details": "Delegates who arrived later add their signatures",
+      "significance": "Signing process extended over months",
+      "source_id": "late_signers_completion"
+    },
+    {
+      "date": "1777-01",
+      "event": "Goddard broadside with names published",
+      "location": "Baltimore, Maryland",
+      "details": "First printing showing all signer names",
+      "significance": "First time public saw who signed",
+      "source_id": "goddard_broadside_1777"
+    }
+  ]
+}

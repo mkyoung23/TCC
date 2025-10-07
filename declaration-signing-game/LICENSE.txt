@@ -1,0 +1,53 @@
+MIT License
+
+Copyright (c) 2024 Declaration of Independence Historical Experience
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+HISTORICAL ASSETS AND CONTENT
+
+The historical assets, documentation, and source materials included in this
+project are used under the following terms:
+
+PUBLIC DOMAIN MATERIALS:
+- Library of Congress maps, documents, and images (Public Domain)
+- National Archives documentation and timelines (U.S. Government Work)
+- Wikimedia Commons portraits and historical images (Public Domain)
+- Historic American Buildings Survey (HABS) drawings (Public Domain)
+
+EDUCATIONAL USE:
+This project is designed for educational and historical interpretation
+purposes. Historical content is based on documented sources with full
+attribution provided in CITATIONS.md and data/SourceLog.json.
+
+SOURCE ATTRIBUTION:
+All historical materials retain their original attribution and source
+information. Users redistributing this content must maintain the source
+attribution and citation information provided.
+
+GENERATED CONTENT ATTRIBUTION:
+This project was:
+🤖 Generated with Claude Code (https://claude.ai/code)
+Co-Authored-By: Claude <noreply@anthropic.com>
+
+For detailed source attribution of all historical materials, see:
+- CITATIONS.md - Human-readable bibliography
+- data/SourceLog.json - Machine-readable source database

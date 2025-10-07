@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" version="1.1" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+<stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+</linearGradient>
+</defs>
+
+<!-- Background circle -->
+<circle cx="64" cy="64" r="60" fill="url(#bg-gradient)" stroke="#2F1B14" stroke-width="3"/>
+
+<!-- Quill pen -->
+<path d="M30 85 Q40 75 50 65 Q60 55 70 45" stroke="#8B0000" stroke-width="3" fill="none"/>
+<path d="M68 47 L72 43 L75 46 L71 50 Z" fill="#8B0000"/>
+
+<!-- Parchment -->
+<rect x="25" y="70" width="45" height="35" fill="#F5F5DC" stroke="#D2B48C" stroke-width="2"/>
+
+<!-- Signature line -->
+<line x1="30" y1="85" x2="65" y2="85" stroke="#8B0000" stroke-width="2"/>
+
+<!-- "John Hancock" in stylized script -->
+<text x="47" y="90" font-family="serif" font-size="8" font-style="italic" text-anchor="middle" fill="#8B0000">J. Hancock</text>
+
+<!-- Liberty Bell outline -->
+<path d="M75 90 Q85 85 95 90 L95 100 Q85 105 75 100 Z" stroke="#B8860B" stroke-width="2" fill="none"/>
+<circle cx="85" cy="88" r="3" fill="#B8860B"/>
+
+<!-- 1776 -->
+<text x="64" y="25" font-family="serif" font-size="16" font-weight="bold" text-anchor="middle" fill="#F5F5DC">1776</text>
+</svg>

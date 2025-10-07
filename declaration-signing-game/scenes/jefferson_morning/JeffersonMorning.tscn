@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://be2qb7tqlgp2u"]
+
+[ext_resource type="PackedScene" uid="uid://d3uvj1q3nvf6x" path="res://scenes/core/Player.tscn" id="1_1nbxe"]
+[ext_resource type="Script" path="res://scenes/jefferson_morning/JeffersonMorning.gd" id="2_v5n8g"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1"]
+size = Vector3(8, 3, 6)
+
+[node name="JeffersonMorning" type="Node3D"]
+script = ExtResource("2_v5n8g")
+
+[node name="Player" parent="." instance=ExtResource("1_1nbxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 2)
+
+[node name="Room" type="StaticBody3D" parent="."]
+
+[node name="RoomMesh" type="MeshInstance3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="RoomCollision" type="CollisionShape3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("BoxShape3D_1")
+
+[node name="Bed" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.3, -2)
+
+[node name="BedMesh" type="MeshInstance3D" parent="Bed"]
+
+[node name="BedInteractable" type="Area3D" parent="Bed"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/BedInteractable"]
+
+[node name="Desk" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.7, -2)
+
+[node name="DeskMesh" type="MeshInstance3D" parent="Desk"]
+
+[node name="DeskInteractable" type="Area3D" parent="Desk"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Desk/DeskInteractable"]
+
+[node name="Thermometer" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.2, 0)
+
+[node name="ThermometerMesh" type="MeshInstance3D" parent="Thermometer"]
+
+[node name="ThermometerInteractable" type="Area3D" parent="Thermometer"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Thermometer/ThermometerInteractable"]
+
+[node name="Washbasin" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0.8, 0)
+
+[node name="WashbasinMesh" type="MeshInstance3D" parent="Washbasin"]
+
+[node name="WashbasinInteractable" type="Area3D" parent="Washbasin"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Washbasin/WashbasinInteractable"]
+
+[node name="ExitDoor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 3)
+
+[node name="DoorMesh" type="MeshInstance3D" parent="ExitDoor"]
+
+[node name="DoorInteractable" type="Area3D" parent="ExitDoor"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ExitDoor/DoorInteractable"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 4, 0)
+light_energy = 0.8
+shadow_enabled = true

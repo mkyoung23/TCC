@@ -1,0 +1,111 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2v5fxl5ixfhj"]
+
+[ext_resource type="Script" path="res://scenes/core/Main.gd" id="1_0a4qd"]
+[ext_resource type="Script" path="res://scripts/systems/GameManager.gd" id="2_h8n4k"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_0a4qd")
+
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("2_h8n4k")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.1, 0.08, 0.06, 1)
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+
+[node name="Title" type="Label" parent="MainMenu"]
+layout_mode = 2
+text = "DECLARATION OF INDEPENDENCE
+A Historical Experience"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="MainMenu"]
+layout_mode = 2
+text = "Philadelphia & New York, 1776"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="MainMenu"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Begin Experience"
+
+[node name="SettingsButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Performance Settings"
+
+[node name="CreditsButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Historical Sources"
+
+[node name="ExitButton" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Exit"
+
+[node name="SettingsMenu" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+
+[node name="SettingsLabel" type="Label" parent="SettingsMenu"]
+layout_mode = 2
+text = "PERFORMANCE SETTINGS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SettingsMenu"]
+layout_mode = 2
+
+[node name="SDFGIToggle" type="CheckBox" parent="SettingsMenu"]
+layout_mode = 2
+button_pressed = true
+text = "Global Illumination (SDFGI)"
+
+[node name="SSAOToggle" type="CheckBox" parent="SettingsMenu"]
+layout_mode = 2
+button_pressed = true
+text = "Ambient Occlusion (SSAO)"
+
+[node name="MSAALabel" type="Label" parent="SettingsMenu"]
+layout_mode = 2
+text = "Anti-Aliasing:"
+
+[node name="MSAAOption" type="OptionButton" parent="SettingsMenu"]
+layout_mode = 2
+
+[node name="SubtitlesToggle" type="CheckBox" parent="SettingsMenu"]
+layout_mode = 2
+button_pressed = true
+text = "Subtitles with Sources"
+
+[node name="BackButton" type="Button" parent="SettingsMenu"]
+layout_mode = 2
+text = "Back to Main Menu"

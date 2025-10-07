@@ -1,0 +1,222 @@
+[gd_scene load_steps=4 format=3 uid="uid://d8f3m5q7k2p9n"]
+
+[ext_resource type="PackedScene" uid="uid://d3uvj1q3nvf6x" path="res://scenes/core/Player.tscn" id="1_j4h8r"]
+[ext_resource type="Script" path="res://scenes/ny_epilogue/Epilogue.gd" id="2_n6k9s"]
+[ext_resource type="PackedScene" path="res://scripts/systems/Dialogue.tscn" id="3_p2l7m"]
+
+[node name="Epilogue" type="Node3D"]
+script = ExtResource("2_n6k9s")
+
+[node name="Player" parent="." instance=ExtResource("1_j4h8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 5)
+
+[node name="NYScene" type="Node3D" parent="."]
+
+[node name="ManhattanGround" type="StaticBody3D" parent="NYScene"]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="NYScene/ManhattanGround"]
+
+[node name="CommandTent" type="StaticBody3D" parent="NYScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
+
+[node name="TentMesh" type="MeshInstance3D" parent="NYScene/CommandTent"]
+
+[node name="TentInteractable" type="Area3D" parent="NYScene/CommandTent"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NYScene/CommandTent/TentInteractable"]
+
+[node name="TroopFormation1" type="StaticBody3D" parent="NYScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.1, 0)
+
+[node name="TroopsMarker1" type="Area3D" parent="NYScene/TroopFormation1"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NYScene/TroopFormation1/TroopsMarker1"]
+
+[node name="TroopFormation2" type="StaticBody3D" parent="NYScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.1, 0)
+
+[node name="TroopsMarker2" type="Area3D" parent="NYScene/TroopFormation2"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NYScene/TroopFormation2/TroopsMarker2"]
+
+[node name="TroopFormation3" type="StaticBody3D" parent="NYScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 2)
+
+[node name="TroopsMarker3" type="Area3D" parent="NYScene/TroopFormation3"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NYScene/TroopFormation3/TroopsMarker3"]
+
+[node name="ReadingPlatform" type="StaticBody3D" parent="NYScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, -1)
+
+[node name="PlatformMesh" type="MeshInstance3D" parent="NYScene/ReadingPlatform"]
+
+[node name="PlatformInteractable" type="Area3D" parent="NYScene/ReadingPlatform"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NYScene/ReadingPlatform/PlatformInteractable"]
+
+[node name="BowlingGreenDirection" type="StaticBody3D" parent="NYScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.1, -8)
+
+[node name="BowlingGreenMarker" type="Area3D" parent="NYScene/BowlingGreenDirection"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NYScene/BowlingGreenDirection/BowlingGreenMarker"]
+
+[node name="DialogueSystem" parent="." instance=ExtResource("3_p2l7m")]
+
+[node name="EpilogueSequence" type="Node" parent="."]
+
+[node name="SequenceTimer" type="Timer" parent="EpilogueSequence"]
+wait_time = 3.0
+one_shot = true
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="EpilogueSequence"]
+volume_db = -10.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="EpilogueOverlay" type="Panel" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.4)
+
+[node name="EpilogueTitle" type="Label" parent="UI/EpilogueOverlay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -220.0
+offset_right = 200.0
+offset_bottom = -190.0
+text = "NEW YORK - July 9, 1776"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EpilogueSubtitle" type="Label" parent="UI/EpilogueOverlay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -190.0
+offset_right = 150.0
+offset_bottom = -170.0
+text = "Washington's General Orders"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VOSubtitles" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -120.0
+offset_right = 300.0
+offset_bottom = -20.0
+
+[node name="SubtitleContent" type="VBoxContainer" parent="UI/VOSubtitles"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="SpeakerLabel" type="Label" parent="UI/VOSubtitles/SubtitleContent"]
+layout_mode = 2
+text = "George Washington"
+horizontal_alignment = 1
+
+[node name="SubtitleText" type="RichTextLabel" parent="UI/VOSubtitles/SubtitleContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "General Orders text will appear here..."
+fit_content = true
+
+[node name="SourceTag" type="Label" parent="UI/VOSubtitles/SubtitleContent"]
+layout_mode = 2
+text = "[washington_general_orders_jul9]"
+horizontal_alignment = 1
+
+[node name="MontagePanel" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.7)
+
+[node name="MontageContent" type="VBoxContainer" parent="UI/MontagePanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+
+[node name="MontageTitle" type="Label" parent="UI/MontagePanel/MontageContent"]
+layout_mode = 2
+text = "BOWLING GREEN AFTERMATH"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/MontagePanel/MontageContent"]
+layout_mode = 2
+
+[node name="MontageText" type="RichTextLabel" parent="UI/MontagePanel/MontageContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Following the reading of the Declaration to Washington's troops, citizens and soldiers moved to Bowling Green and pulled down the equestrian statue of King George III.
+
+The lead from the statue would later be melted down into musket balls for the Continental Army.
+
+[bowling_green_statue_removal_jul9]"
+fit_content = true
+
+[node name="ProgressPanel" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -200.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 100.0
+
+[node name="ProgressContent" type="VBoxContainer" parent="UI/ProgressPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="ProgressText" type="Label" parent="UI/ProgressPanel/ProgressContent"]
+layout_mode = 2
+text = "Epilogue in progress..."
+horizontal_alignment = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 8, 0)
+light_energy = 0.6
+shadow_enabled = true

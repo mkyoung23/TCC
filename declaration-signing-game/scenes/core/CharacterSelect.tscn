@@ -1,0 +1,209 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnuhr8wgfm7ly"]
+
+[ext_resource type="Script" path="res://scenes/core/CharacterSelect.gd" id="1_p42wn"]
+
+[node name="CharacterSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_p42wn")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.12, 0.1, 0.08, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -50.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "CHOOSE YOUR HISTORICAL PERSPECTIVE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subtitle" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Morning of August 2nd, 1776 - Signing Day"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CharacterCards" type="GridContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="JeffersonCard" type="Panel" parent="ScrollContainer/VBoxContainer/CharacterCards"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="JeffersonContent" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/CharacterCards/JeffersonCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="Name" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/JeffersonCard/JeffersonContent"]
+layout_mode = 2
+text = "THOMAS JEFFERSON"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/JeffersonCard/JeffersonContent"]
+layout_mode = 2
+text = "Primary Author of the Declaration"
+horizontal_alignment = 1
+
+[node name="Lodging" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/JeffersonCard/JeffersonContent"]
+layout_mode = 2
+text = "Graff House (Declaration House)
+700 Market Street (High Street)"
+horizontal_alignment = 1
+
+[node name="Bio" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/CharacterCards/JeffersonCard/JeffersonContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Virginia delegate and primary drafter of the Declaration. Lodged at Jacob Graff Jr.'s house while crafting the document that would change history."
+fit_content = true
+
+[node name="SelectButton" type="Button" parent="ScrollContainer/VBoxContainer/CharacterCards/JeffersonCard/JeffersonContent"]
+layout_mode = 2
+text = "Experience as Jefferson"
+
+[node name="AdamsCard" type="Panel" parent="ScrollContainer/VBoxContainer/CharacterCards"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AdamsContent" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/CharacterCards/AdamsCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="Name" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/AdamsCard/AdamsContent"]
+layout_mode = 2
+text = "JOHN ADAMS"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/AdamsCard/AdamsContent"]
+layout_mode = 2
+text = "Massachusetts Delegate"
+horizontal_alignment = 1
+
+[node name="Lodging" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/AdamsCard/AdamsContent"]
+layout_mode = 2
+text = "Mrs. Sarah Yard's Boarding House
+Second Street"
+horizontal_alignment = 1
+
+[node name="Bio" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/CharacterCards/AdamsCard/AdamsContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Passionate advocate for independence from Massachusetts. Stayed at Mrs. Yard's boarding house during the Continental Congress sessions."
+fit_content = true
+
+[node name="SelectButton" type="Button" parent="ScrollContainer/VBoxContainer/CharacterCards/AdamsCard/AdamsContent"]
+layout_mode = 2
+text = "Experience as Adams"
+
+[node name="FranklinCard" type="Panel" parent="ScrollContainer/VBoxContainer/CharacterCards"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FranklinContent" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/CharacterCards/FranklinCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="Name" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/FranklinCard/FranklinContent"]
+layout_mode = 2
+text = "BENJAMIN FRANKLIN"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/FranklinCard/FranklinContent"]
+layout_mode = 2
+text = "Pennsylvania Delegate & Elder Statesman"
+horizontal_alignment = 1
+
+[node name="Lodging" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/FranklinCard/FranklinContent"]
+layout_mode = 2
+text = "Franklin Court
+322 Market Street"
+horizontal_alignment = 1
+
+[node name="Bio" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/CharacterCards/FranklinCard/FranklinContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Renowned philosopher, inventor, and diplomat. At 70, the oldest signer, bringing wisdom and wit to the proceedings from his Philadelphia home."
+fit_content = true
+
+[node name="SelectButton" type="Button" parent="ScrollContainer/VBoxContainer/CharacterCards/FranklinCard/FranklinContent"]
+layout_mode = 2
+text = "Experience as Franklin"
+
+[node name="MatlackCard" type="Panel" parent="ScrollContainer/VBoxContainer/CharacterCards"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MatlackContent" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/CharacterCards/MatlackCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="Name" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/MatlackCard/MatlackContent"]
+layout_mode = 2
+text = "TIMOTHY MATLACK"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/MatlackCard/MatlackContent"]
+layout_mode = 2
+text = "Engrossing Clerk"
+horizontal_alignment = 1
+
+[node name="Lodging" type="Label" parent="ScrollContainer/VBoxContainer/CharacterCards/MatlackCard/MatlackContent"]
+layout_mode = 2
+text = "Near the State House
+Chestnut Street vicinity"
+horizontal_alignment = 1
+
+[node name="Bio" type="RichTextLabel" parent="ScrollContainer/VBoxContainer/CharacterCards/MatlackCard/MatlackContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "The skilled penman who engrossed the final parchment copy. Not a delegate but essential to creating the document we see today."
+fit_content = true
+
+[node name="SelectButton" type="Button" parent="ScrollContainer/VBoxContainer/CharacterCards/MatlackCard/MatlackContent"]
+layout_mode = 2
+text = "Experience as Matlack"

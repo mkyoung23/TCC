@@ -1,0 +1,149 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3vx2m1n8q7k9"]
+
+[ext_resource type="PackedScene" uid="uid://d3uvj1q3nvf6x" path="res://scenes/core/Player.tscn" id="1_8k2m4"]
+[ext_resource type="Script" path="res://scenes/philly_outdoor/PhillyStreets.gd" id="2_f6n7h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_streets"]
+size = Vector3(100, 0.1, 100)
+
+[node name="PhillyStreets" type="Node3D"]
+script = ExtResource("2_f6n7h")
+
+[node name="Player" parent="." instance=ExtResource("1_8k2m4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0.1, 40)
+
+[node name="StreetGrid" type="StaticBody3D" parent="."]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="StreetGrid"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="GroundCollision" type="CollisionShape3D" parent="StreetGrid"]
+shape = SubResource("BoxShape3D_streets")
+
+[node name="MarketStreet" type="Node3D" parent="."]
+
+[node name="MarketStreetSign" type="StaticBody3D" parent="MarketStreet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 2, 35)
+
+[node name="SignInteractable" type="Area3D" parent="MarketStreet/MarketStreetSign"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarketStreet/MarketStreetSign/SignInteractable"]
+
+[node name="GraffHouse" type="StaticBody3D" parent="MarketStreet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 1.5, 40)
+
+[node name="GraffHouseMesh" type="MeshInstance3D" parent="MarketStreet/GraffHouse"]
+
+[node name="GraffHouseInteractable" type="Area3D" parent="MarketStreet/GraffHouse"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MarketStreet/GraffHouse/GraffHouseInteractable"]
+
+[node name="ChestnutStreet" type="Node3D" parent="."]
+
+[node name="ChestnutSign" type="StaticBody3D" parent="ChestnutStreet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2, 20)
+
+[node name="SignInteractable" type="Area3D" parent="ChestnutStreet/ChestnutSign"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChestnutStreet/ChestnutSign/SignInteractable"]
+
+[node name="StateHouse" type="StaticBody3D" parent="ChestnutStreet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="StateHouseMesh" type="MeshInstance3D" parent="ChestnutStreet/StateHouse"]
+
+[node name="StateHouseEntrance" type="Area3D" parent="ChestnutStreet/StateHouse"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChestnutStreet/StateHouse/StateHouseEntrance"]
+
+[node name="StateHouseYard" type="Node3D" parent="ChestnutStreet"]
+
+[node name="YardArea" type="StaticBody3D" parent="ChestnutStreet/StateHouseYard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -10)
+
+[node name="YardInteractable" type="Area3D" parent="ChestnutStreet/StateHouseYard/YardArea"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ChestnutStreet/StateHouseYard/YardArea/YardInteractable"]
+
+[node name="SecondStreet" type="Node3D" parent="."]
+
+[node name="SecondStreetSign" type="StaticBody3D" parent="SecondStreet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 2, 30)
+
+[node name="SignInteractable" type="Area3D" parent="SecondStreet/SecondStreetSign"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SecondStreet/SecondStreetSign/SignInteractable"]
+
+[node name="YardBoardingHouse" type="StaticBody3D" parent="SecondStreet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1.5, 25)
+
+[node name="BoardingHouseInteractable" type="Area3D" parent="SecondStreet/YardBoardingHouse"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SecondStreet/YardBoardingHouse/BoardingHouseInteractable"]
+
+[node name="FranklinCourt" type="Node3D" parent="."]
+
+[node name="FranklinCourtBuilding" type="StaticBody3D" parent="FranklinCourt"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 1.5, 30)
+
+[node name="FranklinCourtInteractable" type="Area3D" parent="FranklinCourt/FranklinCourtBuilding"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FranklinCourt/FranklinCourtBuilding/FranklinCourtInteractable"]
+
+[node name="Navigation" type="NavigationRegion3D" parent="."]
+
+[node name="NavigationMesh" type="NavigationMesh" parent="Navigation"]
+
+[node name="Minimap" type="CanvasLayer" parent="."]
+
+[node name="MinimapPanel" type="Panel" parent="Minimap"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 210.0
+
+[node name="MinimapContent" type="VBoxContainer" parent="Minimap/MinimapPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+
+[node name="MinimapTitle" type="Label" parent="Minimap/MinimapPanel/MinimapContent"]
+layout_mode = 2
+text = "PHILADELPHIA MAP"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Minimap/MinimapPanel/MinimapContent"]
+layout_mode = 2
+
+[node name="StreetsList" type="RichTextLabel" parent="Minimap/MinimapPanel/MinimapContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "• Market St. (High St.)
+• Chestnut St. 
+• Second St.
+• Fifth/Sixth St.
+
+STATE HOUSE:
+Chestnut Street"
+fit_content = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, -0.25, 0.433013, 0, 0.866025, 0.5, -0.5, -0.433013, 0.75, 0, 10, 0)
+light_energy = 0.7
+shadow_enabled = true

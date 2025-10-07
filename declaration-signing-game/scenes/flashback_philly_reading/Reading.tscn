@@ -1,0 +1,188 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8j4l3p2n6q9k"]
+
+[ext_resource type="PackedScene" uid="uid://d3uvj1q3nvf6x" path="res://scenes/core/Player.tscn" id="1_x9h4k"]
+[ext_resource type="Script" path="res://scenes/flashback_philly_reading/Reading.gd" id="2_p7m5n"]
+[ext_resource type="PackedScene" path="res://scripts/systems/Dialogue.tscn" id="3_k8l2o"]
+
+[node name="Reading" type="Node3D"]
+script = ExtResource("2_p7m5n")
+
+[node name="Player" parent="." instance=ExtResource("1_x9h4k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 8)
+
+[node name="StateHouseYard" type="Node3D" parent="."]
+
+[node name="YardGround" type="StaticBody3D" parent="StateHouseYard"]
+
+[node name="GroundMesh" type="MeshInstance3D" parent="StateHouseYard/YardGround"]
+
+[node name="StateHouseBuilding" type="StaticBody3D" parent="StateHouseYard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -10)
+
+[node name="BuildingMesh" type="MeshInstance3D" parent="StateHouseYard/StateHouseBuilding"]
+
+[node name="ReadingPodium" type="StaticBody3D" parent="StateHouseYard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+
+[node name="PodiumMesh" type="MeshInstance3D" parent="StateHouseYard/ReadingPodium"]
+
+[node name="PodiumInteractable" type="Area3D" parent="StateHouseYard/ReadingPodium"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateHouseYard/ReadingPodium/PodiumInteractable"]
+
+[node name="NixonPosition" type="StaticBody3D" parent="StateHouseYard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -4.5)
+
+[node name="NixonMarker" type="Area3D" parent="StateHouseYard/NixonPosition"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateHouseYard/NixonPosition/NixonMarker"]
+
+[node name="CrowdArea1" type="StaticBody3D" parent="StateHouseYard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.1, 2)
+
+[node name="CrowdMarker1" type="Area3D" parent="StateHouseYard/CrowdArea1"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateHouseYard/CrowdArea1/CrowdMarker1"]
+
+[node name="CrowdArea2" type="StaticBody3D" parent="StateHouseYard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.1, 2)
+
+[node name="CrowdMarker2" type="Area3D" parent="StateHouseYard/CrowdArea2"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateHouseYard/CrowdArea2/CrowdMarker2"]
+
+[node name="CrowdArea3" type="StaticBody3D" parent="StateHouseYard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 5)
+
+[node name="CrowdMarker3" type="Area3D" parent="StateHouseYard/CrowdArea3"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateHouseYard/CrowdArea3/CrowdMarker3"]
+
+[node name="LibertyBellTower" type="StaticBody3D" parent="StateHouseYard"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 4, -8)
+
+[node name="BellTowerMesh" type="MeshInstance3D" parent="StateHouseYard/LibertyBellTower"]
+
+[node name="BellInteractable" type="Area3D" parent="StateHouseYard/LibertyBellTower"]
+script = ExtResource("Interactable")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StateHouseYard/LibertyBellTower/BellInteractable"]
+
+[node name="DialogueSystem" parent="." instance=ExtResource("3_k8l2o")]
+
+[node name="ReadingSequence" type="Node" parent="."]
+
+[node name="SequenceTimer" type="Timer" parent="ReadingSequence"]
+wait_time = 3.0
+one_shot = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FlashbackOverlay" type="Panel" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0.3)
+
+[node name="FlashbackLabel" type="Label" parent="UI/FlashbackOverlay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -200.0
+offset_right = 150.0
+offset_bottom = -180.0
+text = "FLASHBACK: July 8, 1776"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DateLabel" type="Label" parent="UI/FlashbackOverlay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -180.0
+offset_right = 100.0
+offset_bottom = -160.0
+text = "First Public Reading"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LegendPanel" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -180.0
+offset_right = 420.0
+offset_bottom = -20.0
+
+[node name="LegendContent" type="VBoxContainer" parent="UI/LegendPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="LegendTitle" type="Label" parent="UI/LegendPanel/LegendContent"]
+layout_mode = 2
+text = "LIBERTY BELL: LEGEND VS EVIDENCE"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/LegendPanel/LegendContent"]
+layout_mode = 2
+
+[node name="LegendText" type="RichTextLabel" parent="UI/LegendPanel/LegendContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "LEGEND: Liberty Bell rang to announce the reading of the Declaration.
+
+EVIDENCE: No contemporary accounts mention bell ringing on July 8, 1776. The Liberty Bell legend appears in 19th century stories.
+
+[Toggle L for legend elements]"
+fit_content = true
+
+[node name="ReadingProgress" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -80.0
+offset_right = 150.0
+offset_bottom = -20.0
+
+[node name="ProgressContent" type="VBoxContainer" parent="UI/ReadingProgress"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="ProgressText" type="Label" parent="UI/ReadingProgress/ProgressContent"]
+layout_mode = 2
+text = "Preparing for public reading..."
+horizontal_alignment = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 0, 8, 0)
+light_energy = 0.9
+shadow_enabled = true

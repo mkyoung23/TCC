@@ -1,0 +1,135 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3uvj1q3nvf6x"]
+
+[ext_resource type="Script" path="res://scripts\player\Player.gd" id="1_vmhh3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1bqk5"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_vmhh3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_1bqk5")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+fov = 75.0
+
+[node name="InteractRaycast" type="RaycastCollision3D" parent="Head/Camera3D"]
+target_position = Vector3(0, 0, -2.5)
+collision_mask = 2
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="InteractionPrompt" type="Label" parent="UI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 50.0
+offset_right = 50.0
+offset_bottom = 70.0
+text = "Press E to interact"
+horizontal_alignment = 1
+
+[node name="SourceOverlay" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_right = -10.0
+offset_bottom = -10.0
+offset_top = 10.0
+
+[node name="SourceContent" type="VBoxContainer" parent="UI/SourceOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+
+[node name="SourceTitle" type="Label" parent="UI/SourceOverlay/SourceContent"]
+layout_mode = 2
+text = "HISTORICAL SOURCES (F1)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/SourceOverlay/SourceContent"]
+layout_mode = 2
+
+[node name="SourceList" type="RichTextLabel" parent="UI/SourceOverlay/SourceContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Sources for visible elements will appear here..."
+fit_content = true
+
+[node name="Journal" type="Panel" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = -100.0
+offset_bottom = -100.0
+
+[node name="JournalContent" type="VBoxContainer" parent="UI/Journal"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+
+[node name="JournalTitle" type="Label" parent="UI/Journal/JournalContent"]
+layout_mode = 2
+text = "PERSONAL JOURNAL (J)"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="UI/Journal/JournalContent"]
+layout_mode = 2
+
+[node name="JournalText" type="RichTextLabel" parent="UI/Journal/JournalContent"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Journal entries will appear here..."
+fit_content = true
+
+[node name="CloseLabel" type="Label" parent="UI/Journal/JournalContent"]
+layout_mode = 2
+text = "Press J to close"
+horizontal_alignment = 1
+
+[node name="Crosshair" type="TextureRect" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+
+[node name="LegendIndicator" type="Label" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -30.0
+offset_right = 200.0
+text = "[L] Legend Mode: OFF"
+vertical_alignment = 2

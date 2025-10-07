@@ -1,0 +1,170 @@
+{
+  "sources": {
+    "nps_declaration_house": {
+      "id": "nps_declaration_house",
+      "title": "Declaration House - Independence Hall",
+      "organization": "National Park Service",
+      "url": "https://www.nps.gov/inde/planyourvisit/declarationhouse.htm",
+      "type": "official_documentation",
+      "description": "NPS documentation of Jefferson's lodgings at Graff House, 700 Market Street",
+      "citation": "National Park Service. \"Declaration House.\" Independence Hall. Accessed 2024."
+    },
+    "nps_independence_hall": {
+      "id": "nps_independence_hall", 
+      "title": "Independence Hall - Assembly Room",
+      "organization": "National Park Service",
+      "url": "https://www.nps.gov/inde/planyourvisit/independencehall.htm",
+      "type": "official_documentation",
+      "description": "Official NPS documentation of Independence Hall and Assembly Room",
+      "citation": "National Park Service. \"Independence Hall.\" Independence National Historical Park. Accessed 2024."
+    },
+    "nps_assembly_room_furnishings": {
+      "id": "nps_assembly_room_furnishings",
+      "title": "Assembly Room Furnishings",
+      "organization": "National Park Service", 
+      "url": "https://www.nps.gov/articles/000/assembly-room-furnishings.htm",
+      "type": "historical_research",
+      "description": "NPS research on Assembly Room layout, furnishings, and period details",
+      "citation": "National Park Service. \"Assembly Room Furnishings.\" NPS Articles. Accessed 2024."
+    },
+    "nps_franklin_court": {
+      "id": "nps_franklin_court",
+      "title": "Franklin Court",
+      "organization": "National Park Service",
+      "url": "https://www.nps.gov/inde/learn/historyculture/places-franklincourt.htm",
+      "type": "official_documentation", 
+      "description": "NPS documentation of Franklin's Philadelphia residence at 322 Market Street",
+      "citation": "National Park Service. \"Franklin Court.\" Independence Hall. Accessed 2024."
+    },
+    "founders_archives_adams": {
+      "id": "founders_archives_adams",
+      "title": "Adams Papers - Boarding House Letters",
+      "organization": "Founders Online, University of Virginia",
+      "url": "https://founders.archives.gov/documents/Adams/01-02-02-0007-0001-0001",
+      "type": "primary_source",
+      "description": "Adams correspondence mentioning Mrs. Sarah Yard's boarding house on Second Street",
+      "citation": "Adams, John. Letters. Founders Online, National Archives. Accessed 2024."
+    },
+    "archives_declaration_timeline": {
+      "id": "archives_declaration_timeline",
+      "title": "Declaration of Independence Timeline",
+      "organization": "National Archives",
+      "url": "https://www.archives.gov/founding-docs/timeline", 
+      "type": "official_documentation",
+      "description": "National Archives official timeline of Declaration events",
+      "citation": "National Archives. \"Declaration Timeline.\" Founding Documents. Accessed 2024."
+    },
+    "archives_matlack": {
+      "id": "archives_matlack",
+      "title": "Timothy Matlack - Engrossing Clerk",
+      "organization": "National Archives",
+      "url": "https://www.archives.gov/milestone-documents/declaration-of-independence",
+      "type": "official_documentation",
+      "description": "National Archives documentation of Matlack's role as engrossing clerk",
+      "citation": "National Archives. \"Declaration of Independence.\" Milestone Documents. Accessed 2024."
+    },
+    "first_public_reading_jul8": {
+      "id": "first_public_reading_jul8", 
+      "title": "First Public Reading - July 8, 1776",
+      "organization": "National Park Service",
+      "url": "https://www.nps.gov/inde/learn/news/first-public-reading-of-the-declaration-of-independence.htm",
+      "type": "historical_research",
+      "description": "NPS documentation of John Nixon's first public reading in State House yard",
+      "citation": "National Park Service. \"First Public Reading.\" Independence Hall News. Accessed 2024."
+    },
+    "liberty_bell_legend": {
+      "id": "liberty_bell_legend",
+      "title": "Liberty Bell Stories and Legends", 
+      "organization": "National Park Service",
+      "url": "https://www.nps.gov/inde/learn/historyculture/stories-libertybell.htm",
+      "type": "legend_analysis",
+      "description": "NPS analysis of Liberty Bell legends vs historical evidence",
+      "citation": "National Park Service. \"Liberty Bell Stories.\" Independence Hall. Accessed 2024."
+    },
+    "washington_general_orders_jul9": {
+      "id": "washington_general_orders_jul9",
+      "title": "General Orders, July 9, 1776",
+      "organization": "Founders Online, University of Virginia", 
+      "url": "https://founders.archives.gov/documents/Washington/03-05-02-0176",
+      "type": "primary_source",
+      "description": "Washington's General Orders directing Declaration be read to troops",
+      "citation": "Washington, George. General Orders, 9 July 1776. Founders Online, National Archives."
+    },
+    "dunlap_broadside": {
+      "id": "dunlap_broadside",
+      "title": "Dunlap Broadside - First Printing",
+      "organization": "Library of Congress",
+      "url": "https://www.loc.gov/resource/gdcwdl.wdl_02716",
+      "type": "primary_source",
+      "description": "First printing of Declaration, July 4-5, 1776",
+      "citation": "Dunlap, John. Declaration of Independence Broadside. Library of Congress, 1776."
+    },
+    "goddard_broadside_1777": {
+      "id": "goddard_broadside_1777",
+      "title": "Goddard Broadside with Signers' Names",
+      "organization": "National Park Service",
+      "url": "https://www.nps.gov/articles/goddard.htm",
+      "type": "primary_source", 
+      "description": "First printing showing signers' names, January 1777",
+      "citation": "Goddard, Mary Katherine. Declaration with Names. NPS Articles. Accessed 2024."
+    },
+    "philly_maps_1752_1776": {
+      "id": "philly_maps_1752_1776",
+      "title": "Historical Maps of Philadelphia 1752-1777",
+      "organization": "Library of Congress",
+      "urls": [
+        "https://www.loc.gov/item/98690000",
+        "https://www.loc.gov/item/gm71002155", 
+        "https://www.loc.gov/item/gm71005415"
+      ],
+      "type": "primary_source",
+      "description": "Period maps showing Philadelphia street layout and building locations",
+      "citation": "Library of Congress. Philadelphia Maps 1752-1777. Geography and Map Division."
+    },
+    "trumbull_painting_context": {
+      "id": "trumbull_painting_context",
+      "title": "Trumbull's Declaration of Independence Painting",
+      "organization": "Architect of the Capitol",
+      "url": "https://www.aoc.gov/explore-capitol-campus/art/declaration-independence", 
+      "type": "artwork_analysis",
+      "description": "Explanation that Trumbull depicts June 28 presentation, not August 2 signing",
+      "citation": "Architect of the Capitol. \"Declaration of Independence.\" Capitol Art Collection."
+    },
+    "bowling_green_statue_removal": {
+      "id": "bowling_green_statue_removal",
+      "title": "King George III Statue Removal - Bowling Green", 
+      "organization": "New York Historical Society",
+      "type": "historical_documentation",
+      "description": "Documentation of statue toppling following Declaration reading, July 9, 1776",
+      "citation": "New York Historical Society. Bowling Green Statue Removal, July 1776."
+    },
+    "hancock_signature_legend": {
+      "id": "hancock_signature_legend",
+      "title": "Hancock Signature Legends",
+      "type": "legend_analysis",
+      "description": "Analysis of popular legends about Hancock's signing vs documented evidence",
+      "legend_note": "King George comment is popular legend, not documented",
+      "citation": "Popular Historical Legends vs. Documentary Evidence."
+    }
+  },
+  "source_categories": {
+    "primary_source": "First-hand documents, letters, orders from 1776",
+    "official_documentation": "Government archives and park service research",
+    "historical_research": "Scholarly research and analysis",
+    "legend_analysis": "Examination of popular legends vs evidence",
+    "artwork_analysis": "Art historical context and interpretation"
+  },
+  "evidence_levels": {
+    "confirmed": "Multiple contemporary sources confirm",
+    "probable": "Strong evidence but some gaps",
+    "possible": "Limited evidence, reasonable inference", 
+    "legend": "Popular story, no contemporary evidence",
+    "disputed": "Conflicting evidence or interpretations"
+  },
+  "usage_notes": {
+    "legend_toggle": "Items marked 'legend_only' appear only when L key pressed",
+    "source_overlay": "F1 shows sources for currently visible items",
+    "citation_format": "All sources follow academic citation standards",
+    "accuracy_commitment": "Every game element traceable to historical source"
+  }
+}

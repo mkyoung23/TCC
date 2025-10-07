@@ -1,0 +1,84 @@
+{
+  "characters": [
+    {
+      "id": "jefferson",
+      "name": "Thomas Jefferson",
+      "title": "Primary Author of the Declaration",
+      "colony": "Virginia",
+      "birth_year": 1743,
+      "age_in_1776": 33,
+      "lodging": "Graff House (Declaration House)",
+      "address": "700 Market Street (High Street)",
+      "bio": "Virginia delegate and primary drafter of the Declaration. Lodged at Jacob Graff Jr.'s house while crafting the document that would change history.",
+      "role": "Committee of Five member, primary author",
+      "source_id": "nps_declaration_house",
+      "morning_scene": "res://scenes/jefferson_morning/JeffersonMorning.tscn",
+      "special_interactions": ["thermometer", "draft_papers", "quill_pen"],
+      "historical_notes": [
+        "Wrote the first draft in his lodgings at Graff House",
+        "Made weather observations including temperature readings",
+        "Revised the draft based on committee feedback"
+      ]
+    },
+    {
+      "id": "adams",
+      "name": "John Adams",
+      "title": "Massachusetts Delegate",
+      "colony": "Massachusetts",
+      "birth_year": 1735,
+      "age_in_1776": 40,
+      "lodging": "Mrs. Sarah Yard's Boarding House",
+      "address": "Second Street",
+      "bio": "Passionate advocate for independence from Massachusetts. Stayed at Mrs. Yard's boarding house during the Continental Congress sessions.",
+      "role": "Committee of Five member, independence advocate",
+      "source_id": "founders_archives_adams",
+      "morning_scene": "res://scenes/adams_morning/AdamsMorning.tscn",
+      "special_interactions": ["abigail_letters", "congressional_notes", "legal_books"],
+      "historical_notes": [
+        "Strong advocate for independence in Continental Congress",
+        "Maintained extensive correspondence with wife Abigail",
+        "Stayed at boarding house on Second Street during Congress"
+      ]
+    },
+    {
+      "id": "franklin",
+      "name": "Benjamin Franklin",
+      "title": "Pennsylvania Delegate & Elder Statesman",
+      "colony": "Pennsylvania", 
+      "birth_year": 1706,
+      "age_in_1776": 70,
+      "lodging": "Franklin Court",
+      "address": "322 Market Street",
+      "bio": "Renowned philosopher, inventor, and diplomat. At 70, the oldest signer, bringing wisdom and wit to the proceedings from his Philadelphia home.",
+      "role": "Committee of Five member, elder statesman",
+      "source_id": "nps_franklin_court",
+      "morning_scene": "res://scenes/franklin_morning/FranklinMorning.tscn",
+      "special_interactions": ["printing_press", "scientific_instruments", "diplomatic_papers"],
+      "historical_notes": [
+        "Oldest delegate at age 70",
+        "Made few but significant edits to Jefferson's draft",
+        "Lived at his Philadelphia home Franklin Court"
+      ]
+    },
+    {
+      "id": "matlack",
+      "name": "Timothy Matlack",
+      "title": "Engrossing Clerk",
+      "colony": "Pennsylvania",
+      "birth_year": 1736,
+      "age_in_1776": 40,
+      "lodging": "Near the State House",
+      "address": "Chestnut Street vicinity", 
+      "bio": "The skilled penman who engrossed the final parchment copy. Not a delegate but essential to creating the document we see today.",
+      "role": "Continental Congress clerk and penman",
+      "source_id": "archives_matlack",
+      "morning_scene": "res://scenes/matlack_morning/MatlackMorning.tscn",
+      "special_interactions": ["engrossing_parchment", "quills", "ink_preparation"],
+      "historical_notes": [
+        "Professional penman responsible for the engrossed copy",
+        "Used high-quality parchment and special inks",
+        "Not a delegate but crucial to the signing process"
+      ]
+    }
+  ]
+}

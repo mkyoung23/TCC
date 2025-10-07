@@ -1,0 +1,477 @@
+{
+  "signers": [
+    {
+      "name": "John Hancock",
+      "colony": "Massachusetts",
+      "position": "President of Continental Congress",
+      "signed_date": "1776-08-02",
+      "signing_order": 1,
+      "notes": "Signed first as President, famous large signature",
+      "legend": "Allegedly said 'King George will be able to read that'",
+      "evidence_level": "confirmed",
+      "source_id": "hancock_signing"
+    },
+    {
+      "name": "Josiah Bartlett",
+      "colony": "New Hampshire", 
+      "signed_date": "1776-08-02",
+      "signing_order": 2,
+      "notes": "First delegate after Hancock",
+      "evidence_level": "confirmed",
+      "source_id": "nh_delegation_signing"
+    },
+    {
+      "name": "William Whipple",
+      "colony": "New Hampshire",
+      "signed_date": "1776-08-02", 
+      "signing_order": 3,
+      "evidence_level": "confirmed",
+      "source_id": "nh_delegation_signing"
+    },
+    {
+      "name": "Samuel Adams",
+      "colony": "Massachusetts",
+      "signed_date": "1776-08-02",
+      "signing_order": 4,
+      "notes": "Cousin of John Adams",
+      "evidence_level": "confirmed",
+      "source_id": "ma_delegation_signing"
+    },
+    {
+      "name": "John Adams",
+      "colony": "Massachusetts",
+      "signed_date": "1776-08-02",
+      "signing_order": 5,
+      "notes": "Committee of Five member",
+      "evidence_level": "confirmed",
+      "source_id": "ma_delegation_signing"
+    },
+    {
+      "name": "Robert Treat Paine",
+      "colony": "Massachusetts",
+      "signed_date": "1776-08-02",
+      "signing_order": 6,
+      "evidence_level": "confirmed",
+      "source_id": "ma_delegation_signing"
+    },
+    {
+      "name": "Elbridge Gerry",
+      "colony": "Massachusetts", 
+      "signed_date": "1776-11-01",
+      "signing_order": 50,
+      "notes": "Late signer - absent on August 2",
+      "evidence_level": "confirmed",
+      "source_id": "late_signers"
+    },
+    {
+      "name": "Stephen Hopkins",
+      "colony": "Rhode Island",
+      "signed_date": "1776-08-02",
+      "signing_order": 7,
+      "evidence_level": "confirmed",
+      "source_id": "ri_delegation_signing"
+    },
+    {
+      "name": "William Ellery",
+      "colony": "Rhode Island",
+      "signed_date": "1776-08-02",
+      "signing_order": 8,
+      "evidence_level": "confirmed", 
+      "source_id": "ri_delegation_signing"
+    },
+    {
+      "name": "Roger Sherman",
+      "colony": "Connecticut",
+      "signed_date": "1776-08-02",
+      "signing_order": 9,
+      "notes": "Committee of Five member",
+      "evidence_level": "confirmed",
+      "source_id": "ct_delegation_signing"
+    },
+    {
+      "name": "Samuel Huntington",
+      "colony": "Connecticut",
+      "signed_date": "1776-08-02",
+      "signing_order": 10,
+      "evidence_level": "confirmed",
+      "source_id": "ct_delegation_signing"
+    },
+    {
+      "name": "William Williams",
+      "colony": "Connecticut",
+      "signed_date": "1776-08-02",
+      "signing_order": 11,
+      "evidence_level": "confirmed",
+      "source_id": "ct_delegation_signing"
+    },
+    {
+      "name": "Oliver Wolcott",
+      "colony": "Connecticut",
+      "signed_date": "1776-08-02",
+      "signing_order": 12,
+      "evidence_level": "confirmed",
+      "source_id": "ct_delegation_signing"
+    },
+    {
+      "name": "William Floyd",
+      "colony": "New York",
+      "signed_date": "1776-08-02",
+      "signing_order": 13,
+      "evidence_level": "confirmed",
+      "source_id": "ny_delegation_signing"
+    },
+    {
+      "name": "Philip Livingston",
+      "colony": "New York",
+      "signed_date": "1776-08-02", 
+      "signing_order": 14,
+      "evidence_level": "confirmed",
+      "source_id": "ny_delegation_signing"
+    },
+    {
+      "name": "Francis Lewis",
+      "colony": "New York",
+      "signed_date": "1776-08-02",
+      "signing_order": 15,
+      "evidence_level": "confirmed",
+      "source_id": "ny_delegation_signing"
+    },
+    {
+      "name": "Lewis Morris",
+      "colony": "New York",
+      "signed_date": "1776-08-02",
+      "signing_order": 16,
+      "evidence_level": "confirmed",
+      "source_id": "ny_delegation_signing"
+    },
+    {
+      "name": "Richard Stockton",
+      "colony": "New Jersey",
+      "signed_date": "1776-08-02",
+      "signing_order": 17,
+      "evidence_level": "confirmed",
+      "source_id": "nj_delegation_signing"
+    },
+    {
+      "name": "John Witherspoon",
+      "colony": "New Jersey",
+      "signed_date": "1776-08-02",
+      "signing_order": 18,
+      "evidence_level": "confirmed",
+      "source_id": "nj_delegation_signing"
+    },
+    {
+      "name": "Francis Hopkinson",
+      "colony": "New Jersey",
+      "signed_date": "1776-08-02",
+      "signing_order": 19,
+      "evidence_level": "confirmed",
+      "source_id": "nj_delegation_signing"
+    },
+    {
+      "name": "John Hart",
+      "colony": "New Jersey",
+      "signed_date": "1776-08-02",
+      "signing_order": 20,
+      "evidence_level": "confirmed",
+      "source_id": "nj_delegation_signing"
+    },
+    {
+      "name": "Abraham Clark",
+      "colony": "New Jersey",
+      "signed_date": "1776-08-02",
+      "signing_order": 21,
+      "evidence_level": "confirmed",
+      "source_id": "nj_delegation_signing"
+    },
+    {
+      "name": "Robert Morris",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 22,
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "Benjamin Rush",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 23,
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "Benjamin Franklin",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 24,
+      "notes": "Committee of Five member, age 70",
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "John Morton",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 25,
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "George Clymer",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 26,
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "James Smith",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 27,
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "George Taylor",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 28,
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "James Wilson",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 29,
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "George Ross",
+      "colony": "Pennsylvania",
+      "signed_date": "1776-08-02",
+      "signing_order": 30,
+      "evidence_level": "confirmed",
+      "source_id": "pa_delegation_signing"
+    },
+    {
+      "name": "Caesar Rodney",
+      "colony": "Delaware",
+      "signed_date": "1776-08-02",
+      "signing_order": 31,
+      "notes": "Famous ride to reach Philadelphia in time",
+      "evidence_level": "confirmed",
+      "source_id": "de_delegation_signing"
+    },
+    {
+      "name": "George Read",
+      "colony": "Delaware",
+      "signed_date": "1776-08-02",
+      "signing_order": 32,
+      "evidence_level": "confirmed",
+      "source_id": "de_delegation_signing"
+    },
+    {
+      "name": "Thomas McKean",
+      "colony": "Delaware",
+      "signed_date": "1776-11-01",
+      "signing_order": 51,
+      "notes": "Late signer - absent on August 2",
+      "evidence_level": "confirmed",
+      "source_id": "late_signers"
+    },
+    {
+      "name": "Samuel Chase",
+      "colony": "Maryland", 
+      "signed_date": "1776-08-02",
+      "signing_order": 33,
+      "evidence_level": "confirmed",
+      "source_id": "md_delegation_signing"
+    },
+    {
+      "name": "William Paca",
+      "colony": "Maryland",
+      "signed_date": "1776-08-02",
+      "signing_order": 34,
+      "evidence_level": "confirmed",
+      "source_id": "md_delegation_signing"
+    },
+    {
+      "name": "Thomas Stone",
+      "colony": "Maryland",
+      "signed_date": "1776-08-02",
+      "signing_order": 35,
+      "evidence_level": "confirmed",
+      "source_id": "md_delegation_signing"
+    },
+    {
+      "name": "Charles Carroll",
+      "colony": "Maryland",
+      "signed_date": "1776-08-02",
+      "signing_order": 36,
+      "notes": "Added 'of Carrollton' to distinguish from father",
+      "evidence_level": "confirmed",
+      "source_id": "md_delegation_signing"
+    },
+    {
+      "name": "George Wythe",
+      "colony": "Virginia",
+      "signed_date": "1776-08-02",
+      "signing_order": 37,
+      "evidence_level": "confirmed",
+      "source_id": "va_delegation_signing"
+    },
+    {
+      "name": "Richard Henry Lee",
+      "colony": "Virginia",
+      "signed_date": "1776-08-02",
+      "signing_order": 38,
+      "notes": "Proposed the independence resolution",
+      "evidence_level": "confirmed",
+      "source_id": "va_delegation_signing"
+    },
+    {
+      "name": "Thomas Jefferson",
+      "colony": "Virginia",
+      "signed_date": "1776-08-02",
+      "signing_order": 39,
+      "notes": "Primary author, Committee of Five",
+      "evidence_level": "confirmed",
+      "source_id": "va_delegation_signing"
+    },
+    {
+      "name": "Benjamin Harrison",
+      "colony": "Virginia",
+      "signed_date": "1776-08-02",
+      "signing_order": 40,
+      "evidence_level": "confirmed",
+      "source_id": "va_delegation_signing"
+    },
+    {
+      "name": "Thomas Nelson Jr.",
+      "colony": "Virginia",
+      "signed_date": "1776-08-02",
+      "signing_order": 41,
+      "evidence_level": "confirmed",
+      "source_id": "va_delegation_signing"
+    },
+    {
+      "name": "Francis Lightfoot Lee",
+      "colony": "Virginia",
+      "signed_date": "1776-08-02",
+      "signing_order": 42,
+      "notes": "Brother of Richard Henry Lee",
+      "evidence_level": "confirmed",
+      "source_id": "va_delegation_signing"
+    },
+    {
+      "name": "Carter Braxton",
+      "colony": "Virginia",
+      "signed_date": "1776-08-02",
+      "signing_order": 43,
+      "evidence_level": "confirmed",
+      "source_id": "va_delegation_signing"
+    },
+    {
+      "name": "William Hooper",
+      "colony": "North Carolina",
+      "signed_date": "1776-08-02",
+      "signing_order": 44,
+      "evidence_level": "confirmed",
+      "source_id": "nc_delegation_signing"
+    },
+    {
+      "name": "Joseph Hewes",
+      "colony": "North Carolina",
+      "signed_date": "1776-08-02",
+      "signing_order": 45,
+      "evidence_level": "confirmed",
+      "source_id": "nc_delegation_signing"
+    },
+    {
+      "name": "John Penn",
+      "colony": "North Carolina",
+      "signed_date": "1776-08-02",
+      "signing_order": 46,
+      "evidence_level": "confirmed",
+      "source_id": "nc_delegation_signing"
+    },
+    {
+      "name": "Edward Rutledge",
+      "colony": "South Carolina",
+      "signed_date": "1776-08-02",
+      "signing_order": 47,
+      "notes": "Youngest signer at age 26",
+      "evidence_level": "confirmed",
+      "source_id": "sc_delegation_signing"
+    },
+    {
+      "name": "Thomas Heyward Jr.",
+      "colony": "South Carolina",
+      "signed_date": "1776-08-02",
+      "signing_order": 48,
+      "evidence_level": "confirmed",
+      "source_id": "sc_delegation_signing"
+    },
+    {
+      "name": "Thomas Lynch Jr.",
+      "colony": "South Carolina",
+      "signed_date": "1776-08-02", 
+      "signing_order": 49,
+      "evidence_level": "confirmed",
+      "source_id": "sc_delegation_signing"
+    },
+    {
+      "name": "Arthur Middleton",
+      "colony": "South Carolina",
+      "signed_date": "1776-08-02",
+      "signing_order": 50,
+      "evidence_level": "confirmed", 
+      "source_id": "sc_delegation_signing"
+    },
+    {
+      "name": "Button Gwinnett",
+      "colony": "Georgia",
+      "signed_date": "1776-08-02",
+      "signing_order": 51,
+      "evidence_level": "confirmed",
+      "source_id": "ga_delegation_signing"
+    },
+    {
+      "name": "Lyman Hall",
+      "colony": "Georgia",
+      "signed_date": "1776-08-02",
+      "signing_order": 52,
+      "evidence_level": "confirmed",
+      "source_id": "ga_delegation_signing"
+    },
+    {
+      "name": "George Walton",
+      "colony": "Georgia",
+      "signed_date": "1776-08-02",
+      "signing_order": 53,
+      "evidence_level": "confirmed",
+      "source_id": "ga_delegation_signing"
+    }
+  ],
+  "signing_statistics": {
+    "total_signers": 56,
+    "signed_august_2": 50,
+    "late_signers": 6,
+    "oldest_signer": "Benjamin Franklin (70)",
+    "youngest_signer": "Edward Rutledge (26)",
+    "colonies_represented": 13,
+    "committee_of_five_signers": 4
+  },
+  "signing_process_notes": {
+    "order": "By colony delegation, generally north to south",
+    "hancock_first": "As President of Continental Congress",
+    "parchment": "Engrossed on vellum by Timothy Matlack",
+    "location": "Assembly Room, Pennsylvania State House",
+    "duration": "Most signed on August 2, some over following months",
+    "evidence_gaps": "Exact seating arrangement unknown"
+  }
+}
