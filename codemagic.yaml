@@ -12,7 +12,7 @@ workflows:
       - name: Build & archive
         script: |
           xcodebuild \
-        -allowProvisioningUpdates \
+             -allowProvisioningUpdates \
                  
             -project "$XCODE_PROJECT" \
             -scheme "$XCODE_SCHEME" \
