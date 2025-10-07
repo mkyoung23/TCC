@@ -2,8 +2,6 @@ workflows:
   ios-tcc:
     name: iOS – Time Capsule Camera
     max_build_duration: 120
-    integrations:
-      app_store_connect: TCC_ASC_KEY   # Name of your ASC API key in Codemagic
     environment:
       ios_signing:
         distribution_type: app_store    # or development / ad_hoc while testing
@@ -12,6 +10,8 @@ workflows:
         XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
         XCODE_SCHEME: "TimeCapsuleCamera"
         BUNDLE_ID: "com.mkyoung.timecapsulecamera"
+      # Using environment variables already set in CodeMagic:
+      # APPSTORECONNECT_ISSUER_ID, APPSTORECONNECT_KEY_ID, APPSTORECONNECT_PRIVATE_KEY
     scripts:
       - name: Prepare signing & profiles
         script: |
@@ -45,7 +45,8 @@ workflows:
           success: true
           failure: true
       app_store_connect:
-        auth: integration
+        # Automatically uses environment variables already set in CodeMagic:
+        # APPSTORECONNECT_ISSUER_ID, APPSTORECONNECT_KEY_ID, APPSTORECONNECT_PRIVATE_KEY
         submit_to_testflight: true
         beta_groups:
           - Beta Testers
