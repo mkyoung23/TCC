@@ -45,8 +45,10 @@ workflows:
           success: true
           failure: true
       app_store_connect:
-        # Automatically detects CodeMagic environment variables:
-        # APP_STORE_CONNECT_ISSUER_ID, APP_STORE_CONNECT_KEY_IDENTIFIER, APP_STORE_CONNECT_PRIVATE_KEY
+        # Explicitly reference variables from ios_signing group
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
         beta_groups:
           - Beta Testers
