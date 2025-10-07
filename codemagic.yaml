@@ -48,5 +48,5 @@ workflows:
         # Automatically uses environment variables already set in CodeMagic:
         # APPSTORECONNECT_ISSUER_ID, APPSTORECONNECT_KEY_ID, APPSTORECONNECT_PRIVATE_KEY
         submit_to_testflight: true
-        beta_groups:
-          - Beta Testers
+        # Note: TestFlight will distribute to all groups named "Beta Testers"
+        # This includes both Internal and External testing groups
