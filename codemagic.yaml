@@ -1,43 +1,41 @@
 workflows:
-  ios-build:
-    name: iOS • TestFlight
-    instance_type: mac_mini_m2
-    max_build_duration: 120
-
+  ios-release:
+    name: iOS Release
     environment:
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.mkyoung.timecapsulecamera
-      xcode: latest
-
+      groups:
+        - ios_signing
+      vars:
+        BUNDLE_ID: "com.mkyoung.timecapsulecamera"
+        XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
+        XCODE_SCHEME: "TimeCapsuleCamera"
+      # Adjust if your scheme name is different
     scripts:
-      - name: Build & archive
+      - name: Set up code signing
         script: |
-          # project sits in the time_capsule_camera folder
-          xcodebuild \
-            -project "time_capsule_camera/TimeCapsuleCamera.xcodeproj" \
-            -scheme "TimeCapsuleCamera" \
-            -configuration Release \
-            -sdk iphoneos \
-            -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
-            CODE_SIGN_STYLE=Automatic \
-            clean archive
-
-      - name: Export IPA
+          keychain initialize
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
+          keychain add-certificates
+          xcode-project use-profiles
+      - name: Build ipa for distribution
         script: |
-          xcodebuild \
-            -exportArchive \
-            -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
-            -exportPath "$CM_BUILD_DIR/ipa" \
-            -exportOptionsPlist /tmp/xcodebuild_export_options.plist
-
+          xcode-project build-ipa \
+            --project "$XCODE_PROJECT" \
+            --scheme "$XCODE_SCHEME" \
+            --archive-xcargs "CODE_SIGN_IDENTITY='Apple Distribution' OTHER_CODE_SIGN_FLAGS='--keychain=buildagent'" \
+            --export-options-plist /Users/builder/export_options.plist
     artifacts:
-      - $CM_BUILD_DIR/ipa/*.ipa
-
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
     publishing:
       app_store_connect:
-        auth: integration        # uses the API-key vars you already added
+        api_key: 68T7Y68ZWL
+        api_key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        api_key_issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        key_encoding: base64 # Required if the API key is base64 encoded
+        # Submit to TestFlight
         submit_to_testflight: true
-      email:
-        recipients:
-          - m.k.young240@gmail.com
+        beta_groups:
+          - "Testers"
+        # Optional: Submit to App Store
+        submit_to_app_store: false
