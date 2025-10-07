@@ -7,21 +7,25 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store    # or development / ad_hoc while testing
-        bundle_identifier: com.yourco.tcc
+        bundle_identifier: com.mkyoung.timecapsulecamera
+      vars:
+        XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
+        XCODE_SCHEME: "TimeCapsuleCamera"
+        BUNDLE_ID: "com.mkyoung.timecapsulecamera"
     scripts:
       - name: Prepare signing & profiles
         script: |
           keychain initialize
-          app-store-connect fetch-signing-files "$CM_BUNDLE_IDENTIFIER" --type IOS_APP_STORE --create
+          app-store-connect fetch-signing-files "$BUNDLE_ID" --type IOS_APP_STORE --create
           keychain add-certificates
           xcode-project use-profiles    # CRITICAL so Xcode uses the fetched profiles
       - name: Resolve Swift packages
-        script: xcodebuild -resolvePackageDependencies -project time_capsule_camera/TimeCapsuleCamera.xcodeproj
+        script: xcodebuild -resolvePackageDependencies -project "$XCODE_PROJECT"
       - name: Build archive
         script: |
           xcodebuild \
-            -project time_capsule_camera/TimeCapsuleCamera.xcodeproj \
-            -scheme TimeCapsuleCamera \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
             -configuration Release \
             -archivePath $CM_BUILD_DIR/tcc.xcarchive archive
       - name: Export IPA
@@ -32,7 +36,16 @@ workflows:
             -exportOptionsPlist /Users/builder/export_options.plist
     artifacts:
       - $CM_BUILD_DIR/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
     publishing:
+      email:
+        recipients:
+          - mkyoung23@gmail.com
+        notify:
+          success: true
+          failure: true
       app_store_connect:
+        auth: integration
         submit_to_testflight: true
-        # set beta groups and release notes here if you like
+        beta_groups:
+          - Beta Testers
