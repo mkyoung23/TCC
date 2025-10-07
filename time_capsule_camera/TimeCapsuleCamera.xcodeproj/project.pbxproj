@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		A100001A2B4C1234567890AB /* TimeCapsuleCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000192B4C1234567890AB /* TimeCapsuleCameraApp.swift */; };
+		A100001C2B4C1234567890AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A100001D2B4C1234567890AB /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		A10000162B4C1234567890AB /* TimeCapsuleCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCapsuleCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A10000192B4C1234567890AB /* TimeCapsuleCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCameraApp.swift; sourceTree = "<group>"; };
 		A100001B2B4C1234567890AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A100001D2B4C1234567890AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +33,7 @@
 			isa = PBXGroup;
 			children = (
 				A10000182B4C1234567890AB /* TimeCapsuleCamera */,
+				A100001D2B4C1234567890AB /* Assets.xcassets */,
 				A10000172B4C1234567890AB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,6 +113,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A100001C2B4C1234567890AB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
