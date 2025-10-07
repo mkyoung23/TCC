@@ -27,15 +27,15 @@ workflows:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
       - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
-    publishing:
-      app_store_connect:
-        api_key: 68T7Y68ZWL
-        api_key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-        api_key_issuer_id: $APP_STORE_CONNECT_ISSUER_ID
-        key_encoding: base64 # Required if the API key is base64 encoded
-        # Submit to TestFlight
-        submit_to_testflight: true
-        beta_groups:
-          - "Testers"
-        # Optional: Submit to App Store
-        submit_to_app_store: false
+    # publishing:
+    #   app_store_connect:
+    #     api_key: 68T7Y68ZWL
+    #     api_key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+    #     api_key_issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+    #     key_encoding: base64 # Required if the API key is base64 encoded
+    #     # Submit to TestFlight
+    #     submit_to_testflight: true
+    #     beta_groups:
+    #       - "Testers"
+    #     # Optional: Submit to App Store
+    #     submit_to_app_store: false
