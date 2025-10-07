@@ -1,20 +1,54 @@
   workflows:
     ios-build:
+      name: "Time Capsule Camera iOS"
       environment:
+        groups:
+          - ios_signing
         vars:
+          IOS_PROJECT_DIR: "time_capsule_camera"
           XCODE_PROJECT: "TimeCapsuleCamera.xcodeproj"
           XCODE_SCHEME: "TimeCapsuleCamera"
-          IOS_BUNDLE_ID: "com.mkyoung.timecapsulecamera"
+          IOS_BUNDLE_ID: "${IOS_BUNDLE_ID:-com.mkyoung.timecapsulecamera}"
+          IOS_EXPORT_METHOD: "${IOS_EXPORT_METHOD:-ad-hoc}"
+          IOS_CODE_SIGN_IDENTITY: "${IOS_CODE_SIGN_IDENTITY:-Apple Distribution}"
+          APPLE_TEAM_ID: "${APPLE_TEAM_ID:-6XNH7D52V6}"
+          APP_STORE_CONNECT_KEY_ID: "${APP_STORE_CONNECT_KEY_ID:-${APPSTORECONNECT_KEY_ID:-}}"
+          APP_STORE_CONNECT_ISSUER_ID: "${APP_STORE_CONNECT_ISSUER_ID:-${APPSTORECONNECT_ISSUER_ID:-}}"
+          APP_STORE_CONNECT_API_KEY_BASE64: "${APP_STORE_CONNECT_API_KEY_BASE64:-${APPSTORECONNECT_PRIVATE_KEY:-}}"
 
       scripts:
         - name: Decode signing assets
           script: |
             set -euo pipefail
+
             CERT_PATH="$HOME/cert.p12"
             PROFILE_PATH="$HOME/profile.mobileprovision"
 
-            echo "$IOS_CERT_BASE64" | base64 --decode > "$CERT_PATH"
-            echo "$IOS_PROFILE_BASE64" | base64 --decode > "$PROFILE_PATH"
+            CERT_BASE64="${IOS_CERT_BASE64:-${CM_CERTIFICATE_BASE64:-${CERTIFICATE_BASE64:-}}}"
+            PROFILE_BASE64="${IOS_PROFILE_BASE64:-${CM_PROVISIONING_PROFILE_BASE64:-${PROVISIONING_PROFILE_BASE64:-}}}"
+            CERT_FILE="${IOS_CERT_PATH:-${IOS_CERT_FILE:-}}"
+            PROFILE_FILE="${IOS_PROFILE_PATH:-${IOS_PROFILE_FILE:-}}"
+
+            decode_asset() {
+              local destination="$1"
+              local base64_payload="$2"
+              local file_path="$3"
+              local human_name="$4"
+
+              if [[ -n "$base64_payload" ]]; then
+                echo "$base64_payload" | base64 --decode >"$destination"
+              elif [[ -n "$file_path" && -f "$file_path" ]]; then
+                cp "$file_path" "$destination"
+              else
+                echo "[Codemagic] Missing $human_name." >&2
+                echo "Provide it as base64 via IOS_${human_name^^}_BASE64 (preferred) or point IOS_${human_name^^}_PATH to a secure file." >&2
+                echo "Attached environment fallbacks: CM_* and legacy *_BASE64 variables are also supported." >&2
+                exit 1
+              fi
+            }
+
+            decode_asset "$CERT_PATH" "$CERT_BASE64" "$CERT_FILE" "CERT"
+            decode_asset "$PROFILE_PATH" "$PROFILE_BASE64" "$PROFILE_FILE" "PROFILE"
 
             security create-keychain -p "" build.keychain
             security import "$CERT_PATH" -k build.keychain -P "${IOS_CERT_PASSWORD:-}" -T /usr/bin/codesign -T /usr/bin/security
@@ -37,39 +71,59 @@
         - name: Build archive
           script: |
             set -euo pipefail
-            cd time_capsule_camera
+
+            PROJECT_ROOT="$CM_BUILD_DIR/${IOS_PROJECT_DIR}"
+            PROJECT_SPEC="$XCODE_PROJECT"
+
+            if [[ ! -d "$PROJECT_ROOT" ]]; then
+              echo "[Codemagic] Project directory '$PROJECT_ROOT' not found." >&2
+              exit 1
+            fi
+
+            if [[ "$PROJECT_SPEC" != /* ]]; then
+              PROJECT_SPEC="$PROJECT_ROOT/$PROJECT_SPEC"
+            fi
+
+            if [[ ! -d "$PROJECT_SPEC" && ! -f "$PROJECT_SPEC" ]]; then
+              echo "[Codemagic] Xcode project '$PROJECT_SPEC' not found." >&2
+              ls -R "$PROJECT_ROOT"
+              exit 1
+            fi
+
             ARCHIVE_PATH="$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive"
 
             xcodebuild \
-              -project "$XCODE_PROJECT" \
+              -project "$PROJECT_SPEC" \
               -scheme "$XCODE_SCHEME" \
               -configuration Release \
               -sdk iphoneos \
               -archivePath "$ARCHIVE_PATH" \
               CODE_SIGN_STYLE=Manual \
-              CODE_SIGN_IDENTITY="Apple Distribution" \
-              DEVELOPMENT_TEAM=6XNH7D52V6 \
+              CODE_SIGN_IDENTITY="$IOS_CODE_SIGN_IDENTITY" \
+              DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
               PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
               clean archive
 
         - name: Export IPA
           script: |
             set -euo pipefail
-            cd time_capsule_camera
+
+            PROJECT_ROOT="$CM_BUILD_DIR/${IOS_PROJECT_DIR}"
+            EXPORT_OPTIONS_PATH="$PROJECT_ROOT/exportOptions.plist"
             EXPORT_PATH="$CM_BUILD_DIR/ipa"
             mkdir -p "$EXPORT_PATH"
 
-            cat <<EOF > exportOptions.plist
+            cat <<EOF > "$EXPORT_OPTIONS_PATH"
             <?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
             <plist version="1.0">
             <dict>
-              <key>method</key><string>app-store</string>
+              <key>method</key><string>$IOS_EXPORT_METHOD</string>
               <key>signingStyle</key><string>manual</string>
-              <key>teamID</key><string>6XNH7D52V6</string>
+              <key>teamID</key><string>$APPLE_TEAM_ID</string>
               <key>provisioningProfiles</key>
               <dict>
-                <key>$IOS_BUNDLE_ID</key><string>$PROFILE_UUID</string>
+                <key>$IOS_BUNDLE_ID</key><string>$PROFILE_NAME</string>
               </dict>
             </dict>
             </plist>
@@ -79,7 +133,47 @@
               -exportArchive \
               -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
               -exportPath "$EXPORT_PATH" \
-              -exportOptionsPlist exportOptions.plist
+              -exportOptionsPlist "$EXPORT_OPTIONS_PATH"
+
+            rm -f "$EXPORT_OPTIONS_PATH"
+
+        - name: Upload to TestFlight (optional)
+          script: |
+            set -euo pipefail
+
+            KEY_ID="${APP_STORE_CONNECT_KEY_ID:-${APPSTORECONNECT_KEY_ID:-}}"
+            ISSUER_ID="${APP_STORE_CONNECT_ISSUER_ID:-${APPSTORECONNECT_ISSUER_ID:-}}"
+            API_KEY_BASE64="${APP_STORE_CONNECT_API_KEY_BASE64:-${APPSTORECONNECT_PRIVATE_KEY:-}}"
+
+            if [[ -z "$KEY_ID" || -z "$ISSUER_ID" || -z "$API_KEY_BASE64" ]]; then
+              echo "[Codemagic] Skipping TestFlight upload because APP_STORE_CONNECT_* variables are not fully configured."
+              exit 0
+            fi
+
+            API_KEY_PATH="$HOME/AuthKey_$KEY_ID.p8"
+            trap 'rm -f "$API_KEY_PATH"' EXIT
+
+            echo "$API_KEY_BASE64" | base64 --decode >"$API_KEY_PATH"
+
+            IPA_PATH=$(find "$CM_BUILD_DIR/ipa" -maxdepth 1 -name "*.ipa" -print | head -n 1)
+
+            if [[ -z "$IPA_PATH" ]]; then
+              echo "[Codemagic] No IPA found at $CM_BUILD_DIR/ipa for TestFlight upload." >&2
+              exit 1
+            fi
+
+            xcrun altool \
+              --upload-app \
+              --type ios \
+              --file "$IPA_PATH" \
+              --apiKey "$KEY_ID" \
+              --apiIssuer "$ISSUER_ID"
+
+        - name: Clean up signing assets
+          script: |
+            set -euo pipefail
+            rm -f "$HOME/cert.p12" "$HOME/profile.mobileprovision"
 
       artifacts:
         - $CM_BUILD_DIR/ipa/*.ipa
+        - $CM_BUILD_DIR/TimeCapsuleCamera.xcarchive

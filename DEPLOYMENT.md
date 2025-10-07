@@ -40,12 +40,16 @@ To test on physical devices:
 3. Build and run (⌘+R)
 4. Trust the developer certificate on device (Settings > General > VPN & Device Management)
 
-### 4. TestFlight Distribution
-For beta testing with friends:
-1. Archive the app (Product > Archive)
-2. Upload to App Store Connect
-3. Create TestFlight beta
-4. Invite testers via email
+### 4. TestFlight Distribution *(recommended for sharing with friends fast)*
+For beta testing with friends (no UDIDs needed and no manual installs), follow the [Quick Device Preview & TestFlight Checklist](TESTFLIGHT_QUICKSTART.md) or the steps below:
+1. In App Store Connect, create an **App Store Connect API key** (Users and Access → Keys) with the *App Manager* role and download the `AuthKey_<KEY_ID>.p8` file.
+2. Add the following to your Codemagic `ios_signing` environment group (or configure them locally if you upload from Xcode). Use `python scripts/encode_base64.py AuthKey_<KEY_ID>.p8 --env-var APP_STORE_CONNECT_API_KEY_BASE64` if you are not on macOS.
+   - `APP_STORE_CONNECT_KEY_ID`
+   - `APP_STORE_CONNECT_ISSUER_ID`
+   - `APP_STORE_CONNECT_API_KEY_BASE64` (base64-encoded contents of the `.p8` file)
+3. Export the build with the `app-store` method. In Codemagic, set `IOS_EXPORT_METHOD=app-store`; in Xcode, choose **Any iOS Device (arm64)** and archive.
+4. Let Codemagic’s **Upload to TestFlight (optional)** step push the `.ipa`, or from Xcode’s Organizer click **Distribute App → App Store Connect → Upload** and supply the API key when prompted.
+5. In App Store Connect → **TestFlight**, add internal testers (immediate access) or external testers (requires a quick beta app review) and send them email invites. Testers install the TestFlight app and accept the invite—no device registration required.
 
 ### 5. App Store Release
 For public release:
@@ -129,8 +133,9 @@ Before releasing:
 
 ### 2. Ad Hoc Distribution
 - Up to 100 devices per year
-- Requires device UUIDs
-- Good for small team testing
+- Requires device UDIDs to be embedded in the provisioning profile
+- Good for small team testing when you control all devices
+- Follow the [iOS Ad-hoc Distribution Checklist](IOS_ADHOC_CHECKLIST.md) to register new devices, refresh the provisioning profile, and update Codemagic secrets before kicking off a build.
 
 ### 3. App Store
 - Public distribution

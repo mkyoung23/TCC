@@ -3,91 +3,219 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A100001A2B4C1234567890AB /* TimeCapsuleCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000192B4C1234567890AB /* TimeCapsuleCameraApp.swift */; };
+		EE33E2207ACE40E6897971F5 /* TimeCapsuleCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427E937926AE41BBADB8146A /* TimeCapsuleCameraApp.swift */; };
+		475187394B0C4481B6DE94D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF93DAA251547BA9C61BF0A /* AppDelegate.swift */; };
+		893CB75FDCB24A1489D23E12 /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF9FE9D5AD649579A140044 /* Capsule.swift */; };
+		FDD07EFFD7FD47D7B317CDC0 /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8660BA8141D499B9BD3F62F /* Clip.swift */; };
+		DC5A40CE63E94CE3A5F067DD /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03A2BF85EC2E4BCC9B3D9ED6 /* AuthViewModel.swift */; };
+		FC30EF590416408F96D17816 /* CapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF9EDB7F3E747259F783A0A /* CapsuleViewModel.swift */; };
+		4FB57C0A24304E46A4BFCA41 /* ErrorHandlingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B5831415954DDD9B13E224 /* ErrorHandlingService.swift */; };
+		782A022DBE9D42F89B48249A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFC47F701C34B1E918116BD /* FirebaseManager.swift */; };
+		0A898ED88E5D4C528688B415 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E489650FF44609AFE1765C /* NotificationManager.swift */; };
+		0A69749E354C4777A4314728 /* VideoMetadataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797B357AFE7345D387056492 /* VideoMetadataService.swift */; };
+		D21AA660310045638F0181CA /* SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594808711C664DE4ACD6051F /* SharingService.swift */; };
+		8DDD98A294DB4C80AAB86803 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DFC5F990664D479F18D573 /* AuthenticationView.swift */; };
+		9AAED1844A4045FAB45BABC2 /* CapsuleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E24A6B89224315B7449EF0 /* CapsuleDetailView.swift */; };
+		D1615813807247A2A09DEACF /* CapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096F52B54A664157A81D4D5D /* CapsuleListView.swift */; };
+		920A389C138F4A3DB29434FA /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274E7A04E6FC4C8E8AEEF0E6 /* CelebrationView.swift */; };
+		C6D856EDC4BD417CB3B32D11 /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2329F136DAE435E97D66EF0 /* CountdownView.swift */; };
+		440707A2614F4F63B262A73C /* InviteMembersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD8C68A1AB94782A9F2345A /* InviteMembersView.swift */; };
+		BE59F23F65FF40A584283BC4 /* NewCapsuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E786C720264D4AE5AD62D472 /* NewCapsuleView.swift */; };
+		A63FB761F70F4CEDBBD42C34 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735E162CB946495F8433586B /* OnboardingView.swift */; };
+		E3DB86B20881446187715FEE /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062C284004BB4B5AB3799035 /* ShareSheet.swift */; };
+		C19BA33387444406B88F72DC /* VideoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ED7BE81FD447918F2176CE /* VideoPicker.swift */; };
+		270B8E64510D4708B1A543DF /* VideoRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC10DA4D6864556AC77B973 /* VideoRecorderView.swift */; };
+		0D8F6DF42ECE4729BFE683F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD3E2C13E7244563BF2AFB00 /* Assets.xcassets */; };
+		263F1F76D7F046E5806DFD2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D31FF71ED6EC4896BE74F7CC /* LaunchScreen.storyboard */; };
+		6A63074A9147450789A79437 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AFE0552DC07C49D0AE61EE4D /* GoogleService-Info.plist */; };
+		AF8A9F069642449DB51D4D66 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6756CD90D15C4558B02FC10C /* FirebaseAuth */; };
+		F68C383245654B6A94367557 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2A56F507683F4614B84CBAB2 /* FirebaseFirestore */; };
+		E01C5BA6E7E04A51B8110964 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 1DDFA35084114EB3A5D57341 /* FirebaseStorage */; };
+		56206008A1B6426CAB2B754C /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E47B90C96009422E8A8C064F /* FirebaseMessaging */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A10000162B4C1234567890AB /* TimeCapsuleCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCapsuleCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A10000192B4C1234567890AB /* TimeCapsuleCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCameraApp.swift; sourceTree = "<group>"; };
-		A100001B2B4C1234567890AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		341D8C8B9A2C4BC2B7A30253 /* TimeCapsuleCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCapsuleCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCB91CD832A840E99D68C53D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Info.plist; sourceTree = "<group>"; };
+		427E937926AE41BBADB8146A /* TimeCapsuleCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCameraApp.swift; sourceTree = "<group>"; };
+		0FF93DAA251547BA9C61BF0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2BF9FE9D5AD649579A140044 /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Capsule.swift; sourceTree = "<group>"; };
+		F8660BA8141D499B9BD3F62F /* Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Clip.swift; sourceTree = "<group>"; };
+		03A2BF85EC2E4BCC9B3D9ED6 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/AuthViewModel.swift; sourceTree = "<group>"; };
+		EEF9EDB7F3E747259F783A0A /* CapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/CapsuleViewModel.swift; sourceTree = "<group>"; };
+		39B5831415954DDD9B13E224 /* ErrorHandlingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/ErrorHandlingService.swift; sourceTree = "<group>"; };
+		FAFC47F701C34B1E918116BD /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/FirebaseManager.swift; sourceTree = "<group>"; };
+		04E489650FF44609AFE1765C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/NotificationManager.swift; sourceTree = "<group>"; };
+		797B357AFE7345D387056492 /* VideoMetadataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/VideoMetadataService.swift; sourceTree = "<group>"; };
+		594808711C664DE4ACD6051F /* SharingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/SharingService.swift; sourceTree = "<group>"; };
+		D3DFC5F990664D479F18D573 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AuthenticationView.swift; sourceTree = "<group>"; };
+		E5E24A6B89224315B7449EF0 /* CapsuleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CapsuleDetailView.swift; sourceTree = "<group>"; };
+		096F52B54A664157A81D4D5D /* CapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CapsuleListView.swift; sourceTree = "<group>"; };
+		274E7A04E6FC4C8E8AEEF0E6 /* CelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CelebrationView.swift; sourceTree = "<group>"; };
+		C2329F136DAE435E97D66EF0 /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CountdownView.swift; sourceTree = "<group>"; };
+		6BD8C68A1AB94782A9F2345A /* InviteMembersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/InviteMembersView.swift; sourceTree = "<group>"; };
+		E786C720264D4AE5AD62D472 /* NewCapsuleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/NewCapsuleView.swift; sourceTree = "<group>"; };
+		735E162CB946495F8433586B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/OnboardingView.swift; sourceTree = "<group>"; };
+		062C284004BB4B5AB3799035 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/ShareSheet.swift; sourceTree = "<group>"; };
+		10ED7BE81FD447918F2176CE /* VideoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/VideoPicker.swift; sourceTree = "<group>"; };
+		ACC10DA4D6864556AC77B973 /* VideoRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/VideoRecorderView.swift; sourceTree = "<group>"; };
+		AD3E2C13E7244563BF2AFB00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D31FF71ED6EC4896BE74F7CC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AFE0552DC07C49D0AE61EE4D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = GoogleService-Info.plist; path = ../GoogleService-Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A10000132B4C1234567890AB /* Frameworks */ = {
+		AA2BA3AC944A4A62A02F71D0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF8A9F069642449DB51D4D66 /* FirebaseAuth in Frameworks */, 
+				F68C383245654B6A94367557 /* FirebaseFirestore in Frameworks */, 
+				E01C5BA6E7E04A51B8110964 /* FirebaseStorage in Frameworks */, 
+				56206008A1B6426CAB2B754C /* FirebaseMessaging in Frameworks */, 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A100000D2B4C1234567890AB = {
+		94219EF766E5455ABB681099 = {
 			isa = PBXGroup;
 			children = (
-				A10000182B4C1234567890AB /* TimeCapsuleCamera */,
-				A10000172B4C1234567890AB /* Products */,
+				EA446411E28F4A0E95BD0BFF /* TimeCapsuleCamera */, 
+				DEA48530239B4BFC96F3F9AA /* Products */, 
 			);
 			sourceTree = "<group>";
 		};
-		A10000172B4C1234567890AB /* Products */ = {
+		DEA48530239B4BFC96F3F9AA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A10000162B4C1234567890AB /* TimeCapsuleCamera.app */,
+				341D8C8B9A2C4BC2B7A30253 /* TimeCapsuleCamera.app */, 
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A10000182B4C1234567890AB /* TimeCapsuleCamera */ = {
+		EA446411E28F4A0E95BD0BFF /* TimeCapsuleCamera */ = {
 			isa = PBXGroup;
 			children = (
-				A10000192B4C1234567890AB /* TimeCapsuleCameraApp.swift */,
-				A100001B2B4C1234567890AB /* Info.plist */,
+				427E937926AE41BBADB8146A, 
+				0FF93DAA251547BA9C61BF0A, 
+				CCB91CD832A840E99D68C53D, 
+				B4EBE106FE304A68B7E3AAB3, 
+				4776818777424FF1B0C50779, 
+				2E684BAC5F8E41C1AE9AD947, 
+				9671E0746CDF4A759DDA5C24, 
+				162641E2267A4AE5BAEFA48C, 
 			);
-			path = TimeCapsuleCamera;
+			name = TimeCapsuleCamera;
+			path = "";
+			sourceTree = "<group>";
+		};
+		B4EBE106FE304A68B7E3AAB3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2BF9FE9D5AD649579A140044, 
+				F8660BA8141D499B9BD3F62F, 
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4776818777424FF1B0C50779 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				03A2BF85EC2E4BCC9B3D9ED6, 
+				EEF9EDB7F3E747259F783A0A, 
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2E684BAC5F8E41C1AE9AD947 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				39B5831415954DDD9B13E224, 
+				FAFC47F701C34B1E918116BD, 
+				04E489650FF44609AFE1765C, 
+				797B357AFE7345D387056492, 
+				594808711C664DE4ACD6051F, 
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		9671E0746CDF4A759DDA5C24 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D3DFC5F990664D479F18D573, 
+				E5E24A6B89224315B7449EF0, 
+				096F52B54A664157A81D4D5D, 
+				274E7A04E6FC4C8E8AEEF0E6, 
+				C2329F136DAE435E97D66EF0, 
+				6BD8C68A1AB94782A9F2345A, 
+				E786C720264D4AE5AD62D472, 
+				735E162CB946495F8433586B, 
+				062C284004BB4B5AB3799035, 
+				10ED7BE81FD447918F2176CE, 
+				ACC10DA4D6864556AC77B973, 
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		162641E2267A4AE5BAEFA48C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AD3E2C13E7244563BF2AFB00, 
+				D31FF71ED6EC4896BE74F7CC, 
+				AFE0552DC07C49D0AE61EE4D, 
+			);
+			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A10000152B4C1234567890AB /* TimeCapsuleCamera */ = {
+		9D7BF99DFD39416C9EC7DE5B /* TimeCapsuleCamera */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A100001F2B4C1234567890AB /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */;
+			buildConfigurationList = DE976A47F9CA4006A721DEB5 /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */;
 			buildPhases = (
-				A10000122B4C1234567890AB /* Sources */,
-				A10000132B4C1234567890AB /* Frameworks */,
-				A10000142B4C1234567890AB /* Resources */,
+				822EB1A82DC342129966BF43 /* Sources */, 
+				AA2BA3AC944A4A62A02F71D0 /* Frameworks */, 
+				AC293CD7DE0A42238A451857 /* Resources */, 
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TimeCapsuleCamera;
+			packageProductDependencies = (
+				6756CD90D15C4558B02FC10C /* FirebaseAuth */, 
+				2A56F507683F4614B84CBAB2 /* FirebaseFirestore */, 
+				1DDFA35084114EB3A5D57341 /* FirebaseStorage */, 
+				E47B90C96009422E8A8C064F /* FirebaseMessaging */, 
+			);
 			productName = TimeCapsuleCamera;
-			productReference = A10000162B4C1234567890AB /* TimeCapsuleCamera.app */;
+			productReference = 341D8C8B9A2C4BC2B7A30253 /* TimeCapsuleCamera.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A100000E2B4C1234567890AB /* Project object */ = {
+		D3B5B7E71AEA4EADA0846897 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					A10000152B4C1234567890AB = {
+					9D7BF99DFD39416C9EC7DE5B = {
 						CreatedOnToolsVersion = 15.0;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
-			buildConfigurationList = A10000112B4C1234567890AB /* Build configuration list for PBXProject "TimeCapsuleCamera" */;
+			buildConfigurationList = F3BF27B6DBB04977983DFB48 /* Build configuration list for PBXProject "TimeCapsuleCamera" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -95,39 +223,66 @@
 				en,
 				Base,
 			);
-			mainGroup = A100000D2B4C1234567890AB;
-			productRefGroup = A10000172B4C1234567890AB /* Products */;
+			mainGroup = 94219EF766E5455ABB681099;
+			packageReferences = (
+				CE3F6867BF9F460CB8DA46CC /* firebase-ios-sdk */,
+			);
+			productRefGroup = DEA48530239B4BFC96F3F9AA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A10000152B4C1234567890AB /* TimeCapsuleCamera */,
+				9D7BF99DFD39416C9EC7DE5B /* TimeCapsuleCamera */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A10000142B4C1234567890AB /* Resources */ = {
+		AC293CD7DE0A42238A451857 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D8F6DF42ECE4729BFE683F9 /* Assets.xcassets in Resources */, 
+				263F1F76D7F046E5806DFD2A /* LaunchScreen.storyboard in Resources */, 
+				6A63074A9147450789A79437 /* GoogleService-Info.plist in Resources */, 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A10000122B4C1234567890AB /* Sources */ = {
+		822EB1A82DC342129966BF43 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A100001A2B4C1234567890AB /* TimeCapsuleCameraApp.swift in Sources */,
+				EE33E2207ACE40E6897971F5 /* TimeCapsuleCameraApp.swift in Sources */, 
+				475187394B0C4481B6DE94D4 /* AppDelegate.swift in Sources */, 
+				893CB75FDCB24A1489D23E12 /* Capsule.swift in Sources */, 
+				FDD07EFFD7FD47D7B317CDC0 /* Clip.swift in Sources */, 
+				DC5A40CE63E94CE3A5F067DD /* AuthViewModel.swift in Sources */, 
+				FC30EF590416408F96D17816 /* CapsuleViewModel.swift in Sources */, 
+				4FB57C0A24304E46A4BFCA41 /* ErrorHandlingService.swift in Sources */, 
+				782A022DBE9D42F89B48249A /* FirebaseManager.swift in Sources */, 
+				0A898ED88E5D4C528688B415 /* NotificationManager.swift in Sources */, 
+				0A69749E354C4777A4314728 /* VideoMetadataService.swift in Sources */, 
+				D21AA660310045638F0181CA /* SharingService.swift in Sources */, 
+				8DDD98A294DB4C80AAB86803 /* AuthenticationView.swift in Sources */, 
+				9AAED1844A4045FAB45BABC2 /* CapsuleDetailView.swift in Sources */, 
+				D1615813807247A2A09DEACF /* CapsuleListView.swift in Sources */, 
+				920A389C138F4A3DB29434FA /* CelebrationView.swift in Sources */, 
+				C6D856EDC4BD417CB3B32D11 /* CountdownView.swift in Sources */, 
+				440707A2614F4F63B262A73C /* InviteMembersView.swift in Sources */, 
+				BE59F23F65FF40A584283BC4 /* NewCapsuleView.swift in Sources */, 
+				A63FB761F70F4CEDBBD42C34 /* OnboardingView.swift in Sources */, 
+				E3DB86B20881446187715FEE /* ShareSheet.swift in Sources */, 
+				C19BA33387444406B88F72DC /* VideoPicker.swift in Sources */, 
+				270B8E64510D4708B1A543DF /* VideoRecorderView.swift in Sources */, 
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A100001D2B4C1234567890AB /* Debug */ = {
+		B348FBC82D9743E583618474 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -190,7 +345,7 @@
 			};
 			name = Debug;
 		};
-		A100001E2B4C1234567890AB /* Release */ = {
+		EE8D2AE7305144988267E93B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -246,54 +401,61 @@
 			};
 			name = Release;
 		};
-		A10000202B4C1234567890AB /* Debug */ = {
+		A5632316527E402F9B60EA3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6XNH7D52V6;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.timecapsulecamera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mkyoung.timecapsulecamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		A10000212B4C1234567890AB /* Release */ = {
+		6C61C54E2F7F4AAAB1013AEC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6XNH7D52V6;
+				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.timecapsulecamera;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mkyoung.timecapsulecamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -303,25 +465,60 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A10000112B4C1234567890AB /* Build configuration list for PBXProject "TimeCapsuleCamera" */ = {
+		F3BF27B6DBB04977983DFB48 /* Build configuration list for PBXProject "TimeCapsuleCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A100001D2B4C1234567890AB /* Debug */,
-				A100001E2B4C1234567890AB /* Release */,
+				B348FBC82D9743E583618474 /* Debug */, 
+				EE8D2AE7305144988267E93B /* Release */, 
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A100001F2B4C1234567890AB /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */ = {
+		DE976A47F9CA4006A721DEB5 /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A10000202B4C1234567890AB /* Debug */,
-				A10000212B4C1234567890AB /* Release */,
+				A5632316527E402F9B60EA3E /* Debug */, 
+				6C61C54E2F7F4AAAB1013AEC /* Release */, 
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE3F6867BF9F460CB8DA46CC /* firebase-ios-sdk */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.18.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6756CD90D15C4558B02FC10C /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE3F6867BF9F460CB8DA46CC /* firebase-ios-sdk */;
+			productName = FirebaseAuth;
+		};
+		2A56F507683F4614B84CBAB2 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE3F6867BF9F460CB8DA46CC /* firebase-ios-sdk */;
+			productName = FirebaseFirestore;
+		};
+		1DDFA35084114EB3A5D57341 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE3F6867BF9F460CB8DA46CC /* firebase-ios-sdk */;
+			productName = FirebaseStorage;
+		};
+		E47B90C96009422E8A8C064F /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE3F6867BF9F460CB8DA46CC /* firebase-ios-sdk */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
+
 	};
-	rootObject = A100000E2B4C1234567890AB /* Project object */;
+	rootObject = D3B5B7E71AEA4EADA0846897 /* Project object */;
 }

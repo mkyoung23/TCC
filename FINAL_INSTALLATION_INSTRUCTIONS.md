@@ -1,163 +1,131 @@
-# 📱 FINAL INSTALLATION INSTRUCTIONS - Time Capsule Camera
+# 📱 FINAL INSTALLATION INSTRUCTIONS — Time Capsule Camera (Codemagic + TestFlight)
 
-## ✅ VERIFICATION: Your App is Ready!
-
-I've double-checked everything. Here's what your app includes:
-
-### **Core Features ✓**
-- ✅ **Chronological Video Playback** - Videos play in order of when they were originally taken
-- ✅ **Collaborative Capsules** - Friends can join and add videos
-- ✅ **Smart Invitations** - Email invites + shareable links
-- ✅ **Automatic Unsealing** - Capsules open exactly when scheduled
-- ✅ **Beautiful UI** - Modern interface with animations and celebrations
-- ✅ **Offline Support** - Works without internet, syncs when connected
-- ✅ **Error Handling** - Graceful recovery from all issues
-
-### **Technical Stack ✓**
-- ✅ **SwiftUI + iOS 16+** - Native iOS performance
-- ✅ **Firebase Backend** - Secure, scalable cloud storage
-- ✅ **Security Rules** - Proper access controls
-- ✅ **Video Processing** - Smart timestamp extraction
-- ✅ **Network Monitoring** - Optimal battery usage
+Use this checklist to go from "nothing configured" to **installing the app on your iPhone and all friends' iPhones** using Codemagic. Every step is tailored for a **no-Mac setup**.
 
 ---
 
-## 🚀 EXACT INSTALLATION STEPS
+## ✅ Pre-flight Status
 
-### **Step 1: Install Xcode (If not already installed)**
-1. Open **Mac App Store**
-2. Search "Xcode" and install (free, ~15GB)
-3. Open Xcode once to accept licenses
-
-### **Step 2: Open the Project**
-1. Navigate to: `C:\Users\mkyou\Desktop\TCC\time_capsule_camera\`
-2. **Double-click**: `TimeCapsuleCamera.xcodeproj`
-3. Wait for Xcode to load (~30 seconds)
-
-### **Step 3: Configure Your App**
-1. **In Xcode left panel**: Click "TimeCapsuleCamera" (top item)
-2. **Select target**: "TimeCapsuleCamera" under TARGETS
-3. **Signing & Capabilities tab**:
-   - Click "Team" dropdown → "Add an Account..."
-   - Sign in with your Apple ID (free)
-   - Select your team
-   - **Bundle Identifier**: Change to `com.yourname.timecapsule` (must be unique)
-   - ✅ "Automatically manage signing" should be checked
-
-### **Step 4: Connect Your iPhone**
-1. **Connect iPhone to Mac** with USB cable
-2. **On iPhone**: Tap "Trust This Computer" 
-3. **In Xcode**: Select your iPhone from device dropdown (top left, next to play button)
-
-### **Step 5: Build & Install**
-1. **Press ⌘+R** (or click ▶️ play button)
-2. **Wait 2-3 minutes** for build to complete
-3. **On iPhone**: Settings → General → VPN & Device Management
-4. **Trust your certificate**: Tap your Apple ID → Trust
-
-**🎉 DONE! The app is now on your iPhone!**
+| Area | Status |
+| --- | --- |
+| Source code | `work` branch, ready for archive |
+| Firebase | `GoogleService-Info.plist` committed (matches production project) |
+| Codemagic workflow | `ios-build` handles signing, IPA export, optional TestFlight upload |
 
 ---
 
-## 👥 SHARING WITH FRIENDS (3 Easy Options)
+## 1. Create/Refresh Signing Assets (Apple Developer)
 
-### **Option A: TestFlight (Best for 3+ friends)**
-
-**Prerequisites**: Apple Developer Account ($99/year) - **ONLY NEEDED FOR SHARING**
-
-1. **Archive the app**:
-   - Xcode → Product → Archive
-   - Wait 3-5 minutes
-   - Click "Distribute App" → "App Store Connect"
-
-2. **Invite friends**:
-   - Go to [appstoreconnect.apple.com](https://appstoreconnect.apple.com)
-   - Your App → TestFlight → Add External Testers
-   - Enter friends' emails
-   - Friends get email link to install via TestFlight app
-
-### **Option B: Direct Install (1-2 friends)**
-
-**No developer account needed!**
-
-1. **Friends bring their iPhones to your Mac**
-2. **Connect each iPhone** and follow Steps 4-5 above
-3. **Each friend gets the app** directly installed
-
-### **Option C: Shared Apple ID (Quick & Free)**
-
-1. **Create shared Apple ID** for testing
-2. **Everyone signs into same Apple ID** in Xcode
-3. **Each person builds** the app on their Mac using same Apple ID
+1. Log in to [developer.apple.com/account](https://developer.apple.com/account).
+2. **Certificates → `+` → Apple Distribution** → follow wizard → download `.cer` → export `.p12` (set a password or leave blank).
+3. **Profiles → `+` → App Store** → choose your bundle ID → select the distribution certificate → download `.mobileprovision`.
+4. Keep both files handy. Whenever you rotate certificates or change bundle IDs, repeat this section.
 
 ---
 
-## ⚠️ IMPORTANT: Firebase Setup (Required for Full Functionality)
+## 2. Convert Files to Base64 (so Codemagic can store them securely)
 
-The app will work locally but needs Firebase for:
-- User accounts
-- Cloud storage 
-- Real-time sync between friends
+| Platform | Command |
+| --- | --- |
+| macOS | `base64 cert.p12 | pbcopy` and `base64 profile.mobileprovision | pbcopy` |
+| Windows/Linux/Any | `python scripts/encode_base64.py cert.p12 --env-var IOS_CERT_BASE64` and `python scripts/encode_base64.py profile.mobileprovision --env-var IOS_PROFILE_BASE64` |
+| PowerShell (alternative) | `[Convert]::ToBase64String([IO.File]::ReadAllBytes("cert.p12"))` |
 
-### **Quick Firebase Setup (10 minutes)**:
-
-1. **Go to**: [console.firebase.google.com](https://console.firebase.google.com)
-2. **Create project** or use existing "lifelapse-27e17"
-3. **Add iOS app**:
-   - Bundle ID: Same as you used in Xcode (e.g., `com.yourname.timecapsule`)
-   - Download `GoogleService-Info.plist`
-   - **Replace** the existing file in your Xcode project
-4. **Enable services**:
-   - Authentication → Email/Password
-   - Firestore Database
-   - Storage
-
-**If you skip this**: App works offline only, no sharing between devices.
+Save the outputs temporarily—you will paste them into Codemagic secrets next.
 
 ---
 
-## 🔍 TROUBLESHOOTING
+## 3. Configure Codemagic Secrets
 
-### **"Build Failed" Error**
-- **Solution**: Product → Clean Build Folder → Try again
-- Check internet connection
-- Ensure Bundle ID is unique
+1. Open [Codemagic → Apps → TCC](https://codemagic.io/apps).
+2. Go to **Environment variables** → **Add group** → name it `ios_signing` (or edit the existing group).
+3. Add these variables (mark each as *Secure*):
+   - `IOS_CERT_BASE64` → base64 value of the `.p12`
+   - `IOS_CERT_PASSWORD` → password you used when exporting (leave blank if none)
+   - `IOS_PROFILE_BASE64` → base64 value of the provisioning profile
+   - `IOS_BUNDLE_ID` → e.g. `com.yourname.timecapsule`
+   - `APPLE_TEAM_ID` → your Team ID from Apple Developer
+   - `IOS_EXPORT_METHOD` → set to `app-store` for TestFlight
+4. Optional (required for automatic TestFlight upload):
+   - `APP_STORE_CONNECT_KEY_ID`
+   - `APP_STORE_CONNECT_ISSUER_ID`
+   - `APP_STORE_CONNECT_API_KEY_BASE64` (base64 of the `.p8` file from App Store Connect → Users & Access → Keys)
+5. Save the group and ensure it is attached to the `ios-build` workflow.
 
-### **"Developer Cannot be Verified"**
-- **Solution**: Settings → General → VPN & Device Management → Trust certificate
+> 🔐 Already have Codemagic secure files? Point `IOS_CERT_PATH`/`IOS_PROFILE_PATH` to them instead—the workflow accepts either method.
 
-### **"App Won't Launch"**
-- **Solution**: Delete app from iPhone → Rebuild in Xcode
-- Check iPhone is unlocked during build
+---
 
-### **"Firebase Not Working"**
-- **Solution**: Ensure `GoogleService-Info.plist` is in Xcode project
-- Bundle ID must match Firebase configuration
+## 4. Kick Off the Build
+
+1. In Codemagic, open the **Builds** tab → **Start new build**.
+2. Confirm `Workflow: ios-build` and `Branch: work` (or whichever branch you want).
+3. Override variables if necessary (example: `IOS_EXPORT_METHOD=ad-hoc` when you need a UDID-based IPA).
+4. Click **Start new build**.
+5. Wait ~15 minutes. The pipeline performs:
+   - Decode signing assets
+   - `xcodebuild archive`
+   - IPA export using `exportOptions.plist`
+   - TestFlight upload when App Store Connect keys are present
+   - Cleanup of signing files
+
+> ⏱️ Check the live logs. If any variable is missing, the script exits with a human-readable hint so you can fix it immediately.
 
 ---
 
-## ✅ HOW TO TEST EVERYTHING WORKS
+## 5. Install the Build on Devices
 
-### **Test 1: Solo Test**
-1. Create account in app
-2. Create new capsule (set date 1 minute in future)
-3. Add a video from your camera roll
-4. Wait for capsule to unseal
-5. ✅ Video should play with celebration animation
+### If TestFlight Upload Succeeds (Recommended)
+1. Go to [App Store Connect → My Apps → Time Capsule Camera → TestFlight](https://appstoreconnect.apple.com/apps).
+2. Add yourself as an **Internal Tester** for instant access.
+3. Add friends as **External Testers** or enable a **Public Link**.
+4. Everyone receives an email → open it on iPhone → installs TestFlight → taps *Install*.
 
-### **Test 2: Friend Test**
-1. Install app on friend's phone
-2. Both create accounts
-3. You create capsule and invite friend by email
-4. Friend adds video to your capsule
-5. ✅ Both should see each other's videos
-
-### **Test 3: Chronological Test**
-1. Add old video from camera roll (taken months ago)
-2. Record new video in app
-3. When unsealed: ✅ Old video plays first, new video second
+### If You Exported Ad-Hoc IPA
+1. Make sure all tester UDIDs are in the provisioning profile before you built.
+2. Download the IPA artifact from Codemagic.
+3. Use Apple Configurator 2 (Mac), iMazing (Mac/Windows), or a hosted service (e.g., Diawi) to sideload onto registered devices.
 
 ---
+
+## 6. Verify the Capsule Experience (5-minute checklist)
+1. Sign in with two accounts (you + a friend) using the TestFlight build.
+2. Create a capsule, invite the friend, and have each of you upload a video.
+3. Confirm both videos appear in the shared capsule timeline.
+4. Set the unlock time to a minute in the future → wait for unseal → ensure playback is chronological.
+
+---
+
+## 7. When Things Go Wrong
+
+| Symptom | Fix |
+| --- | --- |
+| `IOS_CERT_BASE64` unbound variable | Re-open the `ios_signing` group and confirm the variable is filled and **Secure**. |
+| Provisioning profile UUID mismatch | Re-download the profile after adding/removing devices or certificates; update `IOS_PROFILE_BASE64`. |
+| TestFlight step skipped | Ensure `IOS_EXPORT_METHOD=app-store` and all `APP_STORE_CONNECT_*` secrets exist. |
+| TestFlight build stuck "Processing" | Open the build in App Store Connect → answer encryption/export compliance questions → wait a few minutes. |
+| Firebase login fails | Confirm the committed `GoogleService-Info.plist` bundle ID matches `IOS_BUNDLE_ID`. |
+
+---
+
+## 8. Ready for Public Launch?
+
+Once the TestFlight build looks good, reuse the same workflow:
+1. In App Store Connect, promote the latest processed build to **App Review**.
+2. Provide screenshots, privacy details, and marketing text.
+3. Submit for review → once approved, move from beta to production without touching Codemagic.
+
+---
+
+## 📬 Need a Human Checklist?
+
+1. ✅ Apple Developer certificate & profile exported.
+2. ✅ Secrets pasted into Codemagic `ios_signing` group.
+3. ✅ `ios-build` workflow run completes successfully.
+4. ✅ TestFlight invite sent to you and your friends.
+5. ✅ Everyone installs via TestFlight and uploads videos into the same capsule.
+
+Follow the list in order and you will have the app on every tester's phone without needing a Mac.
 
 ## 🎊 YOUR APP IS PRODUCTION-READY!
 
