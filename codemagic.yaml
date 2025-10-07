@@ -13,6 +13,20 @@ workflows:
         XCODE_SCHEME: "TimeCapsuleCamera"
         BUNDLE_ID: "com.mkyoung.timecapsulecamera"
     scripts:
+      - name: Generate placeholder app icons
+        script: |
+          cd time_capsule_camera/Assets.xcassets/AppIcon.appiconset
+          # Create simple placeholder icons for all required sizes
+          convert -size 40x40 xc:"#4A90E2" "icon-20@2x.png"
+          convert -size 60x60 xc:"#4A90E2" "icon-20@3x.png"
+          convert -size 58x58 xc:"#4A90E2" "icon-29@2x.png"
+          convert -size 87x87 xc:"#4A90E2" "icon-29@3x.png"
+          convert -size 80x80 xc:"#4A90E2" "icon-40@2x.png"
+          convert -size 120x120 xc:"#4A90E2" "icon-40@3x.png"
+          convert -size 120x120 xc:"#4A90E2" "icon-60@2x.png"
+          convert -size 180x180 xc:"#4A90E2" "icon-60@3x.png"
+          convert -size 1024x1024 xc:"#4A90E2" "icon-1024.png"
+          echo "Generated placeholder app icons"
       - name: Prepare signing & profiles
         script: |
           keychain initialize
