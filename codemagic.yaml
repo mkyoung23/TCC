@@ -1,29 +1,28 @@
 workflows:
-    ios-release:
-      name: ios Release
-      environment:
-        groups:
-          - ios_signing
-        vars:
-          BUNDLE_ID: "com.mkyoung.timecapsulecamera"
-          XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
-          XCODE_SCHEME: "TimeCapsuleCamera"
-      scripts:
-        - name: Build & archive
-          script: |
-            xcodebuild \
-              -project "time_capsule_camera/TimeCapsuleCamera.xcodeproj" \
-              -scheme "TimeCapsuleCamera" \
-              -configuration Release \
-              -sdk iphoneos \
-              -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
-              CODE_SIGN_STYLE=Automatic \
-              clean archive
-      artifacts:
-        - build/ios/ipa/*.ipa
-        - /tmp/xcodebuild_logs/*.log
-        - $HOME/Library/Developer/Xcode/DerivedData/*/*/Build/*.*/**
-      publishing:
-        app_store_connect:
-              auth: integration
-          submit_to_testflight: true
+  ios-release:
+    name: ios Release
+    environment:
+      groups:
+        - ios_signing
+    vars:
+      BUNDLE_ID: "com.mkyoung.timecapsulecamera"
+      XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
+      XCODE_SCHEME: "TimeCapsuleCamera"
+    scripts:
+      - name: Build & archive
+        script: |
+          xcodebuild \
+            -project "time_capsule_camera/TimeCapsuleCamera.xcodeproj" \
+            -scheme "TimeCapsuleCamera" \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath "$CM_BUILD_DIR/TimeCapsuleCamera.xcarchive" \
+            CODE_SIGN_STYLE=Automatic \
+            clean archive
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
