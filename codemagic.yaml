@@ -24,5 +24,7 @@ workflows:
       - /tmp/xcodebuild_logs/*.log
     publishing:
       app_store_connect:
-        auth: integration
-        submit_to_testflight: true
+          api_key: $APPSTORECONNECT_PRIVATE_KEY
+              key_id: $APPSTORECONNECT_KEY_ID
+              issuer_id: $APPSTORECONNECT_ISSUER_ID
+                    submit_to_testflight: true
