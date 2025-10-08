@@ -42,28 +42,35 @@ workflows:
           EOF
       - name: Set up code signing
         script: |
-          set -e  # Exit on error
-          set -x  # Print commands
+          set -e
+          set -x
+
+          echo "Setting up code signing..."
+          echo "Bundle ID: $BUNDLE_ID"
+          echo "Issuer ID: $APP_STORE_CONNECT_ISSUER_ID"
+          echo "Key ID: $APP_STORE_CONNECT_KEY_IDENTIFIER"
 
           # Initialize keychain
           keychain initialize
 
-          # Debug: Check environment variables
-          echo "Bundle ID: $BUNDLE_ID"
-          echo "Issuer ID: $APP_STORE_CONNECT_ISSUER_ID"
-          echo "Key ID: $APP_STORE_CONNECT_KEY_IDENTIFIER"
-          echo "Private key set: $([ -n "$APP_STORE_CONNECT_PRIVATE_KEY" ] && echo 'YES' || echo 'NO')"
+          # Create a temporary file for the private key
+          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/api_key.p8
 
-          # Fetch signing files using environment variables
+          # Fetch signing files with explicit key file
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
             --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
-            --private-key @env:APP_STORE_CONNECT_PRIVATE_KEY \
+            --private-key /tmp/api_key.p8 \
             --type IOS_APP_STORE \
             --create
 
-          # Add to keychain and configure Xcode
+          # Clean up key file
+          rm /tmp/api_key.p8
+
+          # Add certificates to keychain
           keychain add-certificates
+
+          # Configure Xcode project
           xcode-project use-profiles
       - name: Create export options
         script: |
