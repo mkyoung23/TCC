@@ -46,7 +46,13 @@ workflows:
       - name: Generate Xcode project from Swift Package
         script: |
           cd time_capsule_camera
-          swift package generate-xcodeproj || echo "Using existing project"
+
+          # Remove broken project file if it exists
+          rm -rf TimeCapsuleCamera.xcodeproj
+
+          # Generate fresh project from Package.swift
+          swift package generate-xcodeproj
+
           cd ..
       - name: Create export options
         script: |

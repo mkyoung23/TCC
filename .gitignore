@@ -91,4 +91,5 @@ fastlane/test_output
 iOSInjectionProject/
 
 # Firebase
-GoogleService-Info.plist
+GoogleService-Info.plisttime_capsule_camera/TimeCapsuleCamera.xcodeproj/
+*.xcodeproj
