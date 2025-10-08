@@ -7,43 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623242A7D1F0003F165DC /* TimeCapsuleCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623232A7D1F0003F165DC /* TimeCapsuleCameraApp.swift */; };
-		1D3623262A7D1F0003F165DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623252A7D1F0003F165DC /* AppDelegate.swift */; };
+		1D3623242A7D1F0003F165DC /* SimpleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623232A7D1F0003F165DC /* SimpleApp.swift */; };
 		1D3623282A7D1F0003F165DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D3623272A7D1F0003F165DC /* Assets.xcassets */; };
 		1D3623292A7D1F0003F165DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */; };
-		1D3623302A7D1F0003F165DC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623302A7D1F0003F165DC /* AuthViewModel.swift */; };
-		1D3623312A7D1F0003F165DC /* CapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623312A7D1F0003F165DC /* CapsuleViewModel.swift */; };
-		1D3623322A7D1F0003F165DC /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623322A7D1F0003F165DC /* AuthenticationView.swift */; };
-		1D3623332A7D1F0003F165DC /* CapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623332A7D1F0003F165DC /* CapsuleListView.swift */; };
-		1D3623342A7D1F0003F165DC /* CapsuleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623342A7D1F0003F165DC /* CapsuleDetailView.swift */; };
-		1D3623352A7D1F0003F165DC /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623352A7D1F0003F165DC /* CelebrationView.swift */; };
-		1D3623362A7D1F0003F165DC /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623362A7D1F0003F165DC /* CountdownView.swift */; };
-		1D3623372A7D1F0003F165DC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623372A7D1F0003F165DC /* OnboardingView.swift */; };
-		1D3623382A7D1F0003F165DC /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623382A7D1F0003F165DC /* Capsule.swift */; };
-		1D3623392A7D1F0003F165DC /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623392A7D1F0003F165DC /* Clip.swift */; };
-		1D36233A2A7D1F0003F165DC /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D36233A2A7D1F0003F165DC /* FirebaseManager.swift */; };
-		1D36233B2A7D1F0003F165DC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D36233B2A7D1F0003F165DC /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1D3623202A7D1F0003F165DC /* TimeCapsuleCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCapsuleCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D3623232A7D1F0003F165DC /* TimeCapsuleCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCameraApp.swift; sourceTree = "<group>"; };
-		1D3623252A7D1F0003F165DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1D3623232A7D1F0003F165DC /* SimpleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleApp.swift; sourceTree = "<group>"; };
 		1D3623272A7D1F0003F165DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1D36232C2A7D1F0003F165DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1D3623302A7D1F0003F165DC /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/AuthViewModel.swift; sourceTree = "<group>"; };
-		1D3623312A7D1F0003F165DC /* CapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/CapsuleViewModel.swift; sourceTree = "<group>"; };
-		1D3623322A7D1F0003F165DC /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AuthenticationView.swift; sourceTree = "<group>"; };
-		1D3623332A7D1F0003F165DC /* CapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CapsuleListView.swift; sourceTree = "<group>"; };
-		1D3623342A7D1F0003F165DC /* CapsuleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CapsuleDetailView.swift; sourceTree = "<group>"; };
-		1D3623352A7D1F0003F165DC /* CelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CelebrationView.swift; sourceTree = "<group>"; };
-		1D3623362A7D1F0003F165DC /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CountdownView.swift; sourceTree = "<group>"; };
-		1D3623372A7D1F0003F165DC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/OnboardingView.swift; sourceTree = "<group>"; };
-		1D3623382A7D1F0003F165DC /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Capsule.swift; sourceTree = "<group>"; };
-		1D3623392A7D1F0003F165DC /* Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Clip.swift; sourceTree = "<group>"; };
-		1D36233A2A7D1F0003F165DC /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/FirebaseManager.swift; sourceTree = "<group>"; };
-		1D36233B2A7D1F0003F165DC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,8 +50,7 @@
 		1D3623222A7D1F0003F165DC /* TimeCapsuleCamera */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623232A7D1F0003F165DC /* TimeCapsuleCameraApp.swift */,
-				1D3623252A7D1F0003F165DC /* AppDelegate.swift */,
+				1D3623232A7D1F0003F165DC /* SimpleApp.swift */,
 				1D3623272A7D1F0003F165DC /* Assets.xcassets */,
 				1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */,
 				1D36232C2A7D1F0003F165DC /* Info.plist */,
@@ -155,20 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D3623242A7D1F0003F165DC /* TimeCapsuleCameraApp.swift in Sources */,
-				1D3623262A7D1F0003F165DC /* AppDelegate.swift in Sources */,
-				1D3623302A7D1F0003F165DC /* AuthViewModel.swift in Sources */,
-				1D3623312A7D1F0003F165DC /* CapsuleViewModel.swift in Sources */,
-				1D3623322A7D1F0003F165DC /* AuthenticationView.swift in Sources */,
-				1D3623332A7D1F0003F165DC /* CapsuleListView.swift in Sources */,
-				1D3623342A7D1F0003F165DC /* CapsuleDetailView.swift in Sources */,
-				1D3623352A7D1F0003F165DC /* CelebrationView.swift in Sources */,
-				1D3623362A7D1F0003F165DC /* CountdownView.swift in Sources */,
-				1D3623372A7D1F0003F165DC /* OnboardingView.swift in Sources */,
-				1D3623382A7D1F0003F165DC /* Capsule.swift in Sources */,
-				1D3623392A7D1F0003F165DC /* Clip.swift in Sources */,
-				1D36233A2A7D1F0003F165DC /* FirebaseManager.swift in Sources */,
-				1D36233B2A7D1F0003F165DC /* NotificationManager.swift in Sources */,
+				1D3623242A7D1F0003F165DC /* SimpleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

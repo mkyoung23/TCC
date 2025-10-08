@@ -7,7 +7,6 @@ workflows:
       groups:
         - ios_signing
       vars:
-        XCODE_WORKSPACE: "time_capsule_camera/TimeCapsuleCamera.xcworkspace"
         XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
         XCODE_SCHEME: "TimeCapsuleCamera"
         BUNDLE_ID: "com.mkyoung.timecapsulecamera"
@@ -69,35 +68,10 @@ workflows:
           </dict>
           </plist>
           EOF
-      - name: Setup Firebase configuration
-        script: |
-          # Copy GoogleService-Info.plist to the correct location
-          cp GoogleService-Info.plist time_capsule_camera/
-
-      - name: Install CocoaPods dependencies
-        script: |
-          # Create a basic Podfile for Firebase dependencies
-          cd time_capsule_camera
-          cat > Podfile << 'EOF'
-          platform :ios, '16.0'
-          use_frameworks!
-
-          target 'TimeCapsuleCamera' do
-            pod 'Firebase/Core'
-            pod 'Firebase/Auth'
-            pod 'Firebase/Firestore'
-            pod 'Firebase/Storage'
-            pod 'Firebase/Messaging'
-          end
-          EOF
-
-          # Install pods
-          pod install --repo-update
-          cd ..
       - name: Build archive
         script: |
           xcodebuild \
-            -workspace "$XCODE_WORKSPACE" \
+            -project "$XCODE_PROJECT" \
             -scheme "$XCODE_SCHEME" \
             -configuration Release \
             -archivePath $CM_BUILD_DIR/tcc.xcarchive archive
