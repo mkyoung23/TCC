@@ -27,22 +27,14 @@ workflows:
           convert -size 1024x1024 xc:"#4A90E2" "icon-1024.png"
       - name: Set up code signing
         script: |
-          # Write private key to file
-          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/api_key.p8
-
-          # Debug - show what was written
-          echo "=== Key file contents ==="
-          cat /tmp/api_key.p8
-          echo "=== End key file ==="
-
           # Initialize keychain
           keychain initialize
 
-          # Fetch signing files with file-based key
+          # Fetch signing files - now using @env: directly since group is loaded
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --issuer-id f94e54a5-8ebc-49c0-b581-1099125c304f \
             --key-id R9RRF25S4U \
-            --private-key @file:/tmp/api_key.p8 \
+            --private-key @env:APP_STORE_CONNECT_PRIVATE_KEY \
             --type IOS_APP_STORE \
             --create
 
