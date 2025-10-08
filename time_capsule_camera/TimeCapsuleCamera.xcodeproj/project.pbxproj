@@ -7,19 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A100001A2B4C1234567890AB /* TimeCapsuleCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000192B4C1234567890AB /* TimeCapsuleCameraApp.swift */; };
-		A100001C2B4C1234567890AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A100001D2B4C1234567890AB /* Assets.xcassets */; };
+		1D3623242A7D1F0003F165DC /* TimeCapsuleCameraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623232A7D1F0003F165DC /* TimeCapsuleCameraApp.swift */; };
+		1D3623262A7D1F0003F165DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623252A7D1F0003F165DC /* AppDelegate.swift */; };
+		1D3623282A7D1F0003F165DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D3623272A7D1F0003F165DC /* Assets.xcassets */; };
+		1D3623292A7D1F0003F165DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */; };
+		1D3623302A7D1F0003F165DC /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623302A7D1F0003F165DC /* AuthViewModel.swift */; };
+		1D3623312A7D1F0003F165DC /* CapsuleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623312A7D1F0003F165DC /* CapsuleViewModel.swift */; };
+		1D3623322A7D1F0003F165DC /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623322A7D1F0003F165DC /* AuthenticationView.swift */; };
+		1D3623332A7D1F0003F165DC /* CapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623332A7D1F0003F165DC /* CapsuleListView.swift */; };
+		1D3623342A7D1F0003F165DC /* CapsuleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623342A7D1F0003F165DC /* CapsuleDetailView.swift */; };
+		1D3623352A7D1F0003F165DC /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623352A7D1F0003F165DC /* CelebrationView.swift */; };
+		1D3623362A7D1F0003F165DC /* CountdownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623362A7D1F0003F165DC /* CountdownView.swift */; };
+		1D3623372A7D1F0003F165DC /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623372A7D1F0003F165DC /* OnboardingView.swift */; };
+		1D3623382A7D1F0003F165DC /* Capsule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623382A7D1F0003F165DC /* Capsule.swift */; };
+		1D3623392A7D1F0003F165DC /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623392A7D1F0003F165DC /* Clip.swift */; };
+		1D36233A2A7D1F0003F165DC /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D36233A2A7D1F0003F165DC /* FirebaseManager.swift */; };
+		1D36233B2A7D1F0003F165DC /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D36233B2A7D1F0003F165DC /* NotificationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A10000162B4C1234567890AB /* TimeCapsuleCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCapsuleCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A10000192B4C1234567890AB /* TimeCapsuleCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCameraApp.swift; sourceTree = "<group>"; };
-		A100001B2B4C1234567890AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A100001D2B4C1234567890AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1D3623202A7D1F0003F165DC /* TimeCapsuleCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCapsuleCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D3623232A7D1F0003F165DC /* TimeCapsuleCameraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCapsuleCameraApp.swift; sourceTree = "<group>"; };
+		1D3623252A7D1F0003F165DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1D3623272A7D1F0003F165DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1D36232C2A7D1F0003F165DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1D3623302A7D1F0003F165DC /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/AuthViewModel.swift; sourceTree = "<group>"; };
+		1D3623312A7D1F0003F165DC /* CapsuleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/CapsuleViewModel.swift; sourceTree = "<group>"; };
+		1D3623322A7D1F0003F165DC /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/AuthenticationView.swift; sourceTree = "<group>"; };
+		1D3623332A7D1F0003F165DC /* CapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CapsuleListView.swift; sourceTree = "<group>"; };
+		1D3623342A7D1F0003F165DC /* CapsuleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CapsuleDetailView.swift; sourceTree = "<group>"; };
+		1D3623352A7D1F0003F165DC /* CelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CelebrationView.swift; sourceTree = "<group>"; };
+		1D3623362A7D1F0003F165DC /* CountdownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/CountdownView.swift; sourceTree = "<group>"; };
+		1D3623372A7D1F0003F165DC /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/OnboardingView.swift; sourceTree = "<group>"; };
+		1D3623382A7D1F0003F165DC /* Capsule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Capsule.swift; sourceTree = "<group>"; };
+		1D3623392A7D1F0003F165DC /* Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models/Clip.swift; sourceTree = "<group>"; };
+		1D36233A2A7D1F0003F165DC /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/FirebaseManager.swift; sourceTree = "<group>"; };
+		1D36233B2A7D1F0003F165DC /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A10000132B4C1234567890AB /* Frameworks */ = {
+		1D36231D2A7D1F0003F165DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -29,42 +57,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A100000D2B4C1234567890AB = {
+		1D3623172A7D1F0003F165DC = {
 			isa = PBXGroup;
 			children = (
-				A10000182B4C1234567890AB /* TimeCapsuleCamera */,
-				A100001D2B4C1234567890AB /* Assets.xcassets */,
-				A10000172B4C1234567890AB /* Products */,
+				1D3623222A7D1F0003F165DC /* TimeCapsuleCamera */,
+				1D3623212A7D1F0003F165DC /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A10000172B4C1234567890AB /* Products */ = {
+		1D3623212A7D1F0003F165DC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A10000162B4C1234567890AB /* TimeCapsuleCamera.app */,
+				1D3623202A7D1F0003F165DC /* TimeCapsuleCamera.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A10000182B4C1234567890AB /* TimeCapsuleCamera */ = {
+		1D3623222A7D1F0003F165DC /* TimeCapsuleCamera */ = {
 			isa = PBXGroup;
 			children = (
-				A10000192B4C1234567890AB /* TimeCapsuleCameraApp.swift */,
-				A100001B2B4C1234567890AB /* Info.plist */,
+				1D3623232A7D1F0003F165DC /* TimeCapsuleCameraApp.swift */,
+				1D3623252A7D1F0003F165DC /* AppDelegate.swift */,
+				1D3623272A7D1F0003F165DC /* Assets.xcassets */,
+				1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */,
+				1D36232C2A7D1F0003F165DC /* Info.plist */,
 			);
-			path = TimeCapsuleCamera;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A10000152B4C1234567890AB /* TimeCapsuleCamera */ = {
+		1D36231F2A7D1F0003F165DC /* TimeCapsuleCamera */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A100001F2B4C1234567890AB /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */;
+			buildConfigurationList = 1D36232F2A7D1F0003F165DC /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */;
 			buildPhases = (
-				A10000122B4C1234567890AB /* Sources */,
-				A10000132B4C1234567890AB /* Frameworks */,
-				A10000142B4C1234567890AB /* Resources */,
+				1D36231C2A7D1F0003F165DC /* Sources */,
+				1D36231D2A7D1F0003F165DC /* Frameworks */,
+				1D36231E2A7D1F0003F165DC /* Resources */,
 			);
 			buildRules = (
 			);
@@ -72,25 +102,25 @@
 			);
 			name = TimeCapsuleCamera;
 			productName = TimeCapsuleCamera;
-			productReference = A10000162B4C1234567890AB /* TimeCapsuleCamera.app */;
+			productReference = 1D3623202A7D1F0003F165DC /* TimeCapsuleCamera.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A100000E2B4C1234567890AB /* Project object */ = {
+		1D3623182A7D1F0003F165DC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					A10000152B4C1234567890AB = {
+					1D36231F2A7D1F0003F165DC = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = A10000112B4C1234567890AB /* Build configuration list for PBXProject "TimeCapsuleCamera" */;
+			buildConfigurationList = 1D36231B2A7D1F0003F165DC /* Build configuration list for PBXProject "TimeCapsuleCamera" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -98,44 +128,57 @@
 				en,
 				Base,
 			);
-			mainGroup = A100000D2B4C1234567890AB;
-			productRefGroup = A10000172B4C1234567890AB /* Products */;
+			mainGroup = 1D3623172A7D1F0003F165DC;
+			productRefGroup = 1D3623212A7D1F0003F165DC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A10000152B4C1234567890AB /* TimeCapsuleCamera */,
+				1D36231F2A7D1F0003F165DC /* TimeCapsuleCamera */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A10000142B4C1234567890AB /* Resources */ = {
+		1D36231E2A7D1F0003F165DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A100001C2B4C1234567890AB /* Assets.xcassets in Resources */,
+				1D3623282A7D1F0003F165DC /* Assets.xcassets in Resources */,
+				1D3623292A7D1F0003F165DC /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A10000122B4C1234567890AB /* Sources */ = {
+		1D36231C2A7D1F0003F165DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A100001A2B4C1234567890AB /* TimeCapsuleCameraApp.swift in Sources */,
+				1D3623242A7D1F0003F165DC /* TimeCapsuleCameraApp.swift in Sources */,
+				1D3623262A7D1F0003F165DC /* AppDelegate.swift in Sources */,
+				1D3623302A7D1F0003F165DC /* AuthViewModel.swift in Sources */,
+				1D3623312A7D1F0003F165DC /* CapsuleViewModel.swift in Sources */,
+				1D3623322A7D1F0003F165DC /* AuthenticationView.swift in Sources */,
+				1D3623332A7D1F0003F165DC /* CapsuleListView.swift in Sources */,
+				1D3623342A7D1F0003F165DC /* CapsuleDetailView.swift in Sources */,
+				1D3623352A7D1F0003F165DC /* CelebrationView.swift in Sources */,
+				1D3623362A7D1F0003F165DC /* CountdownView.swift in Sources */,
+				1D3623372A7D1F0003F165DC /* OnboardingView.swift in Sources */,
+				1D3623382A7D1F0003F165DC /* Capsule.swift in Sources */,
+				1D3623392A7D1F0003F165DC /* Clip.swift in Sources */,
+				1D36233A2A7D1F0003F165DC /* FirebaseManager.swift in Sources */,
+				1D36233B2A7D1F0003F165DC /* NotificationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A100001D2B4C1234567890AB /* Debug */ = {
+		1D36232D2A7D1F0003F165DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -168,8 +211,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -184,21 +226,19 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		A100001E2B4C1234567890AB /* Release */ = {
+		1D36232E2A7D1F0003F165DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -231,8 +271,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -241,29 +280,28 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		A10000202B4C1234567890AB /* Debug */ = {
+		1D3623302A7D1F0003F165DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6XNH7D52V6;
-				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -271,26 +309,26 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mkyoung.timecapsulecamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		A10000212B4C1234567890AB /* Release */ = {
+		1D3623312A7D1F0003F165DC /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6XNH7D52V6;
-				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -298,34 +336,35 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mkyoung.timecapsulecamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A10000112B4C1234567890AB /* Build configuration list for PBXProject "TimeCapsuleCamera" */ = {
+		1D36231B2A7D1F0003F165DC /* Build configuration list for PBXProject "TimeCapsuleCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A100001D2B4C1234567890AB /* Debug */,
-				A100001E2B4C1234567890AB /* Release */,
+				1D36232D2A7D1F0003F165DC /* Debug */,
+				1D36232E2A7D1F0003F165DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A100001F2B4C1234567890AB /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */ = {
+		1D36232F2A7D1F0003F165DC /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A10000202B4C1234567890AB /* Debug */,
-				A10000212B4C1234567890AB /* Release */,
+				1D3623302A7D1F0003F165DC /* Debug */,
+				1D3623312A7D1F0003F165DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A100000E2B4C1234567890AB /* Project object */;
+	rootObject = 1D3623182A7D1F0003F165DC /* Project object */;
 }
