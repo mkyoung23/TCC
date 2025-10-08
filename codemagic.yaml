@@ -15,10 +15,13 @@ workflows:
     scripts:
       - name: Generate placeholder app icons
         script: |
+          # Install Pillow for image generation
+          pip3 install --quiet pillow
+
           # Use Python to generate simple placeholder icons
           cd time_capsule_camera/Assets.xcassets/AppIcon.appiconset
           python3 << 'EOF'
-          from PIL import Image, ImageDraw
+          from PIL import Image
 
           # Define icon sizes
           sizes = [
