@@ -38,7 +38,6 @@ struct CameraView: View {
                         HStack {
                             Image(systemName: "record.circle")
                                 .foregroundColor(.red)
-                                .animation(.pulse)
                             Text(formatTime(recordingTime))
                                 .foregroundColor(.white)
                                 .font(.headline)
