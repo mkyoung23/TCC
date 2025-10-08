@@ -11,7 +11,7 @@ workflows:
         XCODE_SCHEME: "TimeCapsuleCamera"
         BUNDLE_ID: "com.mkyoung.timecapsulecamera"
         APP_STORE_CONNECT_ISSUER_ID: f94e54a5-8ebc-49c0-b581-1099125c304f
-        APP_STORE_CONNECT_KEY_IDENTIFIER: 68T7Y68ZWL
+        APP_STORE_CONNECT_KEY_IDENTIFIER: R9RRF25S4U
       xcode: 16.0
       cocoapods: default
     scripts:
@@ -31,8 +31,6 @@ workflows:
           echo "Generated placeholder app icons"
       - name: Set up code signing
         script: |
-          set -e
-          set -x
           keychain initialize
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
             --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
