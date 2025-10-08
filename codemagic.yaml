@@ -54,7 +54,13 @@ workflows:
           keychain initialize
 
           # Create a temporary file for the private key
-          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/api_key.p8
+          # Use echo -e to interpret escape sequences if present
+          echo -e "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/api_key.p8
+
+          # Verify key file was created correctly
+          echo "Private key file size: $(wc -c < /tmp/api_key.p8) bytes"
+          echo "Private key first line: $(head -n1 /tmp/api_key.p8)"
+          echo "Private key line count: $(wc -l < /tmp/api_key.p8)"
 
           # Fetch signing files with explicit key file
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
