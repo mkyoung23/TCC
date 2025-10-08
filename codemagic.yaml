@@ -25,8 +25,13 @@ workflows:
           convert -size 1024x1024 xc:"#4A90E2" "icon-1024.png"
       - name: Set up code signing
         script: |
-          # Write private key to file (preserve newlines)
-          printf '%s\n' "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/api_key.p8
+          # Write private key to file
+          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/api_key.p8
+
+          # Debug - show what was written
+          echo "=== Key file contents ==="
+          cat /tmp/api_key.p8
+          echo "=== End key file ==="
 
           # Initialize keychain
           keychain initialize
