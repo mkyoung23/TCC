@@ -7,21 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623242A7D1F0003F165DC /* SimpleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623232A7D1F0003F165DC /* SimpleApp.swift */; };
-		1D3623282A7D1F0003F165DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D3623272A7D1F0003F165DC /* Assets.xcassets */; };
-		1D3623292A7D1F0003F165DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */; };
+		8D8B10772B1F3A4100123456 /* SimpleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10762B1F3A4100123456 /* SimpleApp.swift */; };
+		8D8B10792B1F3A4300123456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D8B10782B1F3A4300123456 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D3623202A7D1F0003F165DC /* TimeCapsuleCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCapsuleCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D3623232A7D1F0003F165DC /* SimpleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleApp.swift; sourceTree = "<group>"; };
-		1D3623272A7D1F0003F165DC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1D36232C2A7D1F0003F165DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D8B10732B1F3A4100123456 /* TimeCapsuleCamera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeCapsuleCamera.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D8B10762B1F3A4100123456 /* SimpleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleApp.swift; sourceTree = "<group>"; };
+		8D8B10782B1F3A4300123456 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D8B107D2B1F3A4300123456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1D36231D2A7D1F0003F165DC /* Frameworks */ = {
+		8D8B10702B1F3A4100123456 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -31,29 +29,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1D3623172A7D1F0003F165DC = {
+		8D8B106A2B1F3A4100123456 = {
 			isa = PBXGroup;
 			children = (
-				1D3623222A7D1F0003F165DC /* TimeCapsuleCamera */,
-				1D3623212A7D1F0003F165DC /* Products */,
+				8D8B10752B1F3A4100123456 /* TimeCapsuleCamera */,
+				8D8B10742B1F3A4100123456 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		1D3623212A7D1F0003F165DC /* Products */ = {
+		8D8B10742B1F3A4100123456 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623202A7D1F0003F165DC /* TimeCapsuleCamera.app */,
+				8D8B10732B1F3A4100123456 /* TimeCapsuleCamera.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1D3623222A7D1F0003F165DC /* TimeCapsuleCamera */ = {
+		8D8B10752B1F3A4100123456 /* TimeCapsuleCamera */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623232A7D1F0003F165DC /* SimpleApp.swift */,
-				1D3623272A7D1F0003F165DC /* Assets.xcassets */,
-				1D3623282A7D1F0003F165DC /* LaunchScreen.storyboard */,
-				1D36232C2A7D1F0003F165DC /* Info.plist */,
+				8D8B10762B1F3A4100123456 /* SimpleApp.swift */,
+				8D8B10782B1F3A4300123456 /* Assets.xcassets */,
+				8D8B107D2B1F3A4300123456 /* Info.plist */,
 			);
 			path = .;
 			sourceTree = "<group>";
@@ -61,13 +58,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1D36231F2A7D1F0003F165DC /* TimeCapsuleCamera */ = {
+		8D8B10722B1F3A4100123456 /* TimeCapsuleCamera */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1D36232F2A7D1F0003F165DC /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */;
+			buildConfigurationList = 8D8B10802B1F3A4300123456 /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */;
 			buildPhases = (
-				1D36231C2A7D1F0003F165DC /* Sources */,
-				1D36231D2A7D1F0003F165DC /* Frameworks */,
-				1D36231E2A7D1F0003F165DC /* Resources */,
+				8D8B106F2B1F3A4100123456 /* Sources */,
+				8D8B10702B1F3A4100123456 /* Frameworks */,
+				8D8B10712B1F3A4100123456 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -75,25 +72,25 @@
 			);
 			name = TimeCapsuleCamera;
 			productName = TimeCapsuleCamera;
-			productReference = 1D3623202A7D1F0003F165DC /* TimeCapsuleCamera.app */;
+			productReference = 8D8B10732B1F3A4100123456 /* TimeCapsuleCamera.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1D3623182A7D1F0003F165DC /* Project object */ = {
+		8D8B106B2B1F3A4100123456 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
-					1D36231F2A7D1F0003F165DC = {
+					8D8B10722B1F3A4100123456 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
-			buildConfigurationList = 1D36231B2A7D1F0003F165DC /* Build configuration list for PBXProject "TimeCapsuleCamera" */;
+			buildConfigurationList = 8D8B106E2B1F3A4100123456 /* Build configuration list for PBXProject "TimeCapsuleCamera" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -101,41 +98,40 @@
 				en,
 				Base,
 			);
-			mainGroup = 1D3623172A7D1F0003F165DC;
-			productRefGroup = 1D3623212A7D1F0003F165DC /* Products */;
+			mainGroup = 8D8B106A2B1F3A4100123456;
+			productRefGroup = 8D8B10742B1F3A4100123456 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1D36231F2A7D1F0003F165DC /* TimeCapsuleCamera */,
+				8D8B10722B1F3A4100123456 /* TimeCapsuleCamera */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		1D36231E2A7D1F0003F165DC /* Resources */ = {
+		8D8B10712B1F3A4100123456 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D3623282A7D1F0003F165DC /* Assets.xcassets in Resources */,
-				1D3623292A7D1F0003F165DC /* LaunchScreen.storyboard in Resources */,
+				8D8B10792B1F3A4300123456 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		1D36231C2A7D1F0003F165DC /* Sources */ = {
+		8D8B106F2B1F3A4100123456 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D3623242A7D1F0003F165DC /* SimpleApp.swift in Sources */,
+				8D8B10772B1F3A4100123456 /* SimpleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		1D36232D2A7D1F0003F165DC /* Debug */ = {
+		8D8B107E2B1F3A4300123456 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -195,7 +191,7 @@
 			};
 			name = Debug;
 		};
-		1D36232E2A7D1F0003F165DC /* Release */ = {
+		8D8B107F2B1F3A4300123456 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -249,19 +245,22 @@
 			};
 			name = Release;
 		};
-		1D3623302A7D1F0003F165DC /* Debug */ = {
+		8D8B10812B1F3A4300123456 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6XNH7D52V6;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -269,26 +268,28 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mkyoung.timecapsulecamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		1D3623312A7D1F0003F165DC /* Release */ = {
+		8D8B10822B1F3A4300123456 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6XNH7D52V6;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,7 +297,6 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mkyoung.timecapsulecamera;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -306,25 +306,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1D36231B2A7D1F0003F165DC /* Build configuration list for PBXProject "TimeCapsuleCamera" */ = {
+		8D8B106E2B1F3A4100123456 /* Build configuration list for PBXProject "TimeCapsuleCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D36232D2A7D1F0003F165DC /* Debug */,
-				1D36232E2A7D1F0003F165DC /* Release */,
+				8D8B107E2B1F3A4300123456 /* Debug */,
+				8D8B107F2B1F3A4300123456 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1D36232F2A7D1F0003F165DC /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */ = {
+		8D8B10802B1F3A4300123456 /* Build configuration list for PBXNativeTarget "TimeCapsuleCamera" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D3623302A7D1F0003F165DC /* Debug */,
-				1D3623312A7D1F0003F165DC /* Release */,
+				8D8B10812B1F3A4300123456 /* Debug */,
+				8D8B10822B1F3A4300123456 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1D3623182A7D1F0003F165DC /* Project object */;
+	rootObject = 8D8B106B2B1F3A4100123456 /* Project object */;
 }
