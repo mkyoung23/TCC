@@ -42,13 +42,22 @@ workflows:
           EOF
       - name: Set up code signing
         script: |
+          set -e  # Exit on error
+          set -x  # Print commands
+
           # Initialize keychain
           keychain initialize
 
-          # Fetch signing files - now using @env: directly since group is loaded
+          # Debug: Check environment variables
+          echo "Bundle ID: $BUNDLE_ID"
+          echo "Issuer ID: $APP_STORE_CONNECT_ISSUER_ID"
+          echo "Key ID: $APP_STORE_CONNECT_KEY_IDENTIFIER"
+          echo "Private key set: $([ -n "$APP_STORE_CONNECT_PRIVATE_KEY" ] && echo 'YES' || echo 'NO')"
+
+          # Fetch signing files using environment variables
           app-store-connect fetch-signing-files "$BUNDLE_ID" \
-            --issuer-id f94e54a5-8ebc-49c0-b581-1099125c304f \
-            --key-id R9RRF25S4U \
+            --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
+            --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
             --private-key @env:APP_STORE_CONNECT_PRIVATE_KEY \
             --type IOS_APP_STORE \
             --create
