@@ -43,6 +43,11 @@ workflows:
               img = Image.new('RGB', (size, size), color='#4A90E2')
               img.save(filename)
           EOF
+      - name: Generate Xcode project from Swift Package
+        script: |
+          cd time_capsule_camera
+          swift package generate-xcodeproj || echo "Using existing project"
+          cd ..
       - name: Create export options
         script: |
           cat > $CM_BUILD_DIR/export_options.plist << 'EOF'
