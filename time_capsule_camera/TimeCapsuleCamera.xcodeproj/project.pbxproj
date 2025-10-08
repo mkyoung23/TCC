@@ -10,6 +10,8 @@
 		8D8B10772B1F3A4100123456 /* SimpleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10762B1F3A4100123456 /* SimpleApp.swift */; };
 		8D8B10792B1F3A4300123456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D8B10782B1F3A4300123456 /* Assets.xcassets */; };
 		8D8B107A2B1F3A4300123456 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D8B107B2B1F3A4300123456 /* LaunchScreen.storyboard */; };
+		8D8B10812B1F3A4400123457 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10802B1F3A4400123457 /* CameraView.swift */; };
+		8D8B10832B1F3A4500123458 /* CapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10822B1F3A4500123458 /* CapsuleListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,8 @@
 		8D8B10782B1F3A4300123456 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D8B107B2B1F3A4300123456 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D8B107D2B1F3A4300123456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D8B10802B1F3A4400123457 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		8D8B10822B1F3A4500123458 /* CapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				8D8B10762B1F3A4100123456 /* SimpleApp.swift */,
+				8D8B10802B1F3A4400123457 /* CameraView.swift */,
+				8D8B10822B1F3A4500123458 /* CapsuleListView.swift */,
 				8D8B10782B1F3A4300123456 /* Assets.xcassets */,
 				8D8B107B2B1F3A4300123456 /* LaunchScreen.storyboard */,
 				8D8B107D2B1F3A4300123456 /* Info.plist */,
@@ -129,6 +135,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D8B10772B1F3A4100123456 /* SimpleApp.swift in Sources */,
+				8D8B10812B1F3A4400123457 /* CameraView.swift in Sources */,
+				8D8B10832B1F3A4500123458 /* CapsuleListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +264,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Manual;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 6XNH7D52V6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
@@ -286,7 +294,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Manual;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 6XNH7D52V6;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Info.plist;
