@@ -68,13 +68,37 @@ workflows:
           </dict>
           </plist>
           EOF
+      - name: Setup code signing
+        script: |
+          # Write the App Store Connect API key to a file
+          echo "$APP_STORE_CONNECT_PRIVATE_KEY" > $CM_BUILD_DIR/AuthKey_${APP_STORE_CONNECT_KEY_IDENTIFIER}.p8
+
+          # Set up the provisioning profiles and certificates from CodeMagic
+          keychain initialize
+
+          # Fetch signing certificates and profiles
+          app-store-connect fetch-signing-files \
+            "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create
+
+          # Use the fetched profiles and certificates
+          keychain add-certificates
+          xcode-project use-profiles
+
       - name: Build archive
         script: |
           xcodebuild \
             -project "$XCODE_PROJECT" \
             -scheme "$XCODE_SCHEME" \
             -configuration Release \
-            -archivePath $CM_BUILD_DIR/tcc.xcarchive archive
+            -destination "generic/platform=iOS" \
+            -archivePath $CM_BUILD_DIR/tcc.xcarchive \
+            archive \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath $CM_BUILD_DIR/AuthKey_${APP_STORE_CONNECT_KEY_IDENTIFIER}.p8 \
+            -authenticationKeyID $APP_STORE_CONNECT_KEY_IDENTIFIER \
+            -authenticationKeyIssuerID $APP_STORE_CONNECT_ISSUER_ID
       - name: Export IPA
         script: |
           xcodebuild -exportArchive \
