@@ -26,9 +26,7 @@ workflows:
       - name: Set up code signing
         script: |
           # Write private key to file (preserve newlines)
-          cat > /tmp/api_key.p8 <<EOF
-$APP_STORE_CONNECT_PRIVATE_KEY
-EOF
+          printf '%s\n' "$APP_STORE_CONNECT_PRIVATE_KEY" > /tmp/api_key.p8
 
           # Initialize keychain
           keychain initialize
