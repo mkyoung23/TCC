@@ -10,6 +10,9 @@ workflows:
         XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
         XCODE_SCHEME: "TimeCapsuleCamera"
         BUNDLE_ID: "com.mkyoung.timecapsulecamera"
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.mkyoung.timecapsulecamera
       xcode: 16.0
       cocoapods: default
     scripts:
@@ -40,23 +43,6 @@ workflows:
               img = Image.new('RGB', (size, size), color='#4A90E2')
               img.save(filename)
           EOF
-      - name: Set up code signing
-        script: |
-          set -e
-          set -x
-
-          echo "Setting up code signing with stored certificates..."
-          echo "Bundle ID: $BUNDLE_ID"
-
-          # Initialize keychain
-          keychain initialize
-
-          # Use certificates and profiles stored in CodeMagic
-          # TCC_DIST_CERT and TCC_DIST_PROFILE were uploaded via UI
-          keychain add-certificates
-
-          # Configure Xcode project to use the provisioning profile
-          xcode-project use-profiles
       - name: Create export options
         script: |
           cat > $CM_BUILD_DIR/export_options.plist << 'EOF'
