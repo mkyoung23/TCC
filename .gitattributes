@@ -1,0 +1,4 @@
+# Force LF line endings for Xcode project files
+*.pbxproj text eol=lf
+*.xcscheme text eol=lf
+*.xcworkspacedata text eol=lf
