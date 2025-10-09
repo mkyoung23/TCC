@@ -239,3 +239,9 @@ workflows:
         # Add to Beta Testers group (must exist in App Store Connect)
         beta_groups:
           - Beta Testers
+
+      # Alternative: Firebase App Distribution (uncomment to use)
+      # firebase:
+      #   firebase_token: $FIREBASE_TOKEN
+      #   app: "1:413771745824:ios:3203939db870ae52e08a45"
+      #   groups: "beta-testers"

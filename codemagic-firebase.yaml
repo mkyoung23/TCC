@@ -1,0 +1,173 @@
+workflows:
+  ios-firebase:
+    name: iOS - TCC Firebase Distribution
+    max_build_duration: 120
+    environment:
+      groups:
+        - ios_signing
+      vars:
+        XCODE_PROJECT: "time_capsule_camera/TimeCapsuleCamera.xcodeproj"
+        XCODE_SCHEME: "TimeCapsuleCamera"
+        BUNDLE_ID: "com.mkyoung.timecapsulecamera"
+        # Add your Firebase token here after running: firebase login:ci
+        FIREBASE_TOKEN: ${FIREBASE_TOKEN}
+      ios_signing:
+        distribution_type: ad_hoc  # Changed from app_store to ad_hoc for Firebase
+        bundle_identifier: com.mkyoung.timecapsulecamera
+      xcode: 16.0
+    scripts:
+      - name: Resolve Swift Package dependencies
+        script: |
+          cd time_capsule_camera
+          xcodebuild -resolvePackageDependencies \
+            -project "TimeCapsuleCamera.xcodeproj" \
+            -scheme "TimeCapsuleCamera"
+      - name: Generate retro app icons
+        script: |
+          pip3 install --quiet pillow
+          cd time_capsule_camera/Assets.xcassets/AppIcon.appiconset
+          python3 << 'EOF'
+          from PIL import Image, ImageDraw
+          import json
+
+          sizes = [
+              ("icon-20@2x.png", 40),
+              ("icon-20@3x.png", 60),
+              ("icon-29@2x.png", 58),
+              ("icon-29@3x.png", 87),
+              ("icon-40@2x.png", 80),
+              ("icon-40@3x.png", 120),
+              ("icon-60@2x.png", 120),
+              ("icon-60@3x.png", 180),
+              ("icon-1024.png", 1024)
+          ]
+
+          for filename, size in sizes:
+              img = Image.new('RGB', (size, size))
+              draw = ImageDraw.Draw(img)
+
+              # Sunset gradient
+              for y in range(size):
+                  ratio = y / size
+                  if ratio < 0.5:
+                      r = int(147 + (255 - 147) * (ratio * 2))
+                      g = int(51 + (105 - 51) * (ratio * 2))
+                      b = int(165 + (180 - 165) * (ratio * 2))
+                  else:
+                      r = 255
+                      g = int(105 + (200 - 105) * ((ratio - 0.5) * 2))
+                      b = int(180 - 130 * ((ratio - 0.5) * 2))
+                  draw.line([(0, y), (size, y)], fill=(r, g, b))
+
+              # Camera icon
+              center_x = size // 2
+              center_y = size // 2
+              cam_size = int(size * 0.4)
+
+              body_rect = [
+                  center_x - cam_size//2,
+                  center_y - cam_size//3,
+                  center_x + cam_size//2,
+                  center_y + cam_size//3
+              ]
+              draw.rounded_rectangle(body_rect, radius=int(size*0.05), fill='white')
+
+              lens_radius = int(cam_size * 0.25)
+              draw.ellipse([
+                  center_x - lens_radius,
+                  center_y - lens_radius//2,
+                  center_x + lens_radius,
+                  center_y + lens_radius//2 + lens_radius//2
+              ], fill='#333333')
+
+              img.save(filename)
+
+          contents = {
+              "images": [
+                  {"size": "20x20", "idiom": "iphone", "filename": "icon-20@2x.png", "scale": "2x"},
+                  {"size": "20x20", "idiom": "iphone", "filename": "icon-20@3x.png", "scale": "3x"},
+                  {"size": "29x29", "idiom": "iphone", "filename": "icon-29@2x.png", "scale": "2x"},
+                  {"size": "29x29", "idiom": "iphone", "filename": "icon-29@3x.png", "scale": "3x"},
+                  {"size": "40x40", "idiom": "iphone", "filename": "icon-40@2x.png", "scale": "2x"},
+                  {"size": "40x40", "idiom": "iphone", "filename": "icon-40@3x.png", "scale": "3x"},
+                  {"size": "60x60", "idiom": "iphone", "filename": "icon-60@2x.png", "scale": "2x"},
+                  {"size": "60x60", "idiom": "iphone", "filename": "icon-60@3x.png", "scale": "3x"},
+                  {"size": "1024x1024", "idiom": "ios-marketing", "filename": "icon-1024.png", "scale": "1x"}
+              ],
+              "info": {"version": 1, "author": "xcode"}
+          }
+          with open('Contents.json', 'w') as f:
+              json.dump(contents, f, indent=2)
+          EOF
+      - name: Setup code signing
+        script: |
+          keychain initialize
+          app-store-connect fetch-signing-files \
+            "$BUNDLE_ID" \
+            --type IOS_APP_ADHOC \
+            --create
+          keychain add-certificates
+          xcode-project use-profiles
+      - name: Build archive
+        script: |
+          xcodebuild \
+            -project "$XCODE_PROJECT" \
+            -scheme "$XCODE_SCHEME" \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath $CM_BUILD_DIR/tcc.xcarchive \
+            archive
+      - name: Export IPA for Firebase
+        script: |
+          # Create ad-hoc export options for Firebase
+          cat > $CM_BUILD_DIR/export_options.plist << 'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>ad-hoc</string>
+            <key>teamID</key>
+            <string>6XNH7D52V6</string>
+            <key>uploadBitcode</key>
+            <false/>
+            <key>compileBitcode</key>
+            <false/>
+            <key>uploadSymbols</key>
+            <false/>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>com.mkyoung.timecapsulecamera</key>
+              <string>TimeCapsuleCamera AdHoc</string>
+            </dict>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild -exportArchive \
+            -archivePath $CM_BUILD_DIR/tcc.xcarchive \
+            -exportPath $CM_BUILD_DIR/ipa \
+            -exportOptionsPlist $CM_BUILD_DIR/export_options.plist
+      - name: Install Firebase CLI
+        script: |
+          npm install -g firebase-tools
+      - name: Upload to Firebase App Distribution
+        script: |
+          firebase appdistribution:distribute \
+            $CM_BUILD_DIR/ipa/*.ipa \
+            --app "1:413771745824:ios:3203939db870ae52e08a45" \
+            --token "$FIREBASE_TOKEN" \
+            --groups "beta-testers" \
+            --release-notes "Time Capsule Camera - Latest build with all features!"
+    artifacts:
+      - $CM_BUILD_DIR/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      email:
+        recipients:
+          - mkyoung23@gmail.com
+        notify:
+          success: true
+          failure: true
