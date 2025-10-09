@@ -20,15 +20,15 @@ workflows:
         script: |
           cd time_capsule_camera
           pod install
-      - name: Generate placeholder app icons
+      - name: Generate retro 80s-90s app icons
         script: |
           # Install Pillow for image generation
           pip3 install --quiet pillow
 
-          # Use Python to generate all required icon sizes
+          # Use Python to generate retro-styled icon sizes
           cd time_capsule_camera/Assets.xcassets/AppIcon.appiconset
           python3 << 'EOF'
-          from PIL import Image
+          from PIL import Image, ImageDraw, ImageFont
           import json
 
           # Define all required icon sizes for iPhone
@@ -44,9 +44,98 @@ workflows:
               ("icon-1024.png", 1024)
           ]
 
-          # Generate icons
+          # Generate retro 80s-90s styled icons
           for filename, size in sizes:
-              img = Image.new('RGB', (size, size), color='#4A90E2')
+              # Create gradient background with retro colors
+              img = Image.new('RGB', (size, size))
+              draw = ImageDraw.Draw(img)
+
+              # Retro gradient - purple to pink to orange (sunset vibes)
+              for y in range(size):
+                  # Calculate color based on position
+                  ratio = y / size
+                  if ratio < 0.33:
+                      # Purple to pink
+                      r = int(147 + (255 - 147) * (ratio * 3))
+                      g = int(51 + (105 - 51) * (ratio * 3))
+                      b = int(165 + (180 - 165) * (ratio * 3))
+                  elif ratio < 0.66:
+                      # Pink to orange
+                      r = 255
+                      g = int(105 + (150 - 105) * ((ratio - 0.33) * 3))
+                      b = int(180 - (180 - 100) * ((ratio - 0.33) * 3))
+                  else:
+                      # Orange to yellow
+                      r = 255
+                      g = int(150 + (200 - 150) * ((ratio - 0.66) * 3))
+                      b = int(100 - (100 - 50) * ((ratio - 0.66) * 3))
+
+                  draw.line([(0, y), (size, y)], fill=(r, g, b))
+
+              # Draw retro camera icon in center
+              center_x = size // 2
+              center_y = size // 2
+              cam_size = int(size * 0.4)
+
+              # Camera body (white with shadow)
+              body_rect = [
+                  center_x - cam_size//2,
+                  center_y - cam_size//3,
+                  center_x + cam_size//2,
+                  center_y + cam_size//3
+              ]
+
+              # Shadow
+              shadow_rect = [x + int(size * 0.02) for x in body_rect]
+              draw.rounded_rectangle(shadow_rect, radius=int(size*0.05), fill=(0, 0, 0, 80))
+
+              # Main body
+              draw.rounded_rectangle(body_rect, radius=int(size*0.05), fill='white')
+
+              # Camera lens (circle)
+              lens_radius = int(cam_size * 0.25)
+              draw.ellipse([
+                  center_x - lens_radius,
+                  center_y - lens_radius//2,
+                  center_x + lens_radius,
+                  center_y + lens_radius//2 + lens_radius//2
+              ], fill='#333333')
+
+              # Inner lens
+              inner_radius = int(lens_radius * 0.7)
+              draw.ellipse([
+                  center_x - inner_radius,
+                  center_y - inner_radius//2,
+                  center_x + inner_radius,
+                  center_y + inner_radius//2 + inner_radius//2
+              ], fill='#666666')
+
+              # Flash (retro style)
+              flash_size = int(cam_size * 0.15)
+              draw.ellipse([
+                  center_x + cam_size//3,
+                  center_y - cam_size//4,
+                  center_x + cam_size//3 + flash_size,
+                  center_y - cam_size//4 + flash_size
+              ], fill='#FFD700')
+
+              # Red recording dot
+              if size > 80:
+                  rec_size = int(size * 0.08)
+                  draw.ellipse([
+                      center_x - cam_size//3,
+                      center_y - cam_size//4,
+                      center_x - cam_size//3 + rec_size,
+                      center_y - cam_size//4 + rec_size
+                  ], fill='red')
+
+              # Add "TCC" text for larger icons
+              if size >= 180:
+                  text_size = int(size * 0.08)
+                  # Simple text at bottom
+                  text_y = center_y + cam_size//2
+                  draw.text((center_x, text_y), "TCC", fill='white', anchor='mt')
+
               img.save(filename)
 
           # Create Contents.json
