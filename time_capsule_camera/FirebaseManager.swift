@@ -3,6 +3,8 @@ import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import AVFoundation
+import CoreLocation
 
 class FirebaseManager: ObservableObject {
     static let shared = FirebaseManager()
@@ -230,15 +232,28 @@ extension FirebaseManager {
         _ = try await videoRef.putDataAsync(videoData, metadata: metadata)
         let downloadUrl = try await videoRef.downloadURL().absoluteString
 
-        // Create video document
+        // Get actual video metadata
+        let asset = AVAsset(url: videoUrl)
+        let duration = CMTimeGetSeconds(asset.duration)
+
+        // Try to get actual recording date from video metadata
+        var recordedDate = Date()
+        if let metadataItem = try await asset.loadMetadata(for: .commonMetadata)
+            .first(where: { $0.commonKey == .commonKeyCreationDate }),
+           let dateValue = try await metadataItem.load(.dateValue) {
+            recordedDate = dateValue
+        }
+
+        // Create video document with ACTUAL recording time
         let video: [String: Any] = [
             "id": videoId,
             "userId": userId,
             "userName": userName,
             "videoUrl": downloadUrl,
-            "duration": 0, // Will calculate from video
-            "recordedAt": Timestamp(date: Date()),
-            "location": "New York, NY" // Will get from device location
+            "duration": duration,
+            "recordedAt": Timestamp(date: recordedDate), // When it was ACTUALLY recorded
+            "uploadedAt": Timestamp(date: Date()), // When uploaded
+            "location": "Current Location" // Will be set from camera view
         ]
 
         // Add video to capsule

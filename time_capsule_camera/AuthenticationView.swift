@@ -153,24 +153,24 @@ struct OnboardingView: View {
 
     let pages = [
         OnboardingPage(
+            icon: "video.circle.fill",
+            title: "Your Digital Home Videos",
+            description: "Remember watching old family videos? The way everyone looked, sounded, laughed? This app captures those moments - but for the future. Record now, watch together later."
+        ),
+        OnboardingPage(
             icon: "person.3.fill",
-            title: "Create Together",
-            description: "Start a time capsule and invite friends using a 6-digit code. Everyone can add their video memories to the same capsule."
+            title: "Capture Life Together",
+            description: "Create a capsule for any event - birthdays, trips, random Tuesdays. Share a 6-digit code. Everyone records their perspective. It's like having multiple cameras at once."
         ),
         OnboardingPage(
             icon: "lock.fill",
-            title: "Time Lock",
-            description: "Set when your capsule unlocks - days, months, or even years from now. Videos can't be viewed until the unlock date."
+            title: "The Magic of Waiting",
+            description: "Set it to unlock in a week, month, or year. You can't peek early. When it opens, you'll see how everyone's hair was different, hear forgotten inside jokes, remember what mattered then."
         ),
         OnboardingPage(
-            icon: "video.fill",
-            title: "Record Memories",
-            description: "Each friend records up to 60 seconds. Videos show who recorded them, when, and where - creating a timeline of memories."
-        ),
-        OnboardingPage(
-            icon: "gift.fill",
-            title: "Unlock & Enjoy",
-            description: "When the time comes, everyone gets notified. Watch all the videos in order - like opening a digital time capsule together!"
+            icon: "play.rectangle.fill",
+            title: "Watch Your Time Machine",
+            description: "Videos play in order by when they were recorded. See your friend arrive at the party, your kid's first words, that sunset from everyone's angle. Real moments, real voices, real memories."
         )
     ]
 
