@@ -16,6 +16,10 @@ workflows:
       xcode: 16.0
       cocoapods: default
     scripts:
+      - name: Install Firebase dependencies
+        script: |
+          cd time_capsule_camera
+          # Firebase SDK will be handled by Xcode's Swift Package Manager
       - name: Generate placeholder app icons
         script: |
           # Install Pillow for image generation

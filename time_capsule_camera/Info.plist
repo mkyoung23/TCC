@@ -55,5 +55,7 @@
     <string>LaunchScreen</string>
     <key>ITSAppUsesNonExemptEncryption</key>
     <false/>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>This app needs location access to tag where videos are recorded in time capsules.</string>
 </dict>
 </plist>

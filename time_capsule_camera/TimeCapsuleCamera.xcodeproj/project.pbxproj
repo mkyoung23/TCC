@@ -12,6 +12,10 @@
 		8D8B107A2B1F3A4300123456 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D8B107B2B1F3A4300123456 /* LaunchScreen.storyboard */; };
 		8D8B10812B1F3A4400123457 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10802B1F3A4400123457 /* CameraView.swift */; };
 		8D8B10832B1F3A4500123458 /* CapsuleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10822B1F3A4500123458 /* CapsuleListView.swift */; };
+		8D8B10852B1F3A4600123459 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10842B1F3A4600123459 /* FirebaseManager.swift */; };
+		8D8B10872B1F3A4700123460 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10862B1F3A4700123460 /* AuthenticationView.swift */; };
+		8D8B10892B1F3A4800123461 /* EnhancedCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8B10882B1F3A4800123461 /* EnhancedCameraView.swift */; };
+		8D8B108B2B1F3A4900123462 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8D8B108A2B1F3A4900123462 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,10 @@
 		8D8B107D2B1F3A4300123456 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D8B10802B1F3A4400123457 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		8D8B10822B1F3A4500123458 /* CapsuleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapsuleListView.swift; sourceTree = "<group>"; };
+		8D8B10842B1F3A4600123459 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		8D8B10862B1F3A4700123460 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		8D8B10882B1F3A4800123461 /* EnhancedCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhancedCameraView.swift; sourceTree = "<group>"; };
+		8D8B108A2B1F3A4900123462 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,10 +63,14 @@
 			isa = PBXGroup;
 			children = (
 				8D8B10762B1F3A4100123456 /* SimpleApp.swift */,
+				8D8B10842B1F3A4600123459 /* FirebaseManager.swift */,
+				8D8B10862B1F3A4700123460 /* AuthenticationView.swift */,
 				8D8B10802B1F3A4400123457 /* CameraView.swift */,
+				8D8B10882B1F3A4800123461 /* EnhancedCameraView.swift */,
 				8D8B10822B1F3A4500123458 /* CapsuleListView.swift */,
 				8D8B10782B1F3A4300123456 /* Assets.xcassets */,
 				8D8B107B2B1F3A4300123456 /* LaunchScreen.storyboard */,
+				8D8B108A2B1F3A4900123462 /* GoogleService-Info.plist */,
 				8D8B107D2B1F3A4300123456 /* Info.plist */,
 			);
 			path = .;
@@ -124,6 +136,7 @@
 			files = (
 				8D8B10792B1F3A4300123456 /* Assets.xcassets in Resources */,
 				8D8B107A2B1F3A4300123456 /* LaunchScreen.storyboard in Resources */,
+				8D8B108B2B1F3A4900123462 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +150,9 @@
 				8D8B10772B1F3A4100123456 /* SimpleApp.swift in Sources */,
 				8D8B10812B1F3A4400123457 /* CameraView.swift in Sources */,
 				8D8B10832B1F3A4500123458 /* CapsuleListView.swift in Sources */,
+				8D8B10852B1F3A4600123459 /* FirebaseManager.swift in Sources */,
+				8D8B10872B1F3A4700123460 /* AuthenticationView.swift in Sources */,
+				8D8B10892B1F3A4800123461 /* EnhancedCameraView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
