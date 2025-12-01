@@ -1,26 +1,25 @@
 import Foundation
-import FirebaseFirestore
+import FirebaseFirestoreSwift
 
-struct Capsule: Identifiable {
-    let id: String
+struct Capsule: Identifiable, Codable {
+    @DocumentID var id: String?
     var name: String
     var creatorId: String
-    var memberIds: [String]
-    var sealDate: Date
-    var isUnsealed: Bool
-
-    init(id: String, data: [String: Any]) {
-        self.id = id
-        self.name = data["name"] as? String ?? ""
-        self.creatorId = data["creatorId"] as? String ?? ""
-        self.memberIds = data["memberIds"] as? [String] ?? []
-        if let timestamp = data["sealDate"] as? Timestamp {
-            self.sealDate = timestamp.dateValue()
-        } else {
-            self.sealDate = Date()
-        }
-        // Check if capsule should be unsealed based on current time
-        let storedIsUnsealed = data["isUnsealed"] as? Bool ?? false
-        self.isUnsealed = storedIsUnsealed || self.sealDate <= Date()
+    var unlockDate: Date
+    var memberIds: [String] // List of User IDs who can see this
+    var isSealed: Bool = true
+    
+    // For the UI
+    var timeRemaining: String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter.localizedString(for: unlockDate, relativeTo: Date())
     }
+}
+
+struct CapsuleVideo: Identifiable, Codable {
+    @DocumentID var id: String?
+    var uploaderId: String
+    var videoUrl: String
+    var timestamp: Date
 }
