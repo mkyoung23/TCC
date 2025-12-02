@@ -29,15 +29,14 @@ workflows:
           # 2. Initialize Keychain
           keychain initialize
 
-          # 3. ⚡️ FORCE CREATE NEW CERTIFICATE ⚡️
-          # This is the command that was missing from your last build.
-          # It generates a NEW certificate and saves the key locally.
-          app-store-connect create-certificate --type IOS_DISTRIBUTION --save-key \
+          # 3. ⚡️ FORCE CREATE NEW CERTIFICATE (Corrected) ⚡️
+          # This creates a brand new certificate and automatically adds the private key to the keychain.
+          app-store-connect create-certificate --type IOS_DISTRIBUTION \
             --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
             --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
-            --private-key "$APP_STORE_CONNECT_PRIVATE_KEY" || true
+            --private-key "$APP_STORE_CONNECT_PRIVATE_KEY"
 
-          # 4. Fetch Profiles (Now it finds the one we just made)
+          # 4. Fetch Profiles (This will now use the NEW certificate we just made)
           app-store-connect fetch-signing-files "$IOS_BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create \
@@ -45,7 +44,7 @@ workflows:
             --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
             --private-key "$APP_STORE_CONNECT_PRIVATE_KEY"
           
-          # 5. Apply Settings
+          # 5. Apply
           keychain add-certificates
           xcode-project use-profiles
 
