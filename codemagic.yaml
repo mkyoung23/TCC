@@ -21,7 +21,7 @@ workflows:
         script: |
           set -e
           
-          # 1. Ensure Bundle ID is correct
+          # 1. Update Bundle ID
           cd time_capsule_camera
           find . -name "project.pbxproj" -exec sed -i '' "s/PRODUCT_BUNDLE_IDENTIFIER = .*;/PRODUCT_BUNDLE_IDENTIFIER = $IOS_BUNDLE_ID;/g" {} +
           echo "✅ Bundle ID updated to $IOS_BUNDLE_ID"
@@ -30,14 +30,14 @@ workflows:
           keychain initialize
 
           # 3. ⚡️ FORCE CREATE NEW CERTIFICATE ⚡️
-          # This command explicitly creates a new certificate instead of looking for old ones.
-          # The '|| true' ensures it continues even if there's a minor warning.
+          # This is the command that was missing from your last build.
+          # It generates a NEW certificate and saves the key locally.
           app-store-connect create-certificate --type IOS_DISTRIBUTION --save-key \
             --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
             --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
             --private-key "$APP_STORE_CONNECT_PRIVATE_KEY" || true
 
-          # 4. Now Fetch (It will find the one we just made)
+          # 4. Fetch Profiles (Now it finds the one we just made)
           app-store-connect fetch-signing-files "$IOS_BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create \
@@ -45,7 +45,7 @@ workflows:
             --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
             --private-key "$APP_STORE_CONNECT_PRIVATE_KEY"
           
-          # 5. Apply
+          # 5. Apply Settings
           keychain add-certificates
           xcode-project use-profiles
 
