@@ -4,52 +4,33 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       vars:
-        # ⚠️ CRITICAL CHANGE: Using Workspace instead of Project
+        # PATHS
         XCODE_WORKSPACE: "time_capsule_camera/TimeCapsuleCamera.xcworkspace" 
         XCODE_SCHEME: "TimeCapsuleCamera"
         IOS_BUNDLE_ID: "com.mkyoung.timecapsulecamera"
       groups:
-        - firebase_credentials
+        - firebase_credentials # Keeps your Firebase token working
+
+    # ⚡️ NEW: Automatic Signing (No more manual script!)
+    # CodeMagic will look at the files you uploaded to the UI and use them.
+    publishing:
+      app_store_connect:
+        api_key: $APP_STORE_CONNECT_PRIVATE_KEY # Uses the key you uploaded
+        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
+        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
 
     scripts:
       - name: Install CocoaPods
         script: | 
-          # This is the NEW step that installs Firebase
           cd time_capsule_camera
           pod install
-
-      - name: Decode signing assets
-        script: |
-          set -euo pipefail
-          CERT_PATH="$HOME/cert.p12"
-          PROFILE_PATH="$HOME/profile.mobileprovision"
-
-          echo "$IOS_CERT_BASE64" | base64 --decode > "$CERT_PATH"
-          echo "$IOS_PROFILE_BASE64" | base64 --decode > "$PROFILE_PATH"
-
-          security create-keychain -p "" build.keychain
-          security import "$CERT_PATH" -k build.keychain -P "${IOS_CERT_PASSWORD:-}" -T /usr/bin/codesign -T /usr/bin/security
-          security set-keychain-settings -lut 3600 build.keychain
-          security unlock-keychain -p "" build.keychain
-          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain >/dev/null
-          security list-keychains -s build.keychain $(security list-keychains | tr -d '"')
-
-          PROFILE_PLIST="$CM_BUILD_DIR/profile.plist"
-          security cms -D -i "$PROFILE_PATH" > "$PROFILE_PLIST"
-          PROFILE_UUID=$(/usr/libexec/PlistBuddy -c "Print :UUID" "$PROFILE_PLIST")
-          PROFILE_NAME=$(/usr/libexec/PlistBuddy -c "Print :Name" "$PROFILE_PLIST")
-
-          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
-          cp "$PROFILE_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_UUID.mobileprovision"
-
-          echo "PROFILE_UUID=$PROFILE_UUID" >> "$CM_ENV"
-          echo "PROFILE_NAME=$PROFILE_NAME" >> "$CM_ENV"
 
       - name: Build archive
         script: |
           set -euo pipefail
           
-          # We use the Workspace variable here
+          # ⚠️ Automatic Signing Setup
+          # This tells Xcode to look for the profiles CodeMagic already installed
           xcodebuild \
             -workspace "$XCODE_WORKSPACE" \
             -scheme "$XCODE_SCHEME" \
@@ -59,7 +40,7 @@ workflows:
             CODE_SIGN_STYLE=Manual \
             CODE_SIGN_IDENTITY="Apple Distribution" \
             DEVELOPMENT_TEAM=6XNH7D52V6 \
-            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
+            PROVISIONING_PROFILE_SPECIFIER="TimeCapsuleCamera Dist Profile" \
             clean archive
 
       - name: Export IPA
@@ -68,6 +49,7 @@ workflows:
           EXPORT_PATH="$CM_BUILD_DIR/ipa"
           mkdir -p "$EXPORT_PATH"
 
+          # Create a simple export options file
           cat <<EOF > exportOptions.plist
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -78,7 +60,7 @@ workflows:
             <key>teamID</key><string>6XNH7D52V6</string>
             <key>provisioningProfiles</key>
             <dict>
-              <key>$IOS_BUNDLE_ID</key><string>$PROFILE_UUID</string>
+              <key>$IOS_BUNDLE_ID</key><string>TimeCapsuleCamera Dist Profile</string>
             </dict>
           </dict>
           </plist>
