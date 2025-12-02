@@ -4,46 +4,48 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       vars:
-        # PATHS
-        XCODE_WORKSPACE: "time_capsule_camera/TimeCapsuleCamera.xcworkspace" 
+        XCODE_WORKSPACE: "time_capsule_camera/TimeCapsuleCamera.xcworkspace"
         XCODE_SCHEME: "TimeCapsuleCamera"
         IOS_BUNDLE_ID: "com.mkyoung.timecapsulecamera"
       groups:
         - firebase_credentials
-
-    # We use your API Key to fetch the correct profile automatically
-    publishing:
-      app_store_connect:
-        api_key: $APP_STORE_CONNECT_PRIVATE_KEY
-        key_id: $APP_STORE_CONNECT_KEY_IDENTIFIER
-        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+        - ios_signing        # 👈 THIS unlocks the variables seen in your screenshot!
 
     scripts:
       - name: Install CocoaPods
-        script: | 
+        script: |
           cd time_capsule_camera
           pod install
 
-      - name: Fix Bundle ID and Sign
+      - name: Fix Bundle ID and Fetch Signing Files
         script: |
-          # 1. Force the Project to use the correct Bundle ID
-          # This fixes the mismatch error!
-          cd time_capsule_camera
-          xcode-project build-settings --project TimeCapsuleCamera.xcodeproj --target TimeCapsuleCamera --set PRODUCT_BUNDLE_IDENTIFIER="$IOS_BUNDLE_ID"
-
-          # 2. Fetch the matching profile from Apple
-          keychain initialize
-          app-store-connect fetch-signing-files "$IOS_BUNDLE_ID" --type IOS_APP_STORE --create
-          app-store-connect add-certificates
+          set -e
           
-          # 3. Apply it ONLY to the App (not the Pods)
-          xcode-project use-profiles --project TimeCapsuleCamera.xcodeproj --target TimeCapsuleCamera
+          # 1. Update Bundle ID using text replacement
+          cd time_capsule_camera
+          find . -name "project.pbxproj" -exec sed -i '' "s/PRODUCT_BUNDLE_IDENTIFIER = .*;/PRODUCT_BUNDLE_IDENTIFIER = $IOS_BUNDLE_ID;/g" {} +
+          echo "✅ Bundle ID updated to $IOS_BUNDLE_ID"
+
+          # 2. Initialize Keychain
+          keychain initialize
+
+          # 3. Fetch signing files
+          # Now that we added the 'ios_signing' group, these variables will actually have values!
+          app-store-connect fetch-signing-files "$IOS_BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --create \
+            --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
+            --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
+            --private-key "$APP_STORE_CONNECT_PRIVATE_KEY"
+          
+          # 4. Add certificates and apply profiles
+          keychain add-certificates
+          xcode-project use-profiles
 
       - name: Build archive
         script: |
           set -euo pipefail
           
-          # Build using the workspace with the fixed settings
           xcodebuild \
             -workspace "$XCODE_WORKSPACE" \
             -scheme "$XCODE_SCHEME" \
@@ -58,9 +60,12 @@ workflows:
           EXPORT_PATH="$CM_BUILD_DIR/ipa"
           mkdir -p "$EXPORT_PATH"
 
-          # Generate export options automatically
+          # Generate export options
           xcode-project export-options-plist \
             --bundle-id "$IOS_BUNDLE_ID" \
+            --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
+            --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
+            --private-key "$APP_STORE_CONNECT_PRIVATE_KEY" \
             --output exportOptions.plist
 
           xcodebuild \
