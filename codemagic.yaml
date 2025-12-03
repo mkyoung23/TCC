@@ -17,7 +17,7 @@ workflows:
           cd time_capsule_camera
           pod install
 
-      - name: Fetch Signing Files (The Fix)
+      - name: Force New Cert and Sign
         script: |
           set -e
           
@@ -29,9 +29,15 @@ workflows:
           # 2. Initialize Keychain
           keychain initialize
 
-          # 3. FETCH & CREATE (The Correct Command)
-          # We use 'fetch' with the '--create' flag. This replaces the deprecated command.
-          # Since you deleted the old certs, this will automatically generate a valid one.
+          # 3. ⚡️ FORCE CREATE NEW CERTIFICATE (Modern Command) ⚡️
+          # This command creates a BRAND NEW certificate and saves the private key.
+          app-store-connect certificates create --type IOS_DISTRIBUTION \
+            --issuer-id "$APP_STORE_CONNECT_ISSUER_ID" \
+            --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
+            --private-key "$APP_STORE_CONNECT_PRIVATE_KEY"
+
+          # 4. Fetch Profiles
+          # We tell it to ignore old stuff and just use what we made.
           app-store-connect fetch-signing-files "$IOS_BUNDLE_ID" \
             --type IOS_APP_STORE \
             --create \
@@ -39,7 +45,7 @@ workflows:
             --key-id "$APP_STORE_CONNECT_KEY_IDENTIFIER" \
             --private-key "$APP_STORE_CONNECT_PRIVATE_KEY"
           
-          # 4. Apply Settings
+          # 5. Apply Settings
           keychain add-certificates
           xcode-project use-profiles
 
