@@ -62,9 +62,9 @@ time_capsule_camera/
 
 1. **Create a Capsule**: Set a name and future unlock date
 2. **Add Members**: Invite friends via email
-3. **Record Memories**: Everyone can add videos anytime
+3. **Record Memories**: Everyone can add videos anytime from their library and video will upload chronologically in to the capsule from when it was originally taken. Everyone can also choose to record videos directly from the app/capsule so it's automatically added at the correct time.
 4. **Wait for Magic**: Videos stay locked until the seal date
-5. **Enjoy Together**: Watch all videos in sequence when unsealed
+5. **Enjoy Together**: Watch all videos in sequence when unsealed like an old home-video camera from the 90s. Running time on the videos with date, person's name who is recording on the top left, blinking red light in top left
 
 ## 🛠 Technical Stack
 
